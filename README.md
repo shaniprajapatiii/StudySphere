@@ -58,3 +58,8 @@ This project is built as a **Monorepo** containing both the Frontend and Backend
 - **AI Engine:** Google Gemini API
 - **Authentication:** Passport.js (Google OAuth)
 - **Video Processing:** youtube-transcript, ytdl-core
+
+### **Let's Connect**
+- **Containerization:** Docker
+- **Version Control:** Git & GitHub
+- **CI/CD:** GitHub Actions
