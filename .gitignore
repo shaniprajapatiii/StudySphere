@@ -24,5 +24,11 @@ server/.env
 # Ignore test scripts
 server/scripts/test_*.js
 
-frontend/.gitignore
-server/.gitignore
+# Ignore all files in frontend/public except assets folder
+frontend/public/**
+!frontend/public/assets/
+!frontend/public/assets/**
+!frontend/public/_redirects
+!frontend/public/robots.txt
+!frontend/public/sitemap.xml
+
