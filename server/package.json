@@ -1,0 +1,31 @@
+{
+  "name": "studysphere-server",
+  "version": "1.0.0",
+  "description": "Backend server for StudySphere - Your Sphere of Study",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
+    "@google/generative-ai": "^0.24.1",
+    "connect-mongo": "^5.1.0",
+    "cookie-session": "^2.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mongoose": "^8.17.1",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "process": "^0.11.10",
+    "youtube-transcript": "^1.2.1"
+  }
+}
