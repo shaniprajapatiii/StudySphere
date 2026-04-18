@@ -1,0 +1,350 @@
+/* stylelint-disable at-rule-no-unknown */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html.dark,
+body {
+  background:
+    radial-gradient(circle at top, rgba(16, 185, 129, 0.12), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.1), transparent 24%),
+    #020617;
+}
+
+@layer base {
+  body {
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Sora", "Manrope", sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  *::selection {
+    background: rgba(16, 185, 129, 0.25);
+    color: #f8fafc;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(71, 85, 105, 0.7) rgba(2, 6, 23, 0.7);
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: rgba(2, 6, 23, 0.7);
+    border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(45, 212, 191, 0.45), rgba(16, 185, 129, 0.45));
+    border-radius: 9999px;
+    border: 2px solid rgba(2, 6, 23, 0.75);
+  }
+}
+
+html.dark body {
+  color: #e2e8f0;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  color: #e2e8f0;
+}
+
+@layer components {
+  .ds-link {
+    @apply text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200 cursor-pointer;
+  }
+
+  .ds-link-inverse {
+    @apply text-white hover:text-slate-100 hover:underline transition-colors duration-200 cursor-pointer;
+  }
+
+  .ds-h1 {
+    @apply text-4xl font-bold text-slate-100;
+  }
+
+  .ds-h2 {
+    @apply text-3xl font-bold text-slate-100;
+  }
+
+  .ds-h3 {
+    @apply text-2xl font-bold text-slate-100;
+  }
+
+  .ds-h4 {
+    @apply text-xl font-semibold text-slate-100;
+  }
+
+  .ds-h5 {
+    @apply text-lg font-semibold text-slate-100;
+  }
+
+  .ds-h6 {
+    @apply text-base font-semibold text-slate-100;
+  }
+
+  .ds-body-lg {
+    @apply text-lg text-slate-300;
+  }
+
+  .ds-body {
+    @apply text-base text-slate-300;
+  }
+
+  .ds-body-sm {
+    @apply text-sm text-slate-400;
+  }
+
+  .ds-body-xs {
+    @apply text-xs text-slate-500;
+  }
+
+  .ds-muted {
+    @apply text-slate-500 text-sm;
+  }
+
+  .ds-btn-primary {
+    @apply px-6 py-2.5 bg-emerald-500 text-white rounded-full shadow-lg shadow-emerald-950/30 hover:bg-emerald-400 active:bg-emerald-500 disabled:bg-slate-700 disabled:cursor-not-allowed transition-all duration-200 font-medium;
+  }
+
+  .ds-btn-secondary {
+    @apply px-6 py-2.5 bg-sky-500 text-white rounded-full shadow-lg shadow-sky-950/30 hover:bg-sky-400 active:bg-sky-500 disabled:bg-slate-700 disabled:cursor-not-allowed transition-all duration-200 font-medium;
+  }
+
+  .ds-btn-outline {
+    @apply px-6 py-2.5 border-2 border-emerald-500 text-emerald-300 rounded-full hover:bg-emerald-500/10 active:bg-emerald-500/20 disabled:border-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed transition-all duration-200 font-medium;
+  }
+
+  .ds-btn-ghost {
+    @apply px-6 py-2.5 text-emerald-300 rounded-full hover:bg-emerald-500/10 active:bg-emerald-500/20 disabled:text-slate-500 disabled:cursor-not-allowed transition-all duration-200 font-medium;
+  }
+
+  .ds-btn-danger {
+    @apply px-6 py-2.5 bg-red-500 text-white rounded-lg hover:bg-red-400 active:bg-red-500 disabled:bg-slate-700 disabled:cursor-not-allowed transition-colors duration-200 font-medium;
+  }
+
+  .ds-btn-success {
+    @apply px-6 py-2.5 bg-green-500 text-white rounded-lg hover:bg-green-400 active:bg-green-500 disabled:bg-slate-700 disabled:cursor-not-allowed transition-colors duration-200 font-medium;
+  }
+
+  .ds-btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .ds-btn-md {
+    @apply px-6 py-2.5;
+  }
+
+  .ds-btn-lg {
+    @apply px-8 py-3 text-lg;
+  }
+
+  .ds-btn-icon {
+    @apply p-2.5 rounded-lg hover:bg-slate-800 active:bg-slate-700 disabled:bg-slate-800 disabled:cursor-not-allowed transition-colors duration-200;
+  }
+
+  .ds-btn-icon-primary {
+    @apply p-2.5 rounded-full text-emerald-300 hover:bg-emerald-500/10 active:bg-emerald-500/20 disabled:text-slate-500 disabled:cursor-not-allowed transition-all duration-200;
+  }
+
+  .ds-card-base {
+    @apply bg-slate-900/85 backdrop-blur-md rounded-3xl border border-slate-700/80 shadow-[0_10px_30px_rgba(2,6,23,0.28)] hover:shadow-[0_20px_40px_rgba(2,6,23,0.36)] transition-all duration-300;
+  }
+
+  .ds-card-elevated {
+    @apply bg-slate-900/95 backdrop-blur-md rounded-3xl border border-slate-700/80 shadow-[0_16px_40px_rgba(2,6,23,0.32)] hover:shadow-[0_24px_48px_rgba(2,6,23,0.4)] transition-all duration-300;
+  }
+
+  .ds-card-flat {
+    @apply bg-slate-900/80 backdrop-blur-md rounded-3xl border border-slate-700 hover:border-emerald-500/40 transition-all duration-300;
+  }
+
+  .ds-card-interactive {
+    @apply bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-[0_10px_28px_rgba(2,6,23,0.24)] hover:shadow-[0_24px_50px_rgba(2,6,23,0.34)] hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-slate-700/80;
+  }
+
+  .ds-card-contained {
+    @apply bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-[0_10px_28px_rgba(2,6,23,0.24)] p-6 hover:shadow-[0_16px_36px_rgba(2,6,23,0.3)] transition-all duration-300 border border-slate-700/80;
+  }
+
+  .ds-card-bordered {
+    @apply bg-slate-900/85 backdrop-blur-md rounded-3xl border-2 border-slate-700 hover:border-emerald-500/40 transition-all duration-300;
+  }
+
+  .ds-input-base {
+    @apply w-full px-4 py-3 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 bg-slate-900/90 backdrop-blur-md text-slate-100 placeholder:text-slate-500;
+  }
+
+  .ds-input-error {
+    @apply w-full px-4 py-3 border-2 border-red-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 bg-slate-900/90 backdrop-blur-md text-slate-100 placeholder:text-slate-500;
+  }
+
+  .ds-input-success {
+    @apply w-full px-4 py-3 border-2 border-green-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-slate-900/90 backdrop-blur-md text-slate-100 placeholder:text-slate-500;
+  }
+
+  .ds-input-disabled {
+    @apply w-full px-4 py-3 border border-slate-700 rounded-2xl bg-slate-800 text-slate-500 cursor-not-allowed;
+  }
+
+  .ds-textarea {
+    @apply w-full px-4 py-3 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 bg-slate-900/90 backdrop-blur-md resize-none text-slate-100 placeholder:text-slate-500;
+  }
+
+  .ds-select {
+    @apply w-full px-4 py-3 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 bg-slate-900/90 backdrop-blur-md appearance-none text-slate-100;
+  }
+
+  .ds-label-base {
+    @apply block font-semibold text-slate-100 mb-2;
+  }
+
+  .ds-label-small {
+    @apply block font-medium text-sm text-slate-300 mb-1;
+  }
+
+  .ds-label-required {
+    @apply block font-semibold text-slate-100 mb-2 after:content-['*'] after:ml-1 after:text-red-400;
+  }
+
+  .ds-grid-feed {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4;
+  }
+
+  .ds-grid-list {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+
+  .ds-grid-two-col {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+
+  .ds-grid-three-col {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .ds-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .ds-badge-primary {
+    @apply px-3 py-1 bg-emerald-500/15 text-emerald-300 rounded-full text-xs font-medium border border-emerald-500/20;
+  }
+
+  .ds-badge-secondary {
+    @apply px-3 py-1 bg-blue-500/15 text-blue-300 rounded-full text-xs font-medium border border-blue-500/20;
+  }
+
+  .ds-badge-success {
+    @apply px-3 py-1 bg-green-500/15 text-green-300 rounded-full text-xs font-medium border border-green-500/20;
+  }
+
+  .ds-badge-warning {
+    @apply px-3 py-1 bg-yellow-500/15 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/20;
+  }
+
+  .ds-badge-danger {
+    @apply px-3 py-1 bg-red-500/15 text-red-300 rounded-full text-xs font-medium border border-red-500/20;
+  }
+
+  .ds-badge-gray {
+    @apply px-3 py-1 bg-slate-800 text-slate-300 rounded-full text-xs font-medium border border-slate-700;
+  }
+
+  .ds-badge-outlined {
+    @apply px-3 py-1 border border-slate-600 text-slate-300 rounded-full text-xs font-medium;
+  }
+
+  .ds-fade-in {
+    @apply transition-opacity duration-300;
+  }
+
+  .ds-slide-in {
+    @apply transition-transform duration-300;
+  }
+
+  .ds-scale-in {
+    @apply transition-transform duration-200;
+  }
+
+  .ds-hover-lift {
+    @apply hover:-translate-y-1 transition-transform duration-300;
+  }
+
+  .ds-hover-glow {
+    @apply hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .ds-hover-darken {
+    @apply hover:opacity-80 transition-opacity duration-200;
+  }
+
+  .ds-focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2;
+  }
+
+  .ds-sr-only {
+    @apply sr-only;
+  }
+
+  .ds-skip-link {
+    @apply absolute top-0 left-0 -translate-y-full px-4 py-2 bg-emerald-600 text-white rounded-full focus:translate-y-0;
+  }
+
+  .ds-loading {
+    @apply opacity-50 cursor-wait;
+  }
+
+  .ds-disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .ds-error {
+    @apply border-red-500 bg-red-500/10;
+  }
+
+  .ds-success-state {
+    @apply border-green-500 bg-green-500/10;
+  }
+
+  .ds-warning-state {
+    @apply border-yellow-500 bg-yellow-500/10;
+  }
+
+  .ds-container-padding {
+    @apply px-4 sm:px-6 md:px-8 lg:px-12;
+  }
+
+  .ds-text-responsive {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  .ds-icon-responsive {
+    @apply w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: #e2e8f0;
+}
