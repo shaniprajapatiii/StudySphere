@@ -13,12 +13,20 @@ export default function Profile() {
   const location = useLocation();
   const navigate = useNavigate();
   const redirectTo = location.state?.redirectTo || "/";
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState("");
   const [accountType, setAccountType] = useState("Learner");
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState(null);
+  const [statsLoading, setStatsLoading] = useState(false);
+  const [userStats, setUserStats] = useState({
+    totalWatchTime: 0,
+    totalQuizzesSolved: 0,
+    topicsCleared: 0,
+    streak: 0,
+  });
 
   useEffect(() => {
     if (user) {
@@ -26,6 +34,62 @@ export default function Profile() {
       setAccountType(user.accountType || "Learner");
     }
   }, [user]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadDashboardStats = async () => {
+      if (!isAuthenticated) return;
+
+      setStatsLoading(true);
+      try {
+        const res = await fetch(`${BASE_URL}/api/user/dashboard`, {
+          credentials: "include",
+        });
+
+        if (!res.ok) {
+          return;
+        }
+
+        const data = await res.json();
+        const stats = data?.stats || {};
+
+        if (isMounted) {
+          setUserStats({
+            totalWatchTime: Number(stats.totalWatchTime) || 0,
+            totalQuizzesSolved: Number(stats.totalQuizzesSolved) || 0,
+            topicsCleared: Array.isArray(stats.topicsCleared)
+              ? stats.topicsCleared.length
+              : 0,
+            streak: Number(data?.streak) || 0,
+          });
+        }
+      } catch (error) {
+        console.error("Failed to load profile stats:", error);
+      } finally {
+        if (isMounted) {
+          setStatsLoading(false);
+        }
+      }
+    };
+
+    loadDashboardStats();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [BASE_URL, isAuthenticated]);
+
+  const formatWatchTime = (seconds) => {
+    const safeSeconds = Math.max(0, Math.floor(Number(seconds) || 0));
+    const hours = Math.floor(safeSeconds / 3600);
+    const minutes = Math.floor((safeSeconds % 3600) / 60);
+    const remainingSeconds = safeSeconds % 60;
+
+    if (hours > 0) return `${hours}h ${minutes}m`;
+    if (minutes > 0) return `${minutes}m ${remainingSeconds}s`;
+    return `${remainingSeconds}s`;
+  };
 
   // If logged in, optionally auto-redirect back
   useEffect(() => {
@@ -46,7 +110,6 @@ export default function Profile() {
     setMessage(null);
 
     try {
-      const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
       const res = await fetch(`${BASE_URL}/api/user/profile`, {
         method: "PUT",
         headers: {
@@ -69,7 +132,7 @@ export default function Profile() {
           text: data.error || "Failed to update profile",
         });
       }
-    } catch (error) {
+    } catch {
       setMessage({
         type: "error",
         text: "An error occurred. Please try again.",
@@ -207,6 +270,53 @@ export default function Profile() {
                 {message.text}
               </div>
             )}
+
+            <div className="mb-6 rounded-[28px] border border-slate-800 bg-slate-900/90 backdrop-blur-xl p-5 sm:p-6 shadow-[0_16px_40px_rgba(2,6,23,0.25)]">
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <h3 className="text-xl font-bold text-slate-100">Your Stats</h3>
+                <span className="text-xs uppercase tracking-[0.16em] text-slate-400 font-semibold">
+                  Learning Snapshot
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="rounded-2xl bg-slate-800/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
+                  <p className="text-xs uppercase tracking-[0.16em] text-slate-400 font-semibold mb-1">
+                    Watch Time
+                  </p>
+                  <p className="text-lg font-bold text-slate-100">
+                    {statsLoading ? "..." : formatWatchTime(userStats.totalWatchTime)}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-slate-800/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
+                  <p className="text-xs uppercase tracking-[0.16em] text-slate-400 font-semibold mb-1">
+                    Quizzes Solved
+                  </p>
+                  <p className="text-lg font-bold text-slate-100">
+                    {statsLoading ? "..." : userStats.totalQuizzesSolved}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-slate-800/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
+                  <p className="text-xs uppercase tracking-[0.16em] text-slate-400 font-semibold mb-1">
+                    Topics Cleared
+                  </p>
+                  <p className="text-lg font-bold text-slate-100">
+                    {statsLoading ? "..." : userStats.topicsCleared}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-slate-800/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
+                  <p className="text-xs uppercase tracking-[0.16em] text-slate-400 font-semibold mb-1">
+                    Current Streak
+                  </p>
+                  <p className="text-lg font-bold text-slate-100">
+                    {statsLoading ? "..." : `${userStats.streak} day${userStats.streak === 1 ? "" : "s"}`}
+                  </p>
+                </div>
+              </div>
+            </div>
 
             {isEditing ? (
               <form
