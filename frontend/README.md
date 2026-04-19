@@ -45,7 +45,7 @@ Production:
 
 - Set `VITE_API_BASE_URL=https://your-backend-domain.com`
 
-Production template: [frontend/.env.production.example](.env.production.example)
+Production values should be set in [frontend/.env.example](.env.example) and copied into your deployed environment variables.
 
 ### 4. Run in development
 

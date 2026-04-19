@@ -1,5 +1,7 @@
 import MongoStore from "connect-mongo";
 import "dotenv/config";
+import { fileURLToPath } from "url";
+import path from "path";
 
 import express from "express";
 import passport from "passport";
@@ -234,4 +236,11 @@ app.get("/private", (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+const currentFilePath = fileURLToPath(import.meta.url);
+const executedFilePath = process.argv[1] ? path.resolve(process.argv[1]) : "";
+
+if (currentFilePath === executedFilePath) {
+  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+}
+
+export default app;

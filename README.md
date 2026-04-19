@@ -169,11 +169,11 @@ This starts:
 - Session cookie is secure in production and SameSite is environment-aware.
 - API and auth routes are rate-limited.
 
-## Deployment (Vercel Frontend + Node Backend)
+## Deployment (Vercel Frontend + Backend)
 
-1. Deploy backend to a Node host (Render, Railway, VM, etc.).
+1. Deploy backend (Vercel serverless or a Node host like Render/Railway/VM).
 
-- Use [server/.env.production.example](server/.env.production.example)
+- Use [server/.env.example](server/.env.example)
 - Set NODE_ENV=production
 - Set SERVER_URL to backend public URL
 - Set CLIENT_URL to Vercel frontend URL

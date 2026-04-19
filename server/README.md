@@ -90,6 +90,9 @@ curl http://localhost:4000/health
 
 ```
 server/
+  api/
+    index.js
+  vercel.json
   server.js
   src/
     config/
@@ -103,9 +106,10 @@ server/
 
 ## Deployment Notes
 
-- Use [server/.env.production.example](.env.production.example) as a template.
+- Use [server/.env.example](.env.example) as a template.
 - Set `NODE_ENV=production` and `TRUST_PROXY=1` (or your actual proxy hops).
 - Ensure `SERVER_URL` and `CLIENT_URL` use HTTPS.
+- This repo includes Vercel serverless support via `api/index.js` and `vercel.json`.
 - Google OAuth callback URL should be:
   - `https://<your-server-domain>/auth/google/callback`
 
