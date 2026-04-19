@@ -2,6 +2,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "./hooks/useAuth";
+import ThirdPartyCookieWarning from "./components/ThirdPartyCookieWarning";
 import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -24,7 +25,7 @@ import Terms from "./pages/Terms/Terms";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 export default function App() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loginAttempted } = useAuth();
   const navigate = useNavigate();
 
   // Handle post-login redirect
@@ -68,7 +69,11 @@ export default function App() {
       <ScrollToTop />
       <Header />
       <Navbar />
-      <div className="flex-grow">
+      {/* Show cookie warning if login was attempted and not authenticated */}
+      {loginAttempted && !isAuthenticated && (
+        <ThirdPartyCookieWarning />
+      )}
+      <div className="grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/feed" element={<Feed />} />

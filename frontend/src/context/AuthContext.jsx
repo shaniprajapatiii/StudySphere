@@ -4,12 +4,15 @@ import axios from "axios";
 
 // 1️⃣ Create & Export Context
 // eslint-disable-next-line react-refresh/only-export-components
+
+// Track if a login attempt was made (for cookie warning)
 export const AuthContext = createContext();
 
 // 2️⃣ Provider Component
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loginAttempted, setLoginAttempted] = useState(false);
 
   // Use relative path for proxying
   const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
@@ -35,12 +38,13 @@ export function AuthProvider({ children }) {
 
   // 🔹 Trigger Google Login
   const startGoogleSignIn = () => {
+    setLoginAttempted(true);
     try {
       sessionStorage.setItem("afterAuthRedirect", window.location.pathname);
     } catch {
       null;
     }
-    window.open(`${BASE_URL}/auth/google`, "_self"); // ✅ fixed (removed extra /auth)
+    window.open(`${BASE_URL}/auth/google`, "_self");
   };
 
   // 🔹 Logout
@@ -57,6 +61,7 @@ export function AuthProvider({ children }) {
         loading,
         startGoogleSignIn,
         signOut,
+        loginAttempted,
       }}
     >
       {children}
