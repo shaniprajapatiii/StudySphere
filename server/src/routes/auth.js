@@ -37,6 +37,14 @@ router.get(
 router.get(
   "/google/callback",
   requireGoogleAuth,
+  (req, res, next) => {
+    // If callback is hit directly without Google's auth code, restart via the login route.
+    if (!req.query?.code) {
+      return res.redirect("/auth/google");
+    }
+
+    return next();
+  },
   passport.authenticate("google", {
     failureRedirect: "/auth/login/failed",
     session: true,
