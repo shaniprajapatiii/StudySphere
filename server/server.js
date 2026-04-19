@@ -40,6 +40,9 @@ if (!Number.isInteger(trustProxyHops) || trustProxyHops < 0) {
 const clientOriginRegexPattern = process.env.CLIENT_ORIGIN_REGEX || "";
 let clientOriginRegex = null;
 
+const normalizeOrigin = (origin) =>
+  (origin || "").trim().replace(/\/+$/, "");
+
 if (clientOriginRegexPattern) {
   try {
     clientOriginRegex = new RegExp(clientOriginRegexPattern);
@@ -52,7 +55,7 @@ const clientOrigins = (
   process.env.CLIENT_ORIGINS || process.env.CLIENT_URL || ""
 )
   .split(",")
-  .map((origin) => origin.trim())
+  .map((origin) => normalizeOrigin(origin))
   .filter(Boolean);
 
 if (!isProduction && clientOrigins.length === 0) {
@@ -103,7 +106,9 @@ app.use(hpp());
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || clientOrigins.includes(origin)) {
+      const normalizedOrigin = normalizeOrigin(origin);
+
+      if (!origin || clientOrigins.includes(normalizedOrigin)) {
         return callback(null, true);
       }
 
