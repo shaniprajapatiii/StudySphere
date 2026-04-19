@@ -119,6 +119,7 @@ app.use(
       return callback(new Error("CORS origin denied"), false);
     },
     credentials: true,
+    optionsSuccessStatus: 200, // Added for better preflight support
   })
 );
 
