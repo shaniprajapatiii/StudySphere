@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const toastStyles = {
   position: "fixed",
-  top: 24,
+  bottom: 24,
   right: 24,
   zIndex: 9999,
   minWidth: 320,
@@ -55,10 +55,14 @@ const ThirdPartyCookieWarning = () => {
       <span style={iconStyles}>⚠️</span>
       <div style={{ flex: 1 }}>
         <div style={{ fontWeight: 700, fontSize: 17, marginBottom: 2 }}>
-          Having trouble logging in?
+          Action Required: Enable Third-Party Cookies
         </div>
         <div style={{ fontSize: 15, color: "#fbbf24" }}>
-          Please enable <b>third-party cookies</b> in your browser settings to use Google login on this site.
+          To log in with Google, please allow <b>third-party cookies</b> in your browser settings.<br />
+          <span style={{ color: '#fff', fontWeight: 500 }}>
+            This is necessary for authentication to work on Study Sphere.<br />
+            <u>After enabling, refresh this page and try logging in again.</u>
+          </span>
         </div>
       </div>
       <button
@@ -71,7 +75,7 @@ const ThirdPartyCookieWarning = () => {
       </button>
       <style>{`
         @keyframes slideIn {
-          from { opacity: 0; transform: translateY(-32px) scale(0.98); }
+          from { opacity: 0; transform: translateY(32px) scale(0.98); }
           to { opacity: 1; transform: translateY(0) scale(1); }
         }
       `}</style>
