@@ -446,7 +446,7 @@ export default function Home() {
 
               <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-1">
                 <button
-                  onClick={() => setUrl("https://youtu.be/YykjpeuMNEk?si=WiARmQNNYffilKfu")}
+                  onClick={() => setUrl("https://www.youtube.com/watch?v=M3_pLsDdeuU&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn")}
                   className="text-sm text-slate-400 hover:text-emerald-300 transition-colors self-start"
                 >
                   Try sample video
