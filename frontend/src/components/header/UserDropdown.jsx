@@ -34,39 +34,39 @@ export default function UserDropdown({
         <img
           src={user?.picture || default_dp}
           alt="Profile"
-          className="w-9 h-9 rounded-full border-2 border-transparent group-hover:border-emerald-200 transition-all object-cover shadow-sm"
+          className="w-9 h-9 rounded-full border-2 border-transparent group-hover:border-cyan-200 transition-all object-cover shadow-sm"
         />
       </button>
 
       {/* Dropdown menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-slate-950/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(2,6,23,0.4)] border border-slate-800/90 py-2 z-50 transform origin-top-right transition-all">
+        <div className="absolute right-0 mt-2 w-56 bg-black/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-cyan-500/20 py-2 z-50 transform origin-top-right transition-all">
           {!isAuthenticated ? (
             <button
               onClick={() => {
                 onSignIn();
                 setIsOpen(false);
               }}
-              className="w-full text-left px-4 py-2.5 hover:bg-emerald-500/10 text-slate-300 flex items-center gap-3 transition-colors text-sm font-medium"
+              className="w-full text-left px-4 py-2.5 hover:bg-cyan-500/10 text-gray-300 flex items-center gap-3 transition-colors text-sm font-medium"
             >
-              <LogIn size={16} className="text-emerald-400" />
+              <LogIn size={16} className="text-cyan-400" />
               Sign in / Sign up
             </button>
           ) : (
             <>
-              <div className="px-4 py-3 border-b border-slate-800 mb-1">
-                <p className="text-sm font-semibold text-slate-100 truncate">
+              <div className="px-4 py-3 border-b border-gray-800 mb-1">
+                <p className="text-sm font-semibold text-white truncate">
                   {user?.name || "User"}
                 </p>
-                <p className="text-xs text-slate-400 truncate">{user?.email}</p>
+                <p className="text-xs text-gray-400 truncate">{user?.email}</p>
               </div>
 
               <Link
                 to="/profile"
                 onClick={() => setIsOpen(false)}
-                className="w-full text-left px-4 py-2.5 hover:bg-slate-800 text-slate-300 flex items-center gap-3 transition-colors text-sm"
+                className="w-full text-left px-4 py-2.5 hover:bg-gray-800 text-gray-300 flex items-center gap-3 transition-colors text-sm"
               >
-                <User size={16} className="text-slate-400" />
+                <User size={16} className="text-gray-400" />
                 Profile
               </Link>
 

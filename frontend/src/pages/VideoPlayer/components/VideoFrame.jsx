@@ -21,7 +21,7 @@ const VideoFrame = ({ embedUrl }) => {
     <div className="w-full h-full relative bg-black rounded-xl overflow-hidden shadow-lg">
       {!iframeLoaded && (
         <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="animate-spin text-4xl text-slate-400">⏳</div>
+          <div className="animate-spin text-4xl text-gray-400">⏳</div>
         </div>
       )}
       <iframe

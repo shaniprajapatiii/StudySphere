@@ -353,21 +353,21 @@ const Player = () => {
   };
 
   return (
-    <div className="player-page flex flex-col lg:flex-row min-h-[calc(100vh-112px)] lg:h-[calc(100vh-112px)] bg-slate-950 overflow-hidden">
+    <div className="player-page flex flex-col lg:flex-row min-h-[calc(100vh-112px)] lg:h-[calc(100vh-112px)] bg-black overflow-hidden">
       {/* Left: video area */}
       <div className="w-full lg:flex-1 flex flex-col shrink-0 lg:shrink bg-black lg:bg-transparent justify-center lg:justify-start p-0 lg:p-6 overflow-visible">
-        <div className="w-full aspect-video bg-black lg:rounded-2xl shadow-lg overflow-hidden flex items-center justify-center relative z-50">
+        <div className="w-full aspect-video bg-transparent lg:rounded-2xl shadow-lg overflow-hidden flex items-center justify-center relative z-50">
           {loading ? (
-            <SkeletonLoader className="w-full h-full bg-slate-800" />
+            <SkeletonLoader className="w-full h-full bg-zinc-900" />
           ) : embedUrl ? (
             <VideoFrame embedUrl={embedUrl} />
           ) : (
-            <p className="text-slate-400">🎬 No video selected</p>
+            <p className="text-gray-400">🎬 No video selected</p>
           )}
         </div>
         {entry && (
-          <div className="p-4 lg:p-0 lg:mt-4 bg-slate-900 lg:bg-transparent border-b lg:border-none border-slate-700">
-            <h2 className="text-lg lg:text-2xl font-bold text-slate-100 leading-tight line-clamp-2">
+          <div className="p-4 lg:p-0 lg:mt-4 bg-zinc-950/60 lg:bg-transparent border-b lg:border-none border-cyan-500/15">
+            <h2 className="text-lg lg:text-2xl font-bold text-white leading-tight line-clamp-2">
               {entry.title}
             </h2>
           </div>
@@ -375,9 +375,9 @@ const Player = () => {
       </div>
 
       {/* Right: tools */}
-      <div className="flex-1 w-full lg:flex-none lg:w-[400px] xl:w-[450px] bg-slate-900 shadow-xl border-l border-slate-700 flex flex-col z-20 overflow-hidden">
+      <div className="flex-1 w-full lg:flex-none lg:w-[400px] xl:w-[450px] bg-zinc-950/60 shadow-xl border-l border-cyan-500/15 flex flex-col z-20 overflow-hidden">
         {/* Header / Controls */}
-        <div className="p-3 lg:p-6 border-b border-slate-700 bg-slate-900/85 backdrop-blur-md sticky top-0 z-30">
+        <div className="p-3 lg:p-6 border-b border-cyan-500/15 bg-zinc-950/85 backdrop-blur-md sticky top-0 z-30">
           {err && (
             <div className="mb-3 p-3 text-sm rounded-lg bg-rose-500/15 text-rose-200 border border-rose-600/40">
               {err}
@@ -404,12 +404,12 @@ const Player = () => {
               hasTranscript={!!transcript}
             />
           ) : (
-            <p className="text-slate-300 text-center py-4">No video loaded.</p>
+            <p className="text-gray-300 text-center py-4">No video loaded.</p>
           )}
         </div>
 
         {/* Scrollable Content Area */}
-        <div className="flex-1 overflow-y-auto p-4 lg:p-6 custom-scrollbar bg-slate-950/60">
+        <div className="flex-1 overflow-y-auto p-4 lg:p-6 custom-scrollbar bg-black/60">
           {embedUrl && !loading && (
             <AnimatePresence mode="wait">
               {viewMode === "transcript" &&
@@ -464,10 +464,10 @@ const Player = () => {
         </div>
 
         {/* Footer / Back Button */}
-        <div className="p-3 lg:p-4 border-t border-slate-700 bg-slate-900">
+        <div className="p-3 lg:p-4 border-t border-cyan-500/15 bg-zinc-950">
           <button
             onClick={() => navigate(-1)}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 text-slate-100 font-medium rounded-xl shadow-sm border border-slate-700 hover:bg-slate-700 hover:text-emerald-300 transition-all duration-200"
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-zinc-900 text-white font-medium rounded-xl shadow-sm border border-cyan-500/20 hover:bg-zinc-800 hover:text-cyan-200 transition-all duration-200"
           >
             <span>⬅</span>{" "}
             <span className="hidden sm:inline">Back to Dashboard</span>

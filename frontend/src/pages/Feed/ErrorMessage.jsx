@@ -1,15 +1,15 @@
 export default function ErrorMessage({ error, onRetry }) {
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4">
       <div className="text-center max-w-md">
         {/* Error Icon */}
         <div className="text-6xl mb-4">⚠️</div>
 
-        <h2 className="ds-h3 mb-2 text-slate-100">
+        <h2 className="ds-h3 mb-2 text-white">
           Oops! Something went wrong
         </h2>
 
-        <p className="ds-body text-slate-300 mb-6">
+        <p className="ds-body text-gray-300 mb-6">
           {error || "We couldn't load your video feed. Please try again."}
         </p>
 

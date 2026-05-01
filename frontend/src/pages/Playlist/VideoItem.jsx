@@ -50,7 +50,7 @@ export default function VideoItem({ video }) {
   return (
     <div className="relative group w-full">
       {/* Thumbnail Container */}
-      <div className="relative w-full bg-slate-800 rounded-md overflow-hidden mb-3 flex items-center justify-center" style={{aspectRatio: '16/9', minHeight: '120px'}}>
+      <div className="relative w-full bg-gray-800 rounded-md overflow-hidden mb-3 flex items-center justify-center" style={{aspectRatio: '16/9', minHeight: '120px'}}>
         <img
           src={thumbnail}
           alt={title}
@@ -88,7 +88,7 @@ export default function VideoItem({ video }) {
         )}
       </div>
       <h3
-        className="text-base font-semibold text-slate-100 truncate group-hover:text-emerald-400 transition-colors mt-2"
+        className="text-base font-semibold text-white truncate group-hover:text-cyan-400 transition-colors mt-2"
         title={title}
       >
         {title}
@@ -96,7 +96,7 @@ export default function VideoItem({ video }) {
 
       {/* Playlist extra info */}
       {displayInfo.isPlaylist && (
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-gray-400 mt-1">
           {displayInfo.count || 0} videos • {displayInfo.duration || "0m"} total
         </p>
       )}

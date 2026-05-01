@@ -3,7 +3,7 @@ import VideoItem from "./VideoItem";
 export default function PlaylistList({ playlists, onSelect, onRemove }) {
   if (!playlists || playlists.length === 0) {
     return (
-      <p className="text-slate-400 italic text-center mt-10">
+      <p className="text-gray-400 italic text-center mt-10">
         No playlists or videos added yet.
       </p>
     );

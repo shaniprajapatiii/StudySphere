@@ -43,7 +43,7 @@ export default function FilterBar({ searchQuery, setSearchQuery, isSearching = f
         <Search 
           size={18} 
           className={`absolute left-3.5 top-1/2 transform -translate-y-1/2 pointer-events-none transition-colors duration-200 ${
-            isFocused ? 'text-emerald-500' : 'text-slate-400'
+            isFocused ? 'text-cyan-500' : 'text-gray-400'
           }`} 
         />
         
@@ -51,7 +51,7 @@ export default function FilterBar({ searchQuery, setSearchQuery, isSearching = f
         {isSearching && (
           <Loader 
             size={18} 
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 animate-spin text-emerald-500" 
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 animate-spin text-cyan-500" 
           />
         )}
         
@@ -59,7 +59,7 @@ export default function FilterBar({ searchQuery, setSearchQuery, isSearching = f
         {searchQuery && !isSearching && (
           <button
             onClick={handleClearSearch}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-1.5 text-slate-400 hover:text-rose-300 transition-colors duration-200 hover:bg-slate-800 rounded-md"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-1.5 text-gray-400 hover:text-rose-300 transition-colors duration-200 hover:bg-zinc-900 rounded-md"
             aria-label="Clear search"
             title="Clear search (Esc)"
           >
@@ -70,13 +70,13 @@ export default function FilterBar({ searchQuery, setSearchQuery, isSearching = f
       
       {/* Search Hints */}
       {isFocused && !searchQuery && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-slate-950 rounded-lg shadow-lg border border-slate-800 p-3 text-sm text-slate-300 z-50">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-black rounded-lg shadow-lg border border-cyan-500/20 p-3 text-sm text-gray-300 z-50">
           <div className="space-y-1">
-            <p className="text-xs text-slate-500 font-semibold uppercase">Tips:</p>
-            <ul className="space-y-1 text-xs text-slate-400">
+            <p className="text-xs text-gray-500 font-semibold uppercase">Tips:</p>
+            <ul className="space-y-1 text-xs text-gray-400">
               <li>• Search by video title, channel name</li>
-              <li>• Press <kbd className="bg-slate-800 px-1.5 py-0.5 rounded text-slate-200 font-mono">Enter</kbd> to search</li>
-              <li>• Press <kbd className="bg-slate-800 px-1.5 py-0.5 rounded text-slate-200 font-mono">Esc</kbd> to clear</li>
+              <li>• Press <kbd className="bg-zinc-900 px-1.5 py-0.5 rounded text-gray-200 font-mono">Enter</kbd> to search</li>
+              <li>• Press <kbd className="bg-zinc-900 px-1.5 py-0.5 rounded text-gray-200 font-mono">Esc</kbd> to clear</li>
             </ul>
           </div>
         </div>

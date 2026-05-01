@@ -37,19 +37,19 @@ const FEATURE_CARDS = [
     title: "Distraction Free",
     desc: "Watch videos in a clean, focused environment designed purely for learning, with no sidebar distractions.",
     icon: Play,
-    tint: "bg-emerald-500/10 text-emerald-300",
+    tint: "bg-cyan-500/10 text-cyan-300",
     cta: "Learn more",
     badge: "Focus",
-    accent: "from-emerald-500/20 via-teal-400/10 to-transparent",
+    accent: "from-cyan-500/20 via-blue-400/10 to-transparent",
   },
   {
     title: "Smart Transcripts",
     desc: "Get accurate, time-synced transcripts. Search through the video content like a document.",
     icon: FileText,
-    tint: "bg-teal-500/10 text-teal-300",
+    tint: "bg-cyan-500/10 text-cyan-300",
     cta: "Learn more",
     badge: "Clarity",
-    accent: "from-teal-500/20 via-cyan-400/10 to-transparent",
+    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
   },
   {
     title: "AI Quizzes",
@@ -68,30 +68,30 @@ const UnifiedCard = ({ card, delay = 0 }) => {
   const content = (
     <>
       <div
-        className={`absolute inset-0 bg-gradient-to-br ${card.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+        className={`absolute inset-0 bg-linear-to-br ${card.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
       />
-      <div className="relative z-10">
+      <div className="relative z-10 flex h-full flex-col">
         <div className="mb-4 flex items-center justify-between gap-3">
           <div
-            className={`w-12 h-12 rounded-xl flex items-center justify-center border border-slate-700 ${card.tint}`}
+            className={`w-12 h-12 rounded-xl flex items-center justify-center border border-gray-700 ${card.tint}`}
           >
             <Icon className="w-6 h-6" />
           </div>
           {card.badge && (
-            <span className="rounded-full px-2.5 py-1 text-[11px] font-semibold text-slate-300 bg-slate-800 border border-slate-700">
+            <span className="rounded-full px-2.5 py-1 text-[11px] font-semibold text-gray-300 bg-gray-800 border border-gray-700">
               {card.badge}
             </span>
           )}
         </div>
 
-        <h4 className="text-lg font-bold text-slate-100 mb-2">{card.title}</h4>
-        <p className="text-slate-300 min-h-[48px]">{card.desc}</p>
+        <h4 className="text-lg font-bold text-white mb-2">{card.title}</h4>
+        <p className="flex-1 text-gray-300">{card.desc}</p>
 
         <div className="mt-5 flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-300 group-hover:text-emerald-200">
+          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-300 group-hover:text-cyan-200">
             {card.cta}
           </span>
-          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/15 text-emerald-300 group-hover:bg-emerald-500/25 group-hover:text-emerald-200 transition-colors duration-200">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-500/15 text-cyan-300 group-hover:bg-cyan-500/25 group-hover:text-cyan-200 transition-colors duration-200">
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </span>
         </div>
@@ -100,50 +100,7 @@ const UnifiedCard = ({ card, delay = 0 }) => {
   );
 
   const baseClass =
-    "group relative block overflow-hidden bg-slate-900 rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-800 hover:shadow-xl hover:shadow-slate-950/40 hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60";
-
-const JOURNEY_CARDS = [
-  {
-    title: "Progress Dashboard",
-    desc: "See watch time, quiz accuracy, and completed sessions at a glance so you always know your progress.",
-    icon: BarChart3,
-    tint: "bg-emerald-500/10 text-emerald-300",
-    to: "/dashboard",
-    cta: "Open dashboard",
-    badge: "Analytics",
-    accent: "from-emerald-500/20 via-teal-400/10 to-transparent",
-  },
-  {
-    title: "Custom Playlists",
-    desc: "Group videos by topic, exam, or skill level and build a structured path for faster learning.",
-    icon: BookOpen,
-    tint: "bg-teal-500/10 text-teal-300",
-    to: "/playlist",
-    cta: "Manage playlists",
-    badge: "Organization",
-    accent: "from-teal-500/20 via-cyan-400/10 to-transparent",
-  },
-  {
-    title: "Study Streaks",
-    desc: "Stay consistent with daily streaks and milestones that keep your study momentum strong.",
-    icon: Flame,
-    tint: "bg-rose-500/10 text-rose-300",
-    to: "/learning",
-    cta: "Keep streak alive",
-    badge: "Consistency",
-    accent: "from-rose-500/20 via-orange-300/10 to-transparent",
-  },
-  {
-    title: "Smart Review",
-    desc: "Jump back in with smart resume points and AI-picked videos tailored to your current goals.",
-    icon: Target,
-    tint: "bg-cyan-500/10 text-cyan-300",
-    to: "/feed",
-    cta: "Start smart review",
-    badge: "AI Guidance",
-    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
-  },
-];
+    "group relative block overflow-hidden bg-zinc-950/50 rounded-2xl p-5 sm:p-6 shadow-sm border border-cyan-500/15 hover:shadow-xl hover:shadow-cyan-600/20 hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60";
 
   return (
     <motion.div
@@ -151,6 +108,7 @@ const JOURNEY_CARDS = [
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay }}
+      className="h-full"
     >
       {card.to ? (
         <Link to={card.to} className={baseClass}>
@@ -168,30 +126,30 @@ const JOURNEY_CARDS = [
     title: "Progress Dashboard",
     desc: "See watch time, quiz accuracy, and completed sessions at a glance so you always know your progress.",
     icon: BarChart3,
-    tint: "bg-emerald-500/10 text-emerald-300",
+    tint: "bg-cyan-500/10 text-cyan-300",
     cta: "Open dashboard",
     badge: "Analytics",
-    accent: "from-emerald-500/20 via-teal-400/10 to-transparent",
+    accent: "from-cyan-500/20 via-blue-400/10 to-transparent",
   },
   {
     title: "Custom Playlists",
     desc: "Group videos by topic, exam, or skill level and build a structured path for faster learning.",
     icon: BookOpen,
-    tint: "bg-teal-500/10 text-teal-300",
+    tint: "bg-cyan-500/10 text-cyan-300",
     to: "/playlist",
     cta: "Manage playlists",
     badge: "Organization",
-    accent: "from-teal-500/20 via-cyan-400/10 to-transparent",
+    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
   },
   {
     title: "Study Streaks",
     desc: "Stay consistent with daily streaks and milestones that keep your study momentum strong.",
     icon: Flame,
-    tint: "bg-rose-500/10 text-rose-300",
+    tint: "bg-cyan-500/10 text-cyan-300",
     to: "/learning",
     cta: "Keep streak alive",
     badge: "Consistency",
-    accent: "from-rose-500/20 via-orange-300/10 to-transparent",
+    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
   },
   {
     title: "Smart Review",
@@ -312,7 +270,7 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-500/20 overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-transparent text-white selection:bg-cyan-500/30 overflow-x-hidden font-sans">
       <Helmet>
         <title>StudySphere - Your Sphere of Study | AI-Powered Learning</title>
         <meta
@@ -329,28 +287,28 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-emerald-500/20 shadow-sm mb-6 sm:mb-7">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-950 border border-cyan-500/30 shadow-sm mb-6 sm:mb-7">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
               </span>
-              <span className="text-sm font-medium text-emerald-300">
+              <span className="text-sm font-medium text-cyan-300">
                 AI-Powered Learning Assistant
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-7 leading-tight text-slate-100">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-7 leading-tight text-white">
               Your Sphere of <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-pink-300">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-300 via-blue-300 to-pink-300">
                 Study & Growth
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
               Transform passive video watching into active learning. StudySphere uses AI to generate
-              <span className="text-emerald-300 font-semibold"> transcripts</span>,
-              <span className="text-emerald-300 font-semibold"> summaries</span>, and
-              <span className="text-emerald-300 font-semibold"> interactive quizzes</span> from any
+              <span className="text-cyan-300 font-semibold"> transcripts</span>,
+              <span className="text-cyan-300 font-semibold"> summaries</span>, and
+              <span className="text-cyan-300 font-semibold"> interactive quizzes</span> from any
               YouTube video.
             </p>
           </motion.div>
@@ -361,17 +319,17 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="max-w-[52rem] mx-auto relative group"
           >
-            <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 shadow-2xl ring-1 ring-white/5 p-4 sm:p-5 md:p-6">
+            <div className="relative overflow-hidden rounded-3xl border border-cyan-500/15 bg-zinc-950/60 shadow-2xl ring-1 ring-white/5 p-4 sm:p-5 md:p-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4 sm:mb-5 px-1">
                 <div className="flex items-start gap-3 text-left">
-                  <span className="inline-flex w-8 h-8 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 shrink-0 mt-0.5">
+                  <span className="inline-flex w-8 h-8 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-300 border border-cyan-500/20 shrink-0 mt-0.5">
                     <Link2 className="w-4 h-4" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-slate-100">
+                    <p className="text-sm font-semibold text-white">
                       Paste a YouTube video or playlist URL
                     </p>
-                    <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                    <p className="text-xs sm:text-sm text-gray-400 mt-1">
                       We’ll process the link and turn it into study-friendly content.
                     </p>
                   </div>
@@ -380,7 +338,7 @@ export default function Home() {
                   {URL_HINTS.map((hint) => (
                     <span
                       key={hint}
-                      className="px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-medium border border-slate-700"
+                      className="px-2.5 py-1 rounded-full bg-black/60 text-gray-300 font-medium border border-cyan-500/20"
                     >
                       {hint}
                     </span>
@@ -390,10 +348,10 @@ export default function Home() {
 
               <form
                 onSubmit={handleAddAndGo}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-2xl border border-slate-700 bg-slate-950 gap-2 p-1.5 sm:p-2 shadow-inner shadow-slate-950/30"
+                className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-2xl border border-cyan-500/20 bg-black gap-2 p-1.5 sm:p-2 shadow-inner shadow-black/50"
               >
                 <div className="flex-1 flex items-center w-full">
-                  <div className="pl-2 sm:pl-3 text-slate-400">
+                  <div className="pl-2 sm:pl-3 text-gray-400">
                     <Youtube className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <input
@@ -401,13 +359,13 @@ export default function Home() {
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder="Paste YouTube URL..."
-                    className="flex-1 bg-transparent border-none text-slate-100 placeholder-slate-500 focus:ring-0 px-3 sm:px-4 py-2.5 sm:py-3 text-base sm:text-lg w-full min-w-0"
+                    className="flex-1 bg-transparent border-none text-white placeholder-gray-500 focus:ring-0 px-3 sm:px-4 py-2.5 sm:py-3 text-base sm:text-lg w-full min-w-0"
                   />
                   {url && (
                     <button
                       type="button"
                       onClick={() => setUrl("")}
-                      className="p-2 text-slate-500 hover:text-slate-300 transition-colors"
+                      className="p-2 text-gray-400 hover:text-gray-300 transition-colors"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -418,7 +376,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={handlePaste}
-                    className="px-3 py-2.5 sm:py-3 rounded-xl border border-slate-700 text-slate-300 hover:text-emerald-300 hover:border-emerald-500/30 hover:bg-emerald-500/10 transition-colors"
+                    className="px-3 py-2.5 sm:py-3 rounded-xl border border-cyan-500/25 text-gray-200 hover:text-cyan-200 hover:border-cyan-500/50 hover:bg-cyan-500/15 transition-colors"
                     title="Paste from clipboard"
                   >
                     <Clipboard className="w-4 h-4" />
@@ -427,7 +385,7 @@ export default function Home() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-6 py-2.5 sm:py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/30 w-full sm:w-auto"
+                    className="px-6 py-2.5 sm:py-3 bg-linear-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-bold hover:shadow-lg hover:shadow-cyan-900/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-cyan-900/30 w-full sm:w-auto"
                   >
                     {loading ? (
                       <>
@@ -447,13 +405,13 @@ export default function Home() {
               <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-1">
                 <button
                   onClick={() => setUrl("https://www.youtube.com/watch?v=M3_pLsDdeuU&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn")}
-                  className="text-sm text-slate-400 hover:text-emerald-300 transition-colors self-start"
+                  className="text-sm text-gray-400 hover:text-cyan-300 transition-colors self-start"
                 >
                   Try sample video
                 </button>
 
-                <div className="flex items-center gap-2 text-xs text-slate-400 self-start sm:self-auto">
-                  <CircleCheck className="w-3.5 h-3.5 text-emerald-300" />
+                <div className="flex items-center gap-2 text-xs text-gray-400 self-start sm:self-auto">
+                  <CircleCheck className="w-3.5 h-3.5 text-cyan-300" />
                   Secure processing • No ads • Learning focused
                 </div>
               </div>
@@ -473,7 +431,7 @@ export default function Home() {
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-emerald-300 text-sm font-medium"
+                    className="text-cyan-300 text-sm font-medium"
                   >
                     {info}
                   </motion.p>
@@ -487,7 +445,7 @@ export default function Home() {
           style={{ y: y1 }}
           className="absolute top-1/4 left-10 lg:left-20 hidden lg:block opacity-20 pointer-events-none"
         >
-          <FileText className="w-32 h-32 text-emerald-300 rotate-12" />
+          <FileText className="w-32 h-32 text-cyan-300 rotate-12" />
         </motion.div>
         <motion.div
           style={{ y: y2 }}
@@ -510,10 +468,10 @@ export default function Home() {
               <CircleCheck className="w-4 h-4 text-teal-300" />
               <span className="text-sm font-semibold text-teal-300">Personalized Progress</span>
             </div>
-            <h3 className="text-3xl md:text-5xl font-bold mb-5 sm:mb-6 text-slate-100">
+            <h3 className="text-3xl md:text-5xl font-bold mb-5 sm:mb-6 text-white">
               Track Your Learning Journey
             </h3>
-            <p className="text-slate-300 max-w-2xl mx-auto text-base sm:text-lg mb-8 sm:mb-10">
+            <p className="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg mb-8 sm:mb-10">
               Keep your momentum with clear progress signals and smart navigation through your study flow.
             </p>
           </motion.div>
@@ -530,15 +488,15 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
-              <Sparkles className="w-4 h-4 text-emerald-300" />
-              <span className="text-sm font-semibold text-emerald-300">Powered by AI Features</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
+              <Sparkles className="w-4 h-4 text-cyan-300" />
+              <span className="text-sm font-semibold text-cyan-300">Powered by AI Features</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-5 sm:mb-6 text-slate-100">
+            <h2 className="text-3xl md:text-5xl font-bold mb-5 sm:mb-6 text-white">
               Everything you need to <br />
               master any topic
             </h2>
-            <p className="text-slate-300 max-w-2xl mx-auto text-base sm:text-lg">
+            <p className="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg">
               Our AI analyzes the video content to provide you with comprehensive learning tools instantly.
             </p>
           </motion.div>
@@ -554,16 +512,16 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.8 }}
-            className="mt-10 sm:mt-12 lg:mt-14 text-center rounded-[2rem] border border-slate-800 bg-slate-900/30 p-6 sm:p-8 shadow-[0_14px_36px_rgba(2,6,23,0.24)]"
+            className="mt-10 sm:mt-12 lg:mt-14 text-center rounded-4xl border border-cyan-500/20 bg-black/50 p-6 sm:p-8 shadow-[0_14px_36px_rgba(0,0,0,0.5)]"
           >
             <Link
               to="/feed"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-400 transition-all hover:scale-105 shadow-xl shadow-emerald-950/30"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-bold hover:shadow-lg hover:shadow-cyan-900/40 transition-all hover:scale-105 shadow-xl shadow-cyan-900/30"
             >
               <span>Explore Feed</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <p className="text-slate-400 text-sm mt-4">No credit card required • Free to start • Cancel anytime</p>
+            <p className="text-gray-400 text-sm mt-4">No credit card required • Free to start • Cancel anytime</p>
           </motion.div>
         </div>
       </section>

@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const QuizHistory = ({ history }) => {
   if (!history || history.length === 0) {
     return (
-      <div className="quiz-history bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 text-center py-12">
-        <p className="text-slate-400">No quizzes taken yet.</p>
+      <div className="quiz-history bg-zinc-950/60 p-6 rounded-2xl shadow-sm border border-cyan-500/15 text-center py-12">
+        <p className="text-gray-400">No quizzes taken yet.</p>
       </div>
     );
   }
@@ -17,12 +17,12 @@ const QuizHistory = ({ history }) => {
   );
 
   return (
-    <div className="quiz-history bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800">
-      <h3 className="text-lg font-bold text-slate-100 mb-6">Recent Quizzes</h3>
+    <div className="quiz-history bg-zinc-950/60 p-6 rounded-2xl shadow-sm border border-cyan-500/15">
+      <h3 className="text-lg font-bold text-white mb-6">Recent Quizzes</h3>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-800">
+            <tr className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-800">
               <th className="pb-4 pl-4">Date</th>
               <th className="pb-4">Video / Topic</th>
               <th className="pb-4">Difficulty</th>
@@ -32,15 +32,15 @@ const QuizHistory = ({ history }) => {
           </thead>
           <tbody className="divide-y divide-slate-800">
             {sortedHistory.map((quiz, index) => (
-              <tr key={index} className="hover:bg-slate-800/50 transition-colors">
-                <td className="py-4 pl-4 text-sm text-slate-400">
+              <tr key={index} className="hover:bg-gray-800/50 transition-colors">
+                <td className="py-4 pl-4 text-sm text-gray-400">
                   {new Date(quiz.date).toLocaleDateString()}
                 </td>
-                <td className="py-4 text-sm font-medium text-slate-100">
+                <td className="py-4 text-sm font-medium text-white">
                   {quiz.videoId ? (
                     <Link
                       to={`/player/${quiz.videoId}`}
-                      className="hover:text-emerald-600 hover:underline transition-colors"
+                      className="hover:text-cyan-600 hover:underline transition-colors"
                     >
                       {quiz.videoTitle || "Unknown Video"}
                     </Link>
@@ -61,12 +61,12 @@ const QuizHistory = ({ history }) => {
                     {quiz.difficulty || "medium"}
                   </span>
                 </td>
-                <td className="py-4 text-sm font-bold text-slate-200">
+                <td className="py-4 text-sm font-bold text-gray-200">
                   {quiz.score} / {quiz.totalQuestions}
                 </td>
                 <td className="py-4 pr-4 text-right">
                   {quiz.score / quiz.totalQuestions >= 0.6 ? (
-                    <span className="inline-flex items-center gap-1 text-emerald-600 text-sm font-medium">
+                    <span className="inline-flex items-center gap-1 text-cyan-600 text-sm font-medium">
                       <Trophy size={16} /> Passed
                     </span>
                   ) : (

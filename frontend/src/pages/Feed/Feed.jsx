@@ -37,7 +37,7 @@ export default function Feed() {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(searchQuery);
-    }, 2000); // 2000ms delay (2 seconds)
+    }, 500); // 500ms delay for responsive feel
 
     return () => clearTimeout(handler);
   }, [searchQuery]);
@@ -149,13 +149,13 @@ export default function Feed() {
     return <ErrorMessage error={error} onRetry={() => fetchVideos(false)} />;
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-gradient-base">
       {/* Header Section with Title and Search */}
-      <div className="bg-slate-950 shadow-sm border-b border-slate-800">
+      <div className="shadow-sm border-b border-cyan-500/10">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center mb-6">
             <h1 className="ds-h2">Discover Content</h1>
-            <p className="text-slate-400 mt-2">Search and explore videos and playlists</p>
+            <p className="text-gray-400 mt-2">Search and explore videos and playlists</p>
           </div>
           
           {/* Search Bar - Centered */}
@@ -174,10 +174,10 @@ export default function Feed() {
         {items.length === 0 ? (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">📺</div>
-            <h2 className="text-2xl font-semibold text-slate-200 mb-2">
+            <h2 className="text-2xl font-semibold text-white mb-2">
               No Content Found
             </h2>
-            <p className="text-slate-400 mb-6">
+            <p className="text-gray-400 mb-6">
               {debouncedSearch
                 ? "Try adjusting your search query"
                 : "Start by adding some playlists to see content here"}

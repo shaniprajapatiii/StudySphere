@@ -89,7 +89,7 @@ export default function VideoPlayer() {
 
   if (loading)
     return (
-      <p className="text-center mt-10 text-emerald-300 animate-pulse">
+      <p className="text-center mt-10 text-cyan-300 animate-pulse">
         Loading playlist...
       </p>
     );
@@ -100,7 +100,7 @@ export default function VideoPlayer() {
         {error} <br />
         <button
           onClick={() => navigate("/playlist")}
-          className="mt-6 px-4 py-2 bg-emerald-500 text-white rounded hover:bg-emerald-400"
+          className="mt-6 px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-400"
         >
           Go Back to Playlists
         </button>
@@ -114,16 +114,16 @@ export default function VideoPlayer() {
   return (
     <div className="max-w-4xl mx-auto p-4">
       <div className="mb-6">
-        <h2 className="text-3xl font-bold text-emerald-300">{playlist.title}</h2>
+        <h2 className="text-3xl font-bold text-cyan-300">{playlist.title}</h2>
         {totalDuration && (
-          <p className="text-slate-400 mt-2">
+          <p className="text-gray-400 mt-2">
             {sanitizedVideos.length} videos • {totalDuration}
           </p>
         )}
       </div>
 
       {sanitizedVideos.length === 0 ? (
-        <p className="italic text-slate-400">
+        <p className="italic text-gray-400">
           This playlist has no playable videos.
         </p>
       ) : (
@@ -131,7 +131,7 @@ export default function VideoPlayer() {
           {sanitizedVideos.map((video, index) => (
             <li
               key={video.videoId}
-              className="flex items-center space-x-4 p-3 rounded-lg hover:bg-slate-800 cursor-pointer shadow-sm transition border border-slate-700"
+              className="flex items-center space-x-4 p-3 rounded-lg hover:bg-gray-800 cursor-pointer shadow-sm transition border border-gray-700"
               onClick={() => navigate(`/player/${id}?v=${video.videoId}`)}
               onKeyDown={(e) => {
                 if (e.key === "Enter")
@@ -141,7 +141,7 @@ export default function VideoPlayer() {
               tabIndex={0}
             >
               {/* # */}
-              <div className="text-slate-400 font-medium w-8 text-center">
+              <div className="text-gray-400 font-medium w-8 text-center">
                 {index + 1}
               </div>
 
@@ -172,7 +172,7 @@ export default function VideoPlayer() {
 
               {/* Title */}
               <div className="flex-1">
-                <span className="text-lg font-medium text-slate-100 line-clamp-2">
+                <span className="text-lg font-medium text-white line-clamp-2">
                   {video.title || `Video ${index + 1}`}
                 </span>
               </div>
@@ -183,7 +183,7 @@ export default function VideoPlayer() {
 
       <button
         onClick={() => navigate("/playlist")}
-        className="mt-8 px-6 py-3 bg-emerald-500 text-white rounded hover:bg-emerald-400"
+        className="mt-8 px-6 py-3 bg-cyan-500 text-white rounded hover:bg-cyan-400"
       >
         Back to Playlists
       </button>

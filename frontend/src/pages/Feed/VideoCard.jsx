@@ -54,7 +54,7 @@ export default function VideoCard({ video, onClick }) {
       aria-label={`Play: ${video.title || 'Video'}`}
     >
       {/* Thumbnail wrapper */}
-      <div className="relative aspect-video overflow-hidden bg-slate-800">
+      <div className="relative aspect-video overflow-hidden bg-black">
         {/* super lightweight preview */}
         <img
           src={defaultThumb}
@@ -62,6 +62,7 @@ export default function VideoCard({ video, onClick }) {
           className="absolute inset-0 w-full h-full object-cover object-center blur-sm scale-105"
           loading="lazy"
           decoding="async"
+          fetchpriority="low"
         />
         {/* higher-quality thumbnail */}
         <img
@@ -71,6 +72,7 @@ export default function VideoCard({ video, onClick }) {
           onError={handleImageError}
           loading="lazy"
           decoding="async"
+          fetchpriority="high"
         />
 
         {/* Duration overlay */}
@@ -104,7 +106,7 @@ export default function VideoCard({ video, onClick }) {
       <div className="p-4">
         {/* Title */}
         <h3
-          className="font-semibold text-slate-100 text-sm line-clamp-2 mb-2 group-hover:text-emerald-400 ds-fade-in"
+          className="font-semibold text-white text-sm line-clamp-2 mb-2 group-hover:text-cyan-300 ds-fade-in"
           title={video.title}
         >
           {truncateTitle(video.title)}
@@ -124,12 +126,12 @@ export default function VideoCard({ video, onClick }) {
                 onError={(e) => (e.currentTarget.style.display = "none")}
               />
             ) : (
-              <div className="w-7 h-7 rounded-full bg-slate-700 flex items-center justify-center text-xs font-semibold text-slate-200">
+              <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-semibold text-gray-200">
                 {getInitials(video.uploaderName)}
               </div>
             )}
 
-            <p className="text-xs text-slate-400 leading-tight truncate">
+            <p className="text-xs text-gray-400 leading-tight truncate">
               {video.uploaderName || "Unknown uploader"}
             </p>
           </div>

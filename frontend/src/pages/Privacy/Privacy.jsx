@@ -1,14 +1,14 @@
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen bg-slate-950 py-12 px-4">
-      <div className="max-w-4xl mx-auto bg-slate-900 rounded-lg shadow-sm p-8 border border-slate-800">
+    <div className="min-h-screen bg-transparent py-12 px-4">
+      <div className="max-w-4xl mx-auto bg-zinc-950/60 rounded-lg shadow-sm p-8 border border-cyan-500/20">
         <h1 className="ds-h1 mb-6">Privacy Policy</h1>
-        <p className="text-slate-400 mb-8">
+        <p className="text-gray-400 mb-8">
           <strong>Effective Date:</strong> December 4, 2025
         </p>
 
-        <div className="space-y-6 text-slate-300">
+        <div className="space-y-6 text-gray-300">
           <section>
             <h2 className="ds-h3 mb-3">1. Introduction</h2>
             <p>
@@ -110,7 +110,7 @@ export default function Privacy() {
             </p>
             <ul className="space-y-1 ml-4">
               <li><strong>Email:</strong> shaniprajapati630@gmail.com</li>
-              <li><strong>Contact Form:</strong> <a href="/contact" className="text-emerald-300 hover:text-emerald-200 underline">Contact Page</a></li>
+              <li><strong>Contact Form:</strong> <a href="/contact" className="text-cyan-300 hover:text-cyan-200 underline">Contact Page</a></li>
             </ul>
           </section>
         </div>

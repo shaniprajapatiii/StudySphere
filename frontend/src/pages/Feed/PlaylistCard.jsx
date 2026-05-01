@@ -27,12 +27,14 @@ export default function PlaylistCard({ playlist, onClick }) {
       aria-label={`View Playlist: ${playlist.title || 'Playlist'} (${playlist.videoCount} videos)`}
     >
       {/* Thumbnail wrapper */}
-      <div className="relative aspect-video overflow-hidden bg-slate-800">
+      <div className="relative aspect-video overflow-hidden bg-black">
         <img
           src={thumbnail}
           alt={playlist.title || "Playlist thumbnail"}
           className="absolute inset-0 w-full h-full object-cover object-center"
           loading="lazy"
+          decoding="async"
+          fetchpriority="low"
         />
 
         {/* Playlist Overlay (Right Side) */}
@@ -54,7 +56,7 @@ export default function PlaylistCard({ playlist, onClick }) {
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="bg-slate-100/90 text-slate-950 px-4 py-2 rounded-full font-bold text-sm shadow-lg flex items-center gap-2">
+          <div className="bg-white/90 text-black px-4 py-2 rounded-full font-bold text-sm shadow-lg flex items-center gap-2">
             <ListVideo size={16} />
             View Playlist
           </div>
@@ -65,7 +67,7 @@ export default function PlaylistCard({ playlist, onClick }) {
       <div className="p-4">
         {/* Title */}
         <h3
-          className="font-semibold text-slate-100 text-sm line-clamp-2 mb-2 group-hover:text-emerald-400 ds-fade-in"
+          className="font-semibold text-white text-sm line-clamp-2 mb-2 group-hover:text-cyan-300 ds-fade-in"
           title={playlist.title}
         >
           {playlist.title}
@@ -84,18 +86,18 @@ export default function PlaylistCard({ playlist, onClick }) {
                 onError={(e) => (e.currentTarget.style.display = "none")}
               />
             ) : (
-              <div className="w-7 h-7 rounded-full bg-slate-700 flex items-center justify-center text-xs font-semibold text-slate-200">
+              <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-semibold text-gray-200">
                 {getInitials(playlist.uploaderName)}
               </div>
             )}
 
-            <p className="text-xs text-slate-400 leading-tight">
+            <p className="text-xs text-gray-400 leading-tight">
               {playlist.uploaderName || "Unknown uploader"}
             </p>
           </div>
         </div>
 
-        <div className="mt-2 text-xs text-slate-500 font-medium">
+        <div className="mt-2 text-xs text-gray-500 font-medium">
           Playlist • {playlist.videoCount} videos
         </div>
       </div>

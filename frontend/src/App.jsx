@@ -65,7 +65,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-transparent text-slate-100">
+    <div className="min-h-screen flex flex-col bg-transparent text-white\">
       <ScrollToTop />
       <Header />
       <Navbar />

@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 const TranscriptBox = ({ transcript, loading }) => {
   const [copied, setCopied] = useState(false);
   const panelClass =
-    "p-5 border border-slate-700 rounded-2xl bg-slate-900 shadow-lg shadow-none flex flex-col relative group min-h-[200px]";
-  const titleClass = "text-xl font-bold text-slate-100";
-  const bodyClass = "text-slate-200";
-  const mutedClass = "text-slate-300";
-  const faintClass = "text-slate-400";
+    "p-5 border border-slate-700 rounded-2xl bg-black shadow-lg shadow-none flex flex-col relative group min-h-[200px]";
+  const titleClass = "text-xl font-bold text-white";
+  const bodyClass = "text-gray-200";
+  const mutedClass = "text-gray-300";
+  const faintClass = "text-gray-400";
 
   const handleCopy = () => {
     if (!transcript) return;
@@ -31,12 +31,12 @@ const TranscriptBox = ({ transcript, loading }) => {
     >
       <div className="flex justify-between items-center mb-4">
         <h3 className={`${titleClass} flex items-center gap-2`}>
-          <span className="text-emerald-500">📖</span> Transcript
+          <span className="text-cyan-500">📖</span> Transcript
         </h3>
         {transcript && !loading && (
           <button
             onClick={handleCopy}
-            className="p-2 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-emerald-300 transition-all active:scale-95"
+            className="p-2 rounded-lg hover:bg-zinc-900 text-gray-300 hover:text-cyan-300 transition-all active:scale-95"
             title="Copy to clipboard"
           >
             {copied ? (
@@ -50,7 +50,7 @@ const TranscriptBox = ({ transcript, loading }) => {
 
       <div className="flex-1">
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-12 text-slate-300">
+          <div className="flex flex-col items-center justify-center py-12 text-gray-300">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
@@ -59,7 +59,7 @@ const TranscriptBox = ({ transcript, loading }) => {
               ⏳
             </motion.div>
             <p className={`font-medium ${mutedClass}`}>Fetching transcript...</p>
-            <p className={`text-xs mt-2 bg-slate-800 px-3 py-1 rounded-full ${faintClass}`}>
+            <p className={`text-xs mt-2 bg-zinc-900 px-3 py-1 rounded-full ${faintClass}`}>
               Trying multiple sources...
             </p>
           </div>

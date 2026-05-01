@@ -67,17 +67,17 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="dashboard-page min-h-screen bg-slate-950 p-6 lg:p-10">
+    <div className="dashboard-page min-h-screen bg-transparent p-6 lg:p-10\">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-slate-100">Dashboard</h1>
-            <p className="text-slate-400 mt-1">
+            <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+            <p className="text-gray-400 mt-1">
               Welcome back, {data?.user?.name}! Here's your learning progress.
             </p>
           </div>
-          <div className="text-sm text-slate-500">
+          <div className="text-sm text-gray-500">
             Last login: {new Date(data?.user?.lastLogin).toLocaleString()}
           </div>
         </div>
@@ -95,7 +95,7 @@ const Dashboard = () => {
           {/* Right Column: Quiz History (or maybe something else later) */}
           <div className="lg:col-span-1">
             {/* Placeholder for future widgets like "Recommended for you" */}
-            <div className="bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-2xl p-6 text-white h-full flex flex-col justify-center items-center text-center shadow-lg shadow-emerald-950/30">
+            <div className="bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl p-6 text-white h-full flex flex-col justify-center items-center text-center shadow-lg shadow-cyan-950/30">
               <h3 className="text-2xl font-bold mb-2">Keep Learning!</h3>
               <p className="opacity-90 mb-6">
                 You're on a {data?.streak || 0}-day streak. Watch one more video
@@ -103,7 +103,7 @@ const Dashboard = () => {
               </p>
               <button
                 onClick={() => (window.location.href = "/feed")}
-                className="bg-slate-950 text-emerald-300 px-6 py-2 rounded-full font-bold hover:bg-slate-900 transition-colors"
+                className="bg-black text-cyan-300 px-6 py-2 rounded-full font-bold hover:bg-zinc-900 transition-colors"
               >
                 Browse Feed
               </button>

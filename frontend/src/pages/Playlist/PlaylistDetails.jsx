@@ -62,7 +62,7 @@ export default function PlaylistDetails({ playlistId }) {
         {videos.map((vid) => (
           <li
             key={vid.videoId}
-            className="flex items-center space-x-3 border-b pb-2 cursor-pointer hover:bg-emerald-50 transition-colors p-2 rounded ds-fade-in"
+            className="flex items-center space-x-3 border-b pb-2 cursor-pointer hover:bg-black/10 transition-colors p-2 rounded ds-fade-in"
             title={vid.title}
             onClick={() => handleVideoClick(vid.videoId)}
           >

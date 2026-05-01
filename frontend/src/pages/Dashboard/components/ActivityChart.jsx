@@ -41,8 +41,8 @@ const ActivityChart = ({ data }) => {
       };
 
   return (
-    <div className="dashboard-chart bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 h-[400px] flex flex-col">
-      <h3 className="text-lg font-bold text-slate-100 mb-6">Daily Activity</h3>
+    <div className="dashboard-chart bg-zinc-950/60 p-6 rounded-2xl shadow-sm border border-cyan-500/15 h-[400px] flex flex-col">
+      <h3 className="text-lg font-bold text-white mb-6">Daily Activity</h3>
       <div className="flex-1 min-h-0">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
