@@ -39,10 +39,10 @@ export default function AddPlaylistForm({ onAdd }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-6 flex flex-col sm:flex-row justify-center items-start sm:items-end gap-3"
+      className="mb-10 flex flex-col sm:flex-row justify-center items-stretch sm:items-end gap-4 max-w-2xl mx-auto"
     >
-      <div className="w-full sm:w-2/3 lg:w-1/2">
-        <label className="ds-label-base">
+      <div className="flex-1">
+        <label className="block text-xs font-bold uppercase tracking-wider theme-text-muted mb-2 ml-1">
           Add YouTube Video or Playlist Link
         </label>
         <input
@@ -55,13 +55,13 @@ export default function AddPlaylistForm({ onAdd }) {
           required
         />
         {error && (
-          <p className="text-red-300 mt-2 text-sm font-medium">{error}</p>
+          <p className="text-rose-500 mt-2 text-xs font-bold ml-1">{error}</p>
         )}
       </div>
 
       <button
         type="submit"
-        className="ds-btn-primary self-center sm:self-auto"
+        className="ds-btn-primary h-[46px] px-8"
         aria-label="Add playlist or video"
       >
         Add

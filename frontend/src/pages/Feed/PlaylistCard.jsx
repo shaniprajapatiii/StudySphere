@@ -27,7 +27,7 @@ export default function PlaylistCard({ playlist, onClick }) {
       aria-label={`View Playlist: ${playlist.title || 'Playlist'} (${playlist.videoCount} videos)`}
     >
       {/* Thumbnail wrapper */}
-      <div className="relative aspect-video overflow-hidden bg-black">
+      <div className="relative aspect-video overflow-hidden theme-bg-surface-2">
         <img
           src={thumbnail}
           alt={playlist.title || "Playlist thumbnail"}
@@ -67,7 +67,7 @@ export default function PlaylistCard({ playlist, onClick }) {
       <div className="p-4">
         {/* Title */}
         <h3
-          className="font-semibold text-white text-sm line-clamp-2 mb-2 group-hover:text-cyan-300 ds-fade-in"
+          className="font-semibold text-sm line-clamp-2 mb-2 group-hover:text-cyan-500 ds-fade-in transition-colors duration-200 theme-text-primary"
           title={playlist.title}
         >
           {playlist.title}
@@ -86,18 +86,18 @@ export default function PlaylistCard({ playlist, onClick }) {
                 onError={(e) => (e.currentTarget.style.display = "none")}
               />
             ) : (
-              <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-semibold text-gray-200">
+              <div className="w-7 h-7 rounded-full theme-bg-surface-2 flex items-center justify-center text-xs font-semibold theme-text-secondary border theme-border border">
                 {getInitials(playlist.uploaderName)}
               </div>
             )}
 
-            <p className="text-xs text-gray-400 leading-tight">
+            <p className="text-xs leading-tight theme-text-muted">
               {playlist.uploaderName || "Unknown uploader"}
             </p>
           </div>
         </div>
 
-        <div className="mt-2 text-xs text-gray-500 font-medium">
+        <div className="mt-2 text-xs theme-text-subtle font-medium">
           Playlist • {playlist.videoCount} videos
         </div>
       </div>

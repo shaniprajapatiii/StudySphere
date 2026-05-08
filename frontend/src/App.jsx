@@ -1,6 +1,6 @@
 // frontend/src/App.jsx
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
 import ThirdPartyCookieWarning from "./components/ThirdPartyCookieWarning";
 import Header from "./components/header/Header";
@@ -25,7 +25,12 @@ import Terms from "./pages/Terms/Terms";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 export default function App() {
-  const { isAuthenticated, loginAttempted } = useAuth();
+  const {
+    isAuthenticated,
+    showCookieNotice,
+    proceedGoogleSignIn,
+    dismissCookieNotice,
+  } = useAuth();
   const navigate = useNavigate();
 
   // Handle post-login redirect
@@ -57,21 +62,19 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    root.classList.add("dark");
-    root.style.colorScheme = "dark";
-    localStorage.setItem("theme", "dark");
-  }, []);
+  // Theme is managed by ThemeContext (see src/context/ThemeContext.jsx)
 
   return (
-    <div className="min-h-screen flex flex-col bg-transparent text-white\">
+    <div className="min-h-screen flex flex-col bg-transparent theme-text-primary">
       <ScrollToTop />
       <Header />
       <Navbar />
-      {/* Show cookie warning if login was attempted and not authenticated */}
-      {loginAttempted && !isAuthenticated && (
-        <ThirdPartyCookieWarning />
+      {/* Show cookie confirmation popup before starting Google login */}
+      {showCookieNotice && !isAuthenticated && (
+        <ThirdPartyCookieWarning
+          onUnderstand={proceedGoogleSignIn}
+          onClose={dismissCookieNotice}
+        />
       )}
       <div className="grow">
         <Routes>

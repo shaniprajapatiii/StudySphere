@@ -1,182 +1,155 @@
-// frontend/src/pages/VideoPlayer/components/QuizBox.jsx
-import React from "react";
+import React, { useState } from "react";
+import SkeletonLoader from "../../../components/SkeletonLoader";
+import { BrainCircuit, CheckCircle2, XCircle, RotateCcw, Trophy } from "lucide-react";
 
-import { useState } from "react";
-import { Check, X, RefreshCw } from "lucide-react";
-
-const QuizBox = ({ quiz, loading, onRetry, onQuizComplete }) => {
-  const [difficulty, setDifficulty] = useState("medium");
+export default function QuizBox({ quiz, loading, onRetry, onQuizComplete }) {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [showResults, setShowResults] = useState(false);
-  const panelClass =
-    "p-5 border border-slate-700 rounded-2xl bg-black shadow-lg shadow-none min-h-[200px]";
-  const titleClass = "text-xl font-bold text-white";
-  const mutedClass = "text-gray-200";
+  const [showResult, setShowResult] = useState(false);
 
-  const handleOptionSelect = (qIndex, optIndex) => {
-    if (showResults) return;
-    setAnswers((prev) => ({ ...prev, [qIndex]: optIndex }));
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <SkeletonLoader className="h-10 w-2/3 rounded-xl" />
+        <div className="p-6 theme-bg-surface-2 rounded-3xl theme-border border">
+           <SkeletonLoader className="h-6 w-full mb-6 rounded-lg" />
+           <div className="space-y-3">
+              <SkeletonLoader className="h-12 w-full rounded-2xl" />
+              <SkeletonLoader className="h-12 w-full rounded-2xl" />
+              <SkeletonLoader className="h-12 w-full rounded-2xl" />
+           </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!quiz || quiz.length === 0) return null;
+
+  const handleAnswerSelect = (option) => {
+    if (showResult) return;
+    setAnswers((prev) => ({ ...prev, [currentQuestionIndex]: option }));
   };
 
-  const checkAnswers = () => {
-    setShowResults(true);
-    const score = quiz.reduce((acc, q, i) => {
-      return acc + (answers[i] === q.correctAnswer ? 1 : 0);
-    }, 0);
-
-    if (onQuizComplete) {
-      onQuizComplete(score, quiz.length, difficulty);
+  const handleNext = () => {
+    if (currentQuestionIndex < quiz.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    } else {
+      const score = Object.entries(answers).reduce((acc, [idx, ans]) => {
+        return acc + (ans === quiz[idx].answer ? 1 : 0);
+      }, 0);
+      setShowResult(score);
+      onQuizComplete(score, quiz.length, "medium"); // default diff
     }
   };
 
   const resetQuiz = () => {
+    setCurrentQuestionIndex(0);
     setAnswers({});
-    setShowResults(false);
-    onRetry(difficulty);
+    setShowResult(false);
   };
 
-  if (loading) {
+  const currentQuestion = quiz[currentQuestionIndex];
+
+  if (showResult !== false) {
+    const score = showResult;
+    const percent = Math.round((score / quiz.length) * 100);
+    const passed = percent >= 60;
+
     return (
-      <div className={`${panelClass} flex flex-col items-center justify-center`}>
-        <div className="animate-spin text-4xl mb-4">⏳</div>
-        <p className={`font-medium ${mutedClass}`}>
-          Generating quiz ({difficulty})...
+      <div className="quiz-result animate-in fade-in duration-300 text-center pb-6">
+        <div className={`inline-flex p-4 rounded-full mb-4 ${passed ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 'bg-rose-500/10 text-rose-500 border-rose-500/20'} border`}>
+           {passed ? <Trophy size={48} /> : <XCircle size={48} />}
+        </div>
+        
+        <h3 className="text-lg font-bold theme-text-primary mb-1">
+          {passed ? "Done" : "Try again"}
+        </h3>
+        <p className="theme-text-secondary text-sm mb-6">
+          Score: <span className={`font-bold ${passed ? 'text-emerald-500' : 'text-rose-500'}`}>{score}/{quiz.length}</span> ({percent}%)
         </p>
+
+        <div className="grid gap-3 mb-8 max-w-sm mx-auto">
+           <button
+             onClick={resetQuiz}
+             className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl theme-bg-surface theme-text-primary font-bold border theme-border hover:theme-bg-surface-2 transition-all"
+           >
+             <RotateCcw size={18} />
+           Retake
+           </button>
+           <button
+             onClick={() => onRetry("medium")}
+             className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-cyan-600 text-white font-bold hover:bg-cyan-500 transition-all shadow-lg"
+           >
+             <BrainCircuit size={18} />
+           New Quiz
+           </button>
+        </div>
+
+        <div className="text-left space-y-3">
+           {quiz.map((q, idx) => (
+             <div key={idx} className={`p-4 rounded-2xl border ${answers[idx] === q.answer ? 'theme-border border-emerald-500/20 theme-bg-base' : 'theme-border border-rose-500/20 theme-bg-base'}`}>
+                <p className="text-sm font-bold theme-text-primary mb-2">{idx + 1}. {q.question}</p>
+                <div className="flex items-center gap-2 text-xs font-bold">
+               <span className="theme-text-muted">Your:</span>
+                   <span className={answers[idx] === q.answer ? 'text-emerald-500' : 'text-rose-500'}>{answers[idx]}</span>
+                   {answers[idx] !== q.answer && (
+                      <>
+                   <span className="theme-text-muted ml-2">Ans:</span>
+                         <span className="text-emerald-500">{q.answer}</span>
+                      </>
+                   )}
+                </div>
+             </div>
+           ))}
+        </div>
       </div>
     );
   }
 
-  if (!quiz || quiz.length === 0) {
-    return (
-      <div className={`${panelClass} flex flex-col items-center justify-center`}>
-        <h3 className={`${titleClass} mb-6 flex items-center gap-2`}>
-          <span className="text-cyan-500">🧠</span> Generate Quiz
-        </h3>
+  return (
+     <div className="quiz-box animate-in fade-in duration-300 pb-6">
+      <div className="flex items-center justify-between mb-4">
+         <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/20">
+               <BrainCircuit size={20} />
+            </div>
+          <h3 className="text-base font-bold theme-text-primary">Quiz</h3>
+         </div>
+        <span className="text-xs theme-text-muted">
+            {currentQuestionIndex + 1} of {quiz.length}
+         </span>
+      </div>
 
-        <div className="flex gap-2 mb-6">
-          {["easy", "medium", "hard"].map((level) => (
+      <div className="theme-bg-surface-2 p-4 rounded-2xl theme-border border shadow-sm mb-4">
+        <h4 className="text-base font-semibold theme-text-primary leading-snug mb-4">
+          {currentQuestion.question}
+        </h4>
+
+        <div className="grid gap-3">
+          {currentQuestion.options.map((option, idx) => (
             <button
-              key={level}
-              onClick={() => setDifficulty(level)}
-              className={`px-4 py-2 rounded-lg capitalize transition-all ${
-                difficulty === level
-                  ? "bg-cyan-600 text-white shadow-md scale-105"
-                  : "bg-black text-gray-300 hover:bg-zinc-900"
+              key={idx}
+              onClick={() => handleAnswerSelect(option)}
+              className={`w-full text-left p-4 rounded-2xl border font-bold transition-all flex items-center justify-between group ${
+                answers[currentQuestionIndex] === option
+                  ? "bg-cyan-500 border-cyan-500 text-white shadow-lg shadow-cyan-500/20"
+                  : "theme-bg-base theme-border theme-text-secondary hover:theme-border hover:border-cyan-500/50"
               }`}
             >
-              {level}
+              <span>{option}</span>
+              {answers[currentQuestionIndex] === option && <CheckCircle2 size={18} className="fill-current text-white" />}
             </button>
           ))}
         </div>
-
-        <button
-          onClick={() => onRetry(difficulty)}
-          className="px-6 py-3 bg-cyan-600 text-white rounded-xl font-medium shadow-lg shadow-cyan-950/30 hover:bg-cyan-500 transition-all active:scale-95 flex items-center gap-2"
-        >
-          <span className="text-lg">⚡</span> Generate Quiz
-        </button>
-      </div>
-    );
-  }
-
-  const score = quiz.reduce((acc, q, i) => {
-    return acc + (answers[i] === q.correctAnswer ? 1 : 0);
-  }, 0);
-
-  return (
-    <div className={panelClass}>
-      <div className="flex justify-between items-center mb-6">
-        <h3 className={`${titleClass} flex items-center gap-2`}>
-          <span className="text-cyan-500">🧠</span> Quiz
-        </h3>
-        <button
-          onClick={resetQuiz}
-          className="p-2 text-gray-300 hover:text-cyan-300 hover:bg-zinc-900 rounded-lg transition-all"
-          title="Regenerate Quiz"
-        >
-          <RefreshCw size={20} />
-        </button>
       </div>
 
-      <div className="space-y-6">
-        {quiz.map((q, i) => (
-          <div
-            key={i}
-            className="p-4 bg-black rounded-xl border border-slate-700"
-          >
-            <p className="font-medium text-white mb-3">
-              {i + 1}. {q.question}
-            </p>
-            <div className="space-y-2">
-              {q.options.map((opt, optIndex) => {
-                const isSelected = answers[i] === optIndex;
-                const isCorrect = q.correctAnswer === optIndex;
-                let btnClass =
-                  "w-full text-left p-3 rounded-lg text-sm transition-all border ";
-
-                if (showResults) {
-                    if (isCorrect)
-                      btnClass +=
-                        "bg-cyan-500/20 border-cyan-500/40 text-cyan-200 font-medium";
-                  else if (isSelected)
-                      btnClass += "bg-rose-500/20 border-rose-500/40 text-rose-200";
-                  else
-                        btnClass += "bg-black border-slate-700 text-gray-400 opacity-60";
-                } else {
-                    if (isSelected)
-                      btnClass += "bg-cyan-500/15 border-cyan-500/40 text-cyan-200 font-medium ring-1 ring-cyan-500/30";
-                  else
-                        btnClass += "bg-black border-slate-700 text-gray-300 hover:bg-zinc-900 hover:border-slate-600";
-                }
-
-                return (
-                  <button
-                    key={optIndex}
-                    onClick={() => handleOptionSelect(i, optIndex)}
-                    disabled={showResults}
-                    className={btnClass}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span>{opt}</span>
-                      {showResults && isCorrect && (
-                        <Check size={16} className="text-cyan-300" />
-                      )}
-                      {showResults && isSelected && !isCorrect && (
-                        <X size={16} className="text-rose-300" />
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {!showResults ? (
-        <button
-          onClick={checkAnswers}
-          disabled={Object.keys(answers).length < quiz.length}
-          className={`w-full mt-6 py-3 rounded-xl font-bold text-white shadow-lg transition-all ${
-            Object.keys(answers).length < quiz.length
-              ? "bg-zinc-800 cursor-not-allowed"
-              : "bg-cyan-600 hover:bg-cyan-500 shadow-cyan-950/30 active:scale-95"
-          }`}
-        >
-          Check Answers
-        </button>
-      ) : (
-        <div className="mt-6 p-4 bg-cyan-500/15 rounded-xl border border-cyan-500/30 text-center">
-          <p className="text-lg font-bold text-cyan-200">
-            You scored {score} / {quiz.length}
-          </p>
-          <p className="text-cyan-300 text-sm mt-1">
-            {score === quiz.length ? "Perfect! 🎉" : "Keep learning! 📚"}
-          </p>
-        </div>
-      )}
+      <button
+        onClick={handleNext}
+        disabled={!answers[currentQuestionIndex]}
+        className="w-full py-3 rounded-xl ds-btn-primary font-bold disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-xl"
+      >
+        {currentQuestionIndex < quiz.length - 1 ? "Next Question" : "See Results"}
+      </button>
     </div>
   );
-};
-
-export default QuizBox;
+}

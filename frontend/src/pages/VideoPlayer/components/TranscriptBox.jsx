@@ -1,90 +1,50 @@
-import React, { useState } from "react";
-import { Copy, Check } from "lucide-react";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+import React from "react";
+import SkeletonLoader from "../../../components/SkeletonLoader";
+import { Languages } from "lucide-react";
 
-const TranscriptBox = ({ transcript, loading }) => {
-  const [copied, setCopied] = useState(false);
-  const panelClass =
-    "p-5 border border-slate-700 rounded-2xl bg-black shadow-lg shadow-none flex flex-col relative group min-h-[200px]";
-  const titleClass = "text-xl font-bold text-white";
-  const bodyClass = "text-gray-200";
-  const mutedClass = "text-gray-300";
-  const faintClass = "text-gray-400";
+export default function TranscriptBox({ loading, transcript }) {
+  if (loading) {
+    return (
+      <div className="space-y-4">
+        <SkeletonLoader className="h-6 w-1/3 rounded-lg" />
+        <SkeletonLoader className="h-4 w-full rounded-lg" />
+        <SkeletonLoader className="h-4 w-full rounded-lg" />
+        <SkeletonLoader className="h-4 w-3/4 rounded-lg" />
+        <div className="pt-6 space-y-4">
+           <SkeletonLoader className="h-6 w-1/4 rounded-lg" />
+           <SkeletonLoader className="h-4 w-full rounded-lg" />
+           <SkeletonLoader className="h-4 w-5/6 rounded-lg" />
+        </div>
+      </div>
+    );
+  }
 
-  const handleCopy = () => {
-    if (!transcript) return;
-    navigator.clipboard.writeText(transcript);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  if (!transcript) return null;
+
+  // Simple formatting for display: split by double newlines or long blocks
+  const paragraphs = transcript
+    .split("\n\n")
+    .filter((p) => p.trim().length > 0);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      className={panelClass}
-      role="log"
-      aria-live="polite"
-      tabIndex={0}
-    >
-      <div className="flex justify-between items-center mb-4">
-        <h3 className={`${titleClass} flex items-center gap-2`}>
-          <span className="text-cyan-500">📖</span> Transcript
-        </h3>
-        {transcript && !loading && (
-          <button
-            onClick={handleCopy}
-            className="p-2 rounded-lg hover:bg-zinc-900 text-gray-300 hover:text-cyan-300 transition-all active:scale-95"
-            title="Copy to clipboard"
-          >
-            {copied ? (
-              <Check size={20} className="text-green-600" />
-            ) : (
-              <Copy size={20} />
-            )}
-          </button>
-        )}
+     <div className="transcript-box animate-in fade-in duration-300 h-full pb-6">
+      <div className="flex items-center gap-2 mb-4">
+        <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">
+          <Languages size={18} />
+        </div>
+        <h3 className="text-base font-bold theme-text-primary">Transcript</h3>
       </div>
 
-      <div className="flex-1">
-        {loading ? (
-          <div className="flex flex-col items-center justify-center py-12 text-gray-300">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-              className="text-4xl mb-4"
-            >
-              ⏳
-            </motion.div>
-            <p className={`font-medium ${mutedClass}`}>Fetching transcript...</p>
-            <p className={`text-xs mt-2 bg-zinc-900 px-3 py-1 rounded-full ${faintClass}`}>
-              Trying multiple sources...
-            </p>
+      <div className="space-y-4">
+        {paragraphs.map((p, i) => (
+          <div key={i} className="group relative">
+             <div className="absolute -left-4 top-0 bottom-0 w-1 bg-cyan-500/0 group-hover:bg-cyan-500/20 transition-all rounded-full" />
+           <p className="theme-text-secondary text-sm leading-relaxed">
+               {p.trim()}
+             </p>
           </div>
-        ) : transcript ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <pre className={`whitespace-pre-wrap text-sm font-sans leading-relaxed tracking-wide ${bodyClass}`}>
-              {transcript}
-            </pre>
-          </motion.div>
-        ) : (
-          <div className={`flex flex-col items-center justify-center py-12 ${faintClass}`}>
-            <span className="text-4xl mb-3 opacity-50">📝</span>
-            <p className="font-medium">No transcript available.</p>
-            <p className="text-xs mt-1 opacity-70">
-              Try another video or check back later.
-            </p>
-          </div>
-        )}
+        ))}
       </div>
-    </motion.div>
+    </div>
   );
-};
-
-export default TranscriptBox;
+}

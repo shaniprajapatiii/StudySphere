@@ -1,7 +1,7 @@
 import { useAuth } from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Edit2, Save, X, User, Mail, Camera } from "lucide-react";
+import { Edit2, Save, X, User, Mail, Camera, LayoutDashboard, History, Award, Zap } from "lucide-react";
 
 export default function Profile() {
   const {
@@ -91,19 +91,6 @@ export default function Profile() {
     return `${remainingSeconds}s`;
   };
 
-  // If logged in, optionally auto-redirect back
-  useEffect(() => {
-    if (
-      !authLoading &&
-      isAuthenticated &&
-      redirectTo &&
-      redirectTo !== "/profile" &&
-      redirectTo !== "/"
-    ) {
-      // navigate(redirectTo, { replace: true });
-    }
-  }, [authLoading, isAuthenticated, redirectTo, navigate]);
-
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     setIsSaving(true);
@@ -144,10 +131,10 @@ export default function Profile() {
 
   if (authLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh] px-4">
-          <div className="bg-black/80 backdrop-blur-md px-6 py-5 rounded-2xl shadow-[0_18px_50px_rgba(0,0,0,0.6)] border border-cyan-500/20 flex items-center gap-3">
-          <div className="animate-spin rounded-full h-5 w-5 border-2 border-cyan-500/30 border-t-cyan-400"></div>
-          <span className="text-sm font-medium text-gray-300">Loading profile...</span>
+      <div className="flex items-center justify-center min-h-[60vh] px-4 theme-bg-base">
+          <div className="theme-bg-surface-2 px-8 py-6 rounded-3xl theme-border border shadow-2xl flex items-center gap-4">
+          <div className="animate-spin rounded-full h-6 w-6 border-2 border-cyan-500/30 border-t-cyan-500"></div>
+          <span className="text-sm font-bold theme-text-primary uppercase tracking-widest">Loading profile...</span>
         </div>
       </div>
     );
@@ -155,33 +142,33 @@ export default function Profile() {
 
   if (!isAuthenticated) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] p-4 sm:p-8">
-        <div className="w-full max-w-lg rounded-[28px] border border-cyan-500/20 bg-black/90 backdrop-blur-xl shadow-[0_24px_60px_rgba(0,0,0,0.6)] overflow-hidden">
-          <div className="h-28 bg-linear-to-r from-cyan-500 via-teal-500 to-cyan-500 relative">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_35%)]" />
-              <div className="absolute -bottom-8 left-6 w-16 h-16 rounded-2xl bg-white/90 backdrop-blur shadow-[0_10px_30px_rgba(0,0,0,0.5)] grid place-items-center ring-4 ring-black/80">
-              <User className="w-8 h-8 text-cyan-300" />
+      <div className="flex flex-col items-center justify-center min-h-[80vh] p-4 sm:p-8 theme-bg-base">
+        <div className="w-full max-w-lg rounded-[40px] theme-border border theme-bg-surface shadow-2xl overflow-hidden">
+          <div className="h-32 bg-linear-to-r from-cyan-500 via-blue-500 to-cyan-500 relative">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_40%)]" />
+              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-20 h-20 rounded-3xl theme-bg-surface flex items-center justify-center shadow-xl ring-4 theme-ring-base">
+              <User className="w-10 h-10 text-cyan-500" />
             </div>
           </div>
 
-          <div className="pt-12 px-6 pb-6 text-center">
-            <h2 className="text-2xl font-extrabold tracking-tight text-white mb-2">
-            Sign in to view profile
-          </h2>
-          <p className="text-gray-400 mb-8">
-            Access your learning progress, stats, and settings.
-          </p>
-          <button
-            onClick={startGoogleSignIn}
-            className="w-full py-3.5 px-4 bg-black/60 hover:bg-zinc-900 text-white font-semibold rounded-2xl transition-all shadow-[0_18px_35px_rgba(0,0,0,0.4)] flex items-center justify-center gap-2"
-          >
-            <img
-              src="https://www.google.com/favicon.ico"
-              alt="G"
-              className="w-5 h-5 bg-white/90 rounded-full p-0.5"
-            />
-            Continue with Google
-          </button>
+          <div className="pt-16 px-8 pb-10 text-center">
+            <h2 className="text-3xl font-extrabold tracking-tight theme-text-primary mb-3">
+               Welcome to StudySphere
+            </h2>
+            <p className="theme-text-secondary mb-10 font-medium leading-relaxed">
+               Access your personal learning dashboard, track your streaks, and manage your collection.
+            </p>
+            <button
+               onClick={startGoogleSignIn}
+               className="w-full py-4 px-6 bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 group"
+            >
+               <img
+                  src="https://www.google.com/favicon.ico"
+                  alt="G"
+                  className="w-6 h-6 bg-white rounded-full p-1"
+               />
+               <span>Continue with Google</span>
+            </button>
           </div>
         </div>
       </div>
@@ -189,64 +176,65 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-transparent py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen theme-bg-base py-8 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
-        <div className="relative overflow-hidden rounded-4xl border border-cyan-500/20 bg-black/90 backdrop-blur-2xl shadow-[0_28px_80px_rgba(0,0,0,0.6)]">
-          <div className="absolute inset-x-0 top-0 h-52 bg-linear-to-r from-cyan-500 via-teal-500 to-cyan-500" />
-          <div className="absolute inset-x-0 top-0 h-52 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_35%)]" />
+        <div className="relative overflow-hidden rounded-[48px] theme-border border theme-bg-surface shadow-2xl">
+          {/* Cover Area */}
+          <div className="absolute inset-x-0 top-0 h-56 bg-linear-to-r from-cyan-500 via-blue-500 to-cyan-500" />
+          <div className="absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_40%)]" />
 
-          <div className="relative px-6 sm:px-8 lg:px-10 pt-8 sm:pt-10 pb-6">
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-              <div className="flex flex-col sm:flex-row sm:items-end gap-5">
-                  <div className="relative group shrink-0 mt-14 sm:mt-16 lg:mt-20">
-                  <div className="absolute -inset-2 rounded-full bg-cyan-500/10 blur-xl" />
+          <div className="relative px-6 sm:px-10 pt-10 pb-6">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+              <div className="flex flex-col sm:flex-row sm:items-end gap-6">
+                  <div className="relative group shrink-0 mt-20 lg:mt-24">
+                  <div className="absolute -inset-4 rounded-full bg-cyan-500/10 blur-2xl" />
                   <img
                     src={user.picture}
                     alt="profile"
-                      className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-[6px] border-black shadow-[0_20px_40px_rgba(0,0,0,0.6)] object-cover bg-black"
+                    className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-[40px] border-[8px] theme-border-base shadow-2xl object-cover theme-bg-surface"
                   />
-                    <div className="absolute inset-0 rounded-full bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-not-allowed border-[6px] border-transparent">
-                    <Camera className="text-white w-6 h-6" />
+                    <div className="absolute inset-0 rounded-[40px] bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-not-allowed border-[8px] border-transparent">
+                    <Camera className="text-white w-8 h-8" />
                   </div>
                 </div>
 
-                    <div className="pb-1 sm:pb-3 text-white">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 backdrop-blur border border-cyan-500/30 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 mb-4">
-                    Profile Overview
+                <div className="pb-2">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-[0.2em] text-white mb-5">
+                    User Profile
                   </div>
-                  <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight flex items-center gap-2">
+                  <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight flex items-center gap-4 theme-text-primary">
                     {user.name}
                     {!isEditing && (
                         <button
                         onClick={() => setIsEditing(true)}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900/80 backdrop-blur border border-cyan-500/20 text-gray-300 hover:text-cyan-200 hover:bg-zinc-800 shadow-sm transition-all"
+                        className="inline-flex h-12 w-12 items-center justify-center rounded-2xl theme-bg-surface-2 theme-border border theme-text-secondary hover:text-cyan-500 hover:theme-bg-surface transition-all shadow-sm"
                         title="Edit Profile"
                       >
-                        <Edit2 size={16} />
+                        <Edit2 size={18} />
                       </button>
                     )}
                   </h1>
-                  <p className="mt-2 flex items-center gap-2 text-gray-400 text-sm sm:text-base">
-                    <Mail size={14} />
+                  <p className="mt-3 flex items-center gap-2 theme-text-muted text-sm sm:text-base font-bold">
+                    <Mail size={16} className="text-cyan-500" />
                     {user.email}
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 w-full lg:w-auto lg:min-w-[320px] pb-1">
-                  <div className="rounded-2xl bg-black/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-400 font-semibold mb-1">
-                    Account Type
+              <div className="grid grid-cols-2 gap-4 w-full lg:w-auto lg:min-w-[360px] pb-1">
+                  <div className="rounded-3xl theme-bg-surface-2 border theme-border px-5 py-4 shadow-sm">
+                  <p className="text-[10px] uppercase tracking-[0.2em] theme-text-subtle font-extrabold mb-2">
+                    Account Status
                   </p>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-base font-extrabold theme-text-primary">
                     {user.accountType || "Learner"}
                   </p>
                 </div>
-                <div className="rounded-2xl bg-black/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-400 font-semibold mb-1">
+                <div className="rounded-3xl theme-bg-surface-2 border theme-border px-5 py-4 shadow-sm">
+                  <p className="text-[10px] uppercase tracking-[0.2em] theme-text-subtle font-extrabold mb-2">
                     Member Since
                   </p>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-base font-extrabold theme-text-primary">
                     {new Date(user.createdAt || user.lastLogin).toLocaleDateString(undefined, {
                       year: "numeric",
                       month: "short",
@@ -258,116 +246,99 @@ export default function Profile() {
             </div>
           </div>
 
-          <div className="relative px-6 sm:px-8 lg:px-10 pb-8 sm:pb-10">
+          <div className="relative px-6 sm:px-10 pb-12 pt-8">
             {message && (
               <div
-                className={`mb-6 rounded-2xl px-4 py-3 text-sm border ${
+                className={`mb-8 rounded-2xl px-6 py-4 text-sm font-bold border flex items-center gap-3 animate-in slide-in-from-top-2 duration-300 ${
                   message.type === "success"
-                    ? "bg-cyan-500/10 text-cyan-300 border-cyan-500/20"
-                    : "bg-rose-500/10 text-rose-300 border-rose-500/20"
+                    ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20"
+                    : "bg-rose-500/10 text-rose-500 border-rose-500/20"
                 }`}
               >
+                <div className={`w-2 h-2 rounded-full ${message.type === "success" ? 'bg-emerald-500' : 'bg-rose-500'} animate-pulse`} />
                 {message.text}
               </div>
             )}
 
-                <div className="mb-6 rounded-[28px] border border-slate-800 bg-black/90 backdrop-blur-xl p-5 sm:p-6 shadow-[0_16px_40px_rgba(2,6,23,0.25)]">
-              <div className="flex items-center justify-between gap-3 mb-4">
-                <h3 className="text-xl font-bold text-white">Your Stats</h3>
-                <span className="text-xs uppercase tracking-[0.16em] text-gray-400 font-semibold">
-                  Learning Snapshot
-                </span>
-              </div>
+            {/* Quick Stats Grid */}
+            <div className="mb-12">
+               <div className="flex items-center justify-between mb-6 px-1">
+                  <h3 className="text-2xl font-extrabold theme-text-primary">Your Learning Progress</h3>
+                  <button onClick={() => navigate('/dashboard')} className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-600 hover:text-cyan-500 transition-colors">
+                     Full Dashboard <LayoutDashboard size={14} />
+                  </button>
+               </div>
+               
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="rounded-3xl theme-bg-base border theme-border p-6 shadow-sm hover:shadow-md transition-shadow group">
+                     <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <History size={24} />
+                     </div>
+                     <p className="text-[10px] uppercase tracking-[0.2em] theme-text-subtle font-extrabold mb-1">Watch Time</p>
+                     <p className="text-2xl font-extrabold theme-text-primary">{statsLoading ? "..." : formatWatchTime(userStats.totalWatchTime)}</p>
+                  </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <div className="rounded-2xl bg-black/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-400 font-semibold mb-1">
-                    Watch Time
-                  </p>
-                  <p className="text-lg font-bold text-white">
-                    {statsLoading ? "..." : formatWatchTime(userStats.totalWatchTime)}
-                  </p>
-                </div>
+                  <div className="rounded-3xl theme-bg-base border theme-border p-6 shadow-sm hover:shadow-md transition-shadow group">
+                     <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <Award size={24} />
+                     </div>
+                     <p className="text-[10px] uppercase tracking-[0.2em] theme-text-subtle font-extrabold mb-1">Quizzes Solved</p>
+                     <p className="text-2xl font-extrabold theme-text-primary">{statsLoading ? "..." : userStats.totalQuizzesSolved}</p>
+                  </div>
 
-                <div className="rounded-2xl bg-black/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-400 font-semibold mb-1">
-                    Quizzes Solved
-                  </p>
-                  <p className="text-lg font-bold text-white">
-                    {statsLoading ? "..." : userStats.totalQuizzesSolved}
-                  </p>
-                </div>
+                  <div className="rounded-3xl theme-bg-base border theme-border p-6 shadow-sm hover:shadow-md transition-shadow group">
+                     <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <LayoutDashboard size={24} />
+                     </div>
+                     <p className="text-[10px] uppercase tracking-[0.2em] theme-text-subtle font-extrabold mb-1">Topics Cleared</p>
+                     <p className="text-2xl font-extrabold theme-text-primary">{statsLoading ? "..." : userStats.topicsCleared}</p>
+                  </div>
 
-                <div className="rounded-2xl bg-black/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-400 font-semibold mb-1">
-                    Topics Cleared
-                  </p>
-                  <p className="text-lg font-bold text-white">
-                    {statsLoading ? "..." : userStats.topicsCleared}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-black/75 backdrop-blur border border-slate-700 px-4 py-3 shadow-sm">
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-400 font-semibold mb-1">
-                    Current Streak
-                  </p>
-                  <p className="text-lg font-bold text-white">
-                    {statsLoading ? "..." : `${userStats.streak} day${userStats.streak === 1 ? "" : "s"}`}
-                  </p>
-                </div>
-              </div>
+                  <div className="rounded-3xl theme-bg-base border theme-border p-6 shadow-sm hover:shadow-md transition-shadow group">
+                     <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <Zap size={24} />
+                     </div>
+                     <p className="text-[10px] uppercase tracking-[0.2em] theme-text-subtle font-extrabold mb-1">Study Streak</p>
+                     <p className="text-2xl font-extrabold theme-text-primary">{statsLoading ? "..." : `${userStats.streak} Days`}</p>
+                  </div>
+               </div>
             </div>
 
             {isEditing ? (
               <form
                 onSubmit={handleUpdateProfile}
-                className="grid gap-5 rounded-[28px] border border-slate-800 bg-black/90 backdrop-blur-xl p-5 sm:p-6 shadow-[0_16px_40px_rgba(2,6,23,0.25)] animate-in fade-in slide-in-from-top-4 duration-300"
+                className="grid gap-8 rounded-[40px] theme-bg-base theme-border border p-8 sm:p-10 shadow-xl animate-in fade-in zoom-in-95 duration-300"
               >
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between border-b theme-border pb-6 mb-2">
                   <div>
-                    <h3 className="text-xl font-bold text-white">
-                      Edit Profile
-                    </h3>
-                    <p className="text-sm text-gray-400 mt-1">
-                      Update your display name and account type.
-                    </p>
+                    <h3 className="text-2xl font-extrabold theme-text-primary mb-1">Edit Account Details</h3>
+                    <p className="theme-text-secondary text-sm font-medium">Customize your public presence on StudySphere.</p>
                   </div>
+                  <button type="button" onClick={() => setIsEditing(false)} className="p-2 rounded-xl hover:theme-bg-surface-2 theme-text-muted transition-colors"><X size={20} /></button>
                 </div>
 
-                <div className="grid gap-5 md:grid-cols-2">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-semibold text-gray-300"
-                    >
-                      Display Name
-                    </label>
+                <div className="grid gap-8 md:grid-cols-2">
+                  <div className="space-y-3">
+                    <label htmlFor="name" className="block text-xs font-bold uppercase tracking-widest theme-text-muted ml-1">Display Name</label>
                     <input
                       type="text"
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl border border-slate-700 bg-black/90 focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-all shadow-sm text-white"
+                      className="ds-input-base"
                       placeholder="Enter your name"
                       required
                     />
-                    <p className="text-xs text-gray-400">
-                      This is how you’ll appear across the app.
-                    </p>
+                    <p className="text-[10px] theme-text-subtle font-medium ml-1">Visible to other users in rankings and comments.</p>
                   </div>
 
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="accountType"
-                      className="block text-sm font-semibold text-gray-300"
-                    >
-                      Account Type
-                    </label>
+                  <div className="space-y-3">
+                    <label htmlFor="accountType" className="block text-xs font-bold uppercase tracking-widest theme-text-muted ml-1">Account Type</label>
                     <select
                       id="accountType"
                       value={accountType}
                       onChange={(e) => setAccountType(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl border border-slate-700 bg-black/90 focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-all shadow-sm text-white"
+                      className="ds-input-base cursor-pointer"
                     >
                       <option value="Learner">Learner</option>
                       <option value="Student">Student</option>
@@ -378,22 +349,20 @@ export default function Profile() {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-300">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    value={user.email}
-                    disabled
-                    className="w-full px-4 py-3 rounded-2xl border border-slate-700 bg-black text-gray-500 cursor-not-allowed"
-                  />
-                  <p className="text-xs text-gray-500">
-                    Email cannot be changed.
-                  </p>
+                <div className="space-y-3">
+                  <label className="block text-xs font-bold uppercase tracking-widest theme-text-muted ml-1">Email (Primary Account)</label>
+                  <div className="relative group">
+                     <input
+                        type="email"
+                        value={user.email}
+                        disabled
+                        className="w-full px-5 py-4 rounded-2xl theme-bg-surface-2 border theme-border theme-text-subtle cursor-not-allowed font-bold italic"
+                     />
+                     <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white text-[10px] px-2 py-1 rounded-md">Locked</div>
+                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-3 pt-2">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-4 pt-6 border-t theme-border">
                   <button
                     type="button"
                     onClick={() => {
@@ -402,46 +371,51 @@ export default function Profile() {
                       setAccountType(user.accountType || "Learner");
                       setMessage(null);
                     }}
-                    className="px-4 py-3 rounded-2xl border border-slate-700 bg-black text-gray-300 font-semibold hover:bg-zinc-900 transition-all flex items-center justify-center gap-2"
+                    className="px-8 py-4 rounded-2xl theme-bg-surface-2 theme-text-primary font-bold hover:theme-bg-surface transition-all border theme-border flex items-center justify-center gap-2"
                   >
-                    <X size={18} />
-                    Cancel
+                    Discard Changes
                   </button>
                   <button
                     type="submit"
                     disabled={isSaving}
-                    className="px-4 py-3 rounded-2xl bg-cyan-600 text-white font-semibold hover:bg-cyan-500 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-[0_18px_35px_rgba(2,6,23,0.22)]"
+                    className="px-8 py-4 rounded-2xl bg-cyan-600 text-white font-extrabold hover:bg-cyan-500 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed shadow-xl shadow-cyan-900/10"
                   >
                     {isSaving ? (
-                       <div className="w-4 h-4 border-2 border-slate-500 border-t-white rounded-full animate-spin" />
+                        <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                     ) : (
-                      <Save size={18} />
+                      <Save size={20} />
                     )}
-                    Save Changes
+                    <span>Apply Settings</span>
                   </button>
                 </div>
               </form>
             ) : (
-                <div className="grid gap-5 md:grid-cols-2">
-                <div className="rounded-3xl border border-cyan-500/20 bg-linear-to-br from-cyan-500/10 to-black p-5 shadow-sm">
-                  <h3 className="font-bold text-cyan-200 mb-1">
-                    Account Type
+                <div className="grid gap-6 md:grid-cols-2">
+                <div className="rounded-[32px] border theme-border theme-bg-base p-8 shadow-sm group hover:theme-border-cyan-500/30 transition-all">
+                  <h3 className="font-extrabold theme-text-muted text-[10px] uppercase tracking-[0.2em] mb-3">
+                    Your Persona
                   </h3>
-                  <p className="text-cyan-300 text-sm">
-                    {user.accountType || "Learner"}
-                  </p>
+                  <div className="flex items-center gap-4">
+                     <div className="w-10 h-10 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center"><Award size={20} /></div>
+                     <p className="text-xl font-extrabold theme-text-primary">
+                        {user.accountType || "Learner"}
+                     </p>
+                  </div>
                 </div>
-                <div className="rounded-3xl border border-teal-500/20 bg-linear-to-br from-teal-500/10 to-slate-900 p-5 shadow-sm">
-                  <h3 className="font-bold text-teal-200 mb-1">
-                    Member Since
+                <div className="rounded-[32px] border theme-border theme-bg-base p-8 shadow-sm group hover:theme-border-blue-500/30 transition-all">
+                  <h3 className="font-extrabold theme-text-muted text-[10px] uppercase tracking-[0.2em] mb-3">
+                    Community Tenure
                   </h3>
-                  <p className="text-teal-300 text-sm">
-                    {new Date(user.createdAt || user.lastLogin).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
+                  <div className="flex items-center gap-4">
+                     <div className="w-10 h-10 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center"><History size={20} /></div>
+                     <p className="text-xl font-extrabold theme-text-primary">
+                        {new Date(user.createdAt || user.lastLogin).toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        })}
+                     </p>
+                  </div>
                 </div>
               </div>
             )}

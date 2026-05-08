@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft, Play, Clock, ListOrdered } from "lucide-react";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
@@ -89,20 +90,25 @@ export default function VideoPlayer() {
 
   if (loading)
     return (
-      <p className="text-center mt-10 text-cyan-300 animate-pulse">
-        Loading playlist...
-      </p>
+      <div className="flex flex-col items-center justify-center h-[50vh] theme-bg-base">
+        <p className="text-cyan-500 font-bold text-lg animate-pulse">
+          Loading playlist...
+        </p>
+      </div>
     );
 
   if (error)
     return (
-      <div className="text-center mt-10 text-rose-300 font-semibold">
-        {error} <br />
+      <div className="flex flex-col items-center justify-center h-[60vh] px-4 theme-bg-base text-center">
+        <div className="bg-rose-500/10 border border-rose-500/30 text-rose-500 p-6 rounded-3xl max-w-md shadow-sm mb-8">
+           <h3 className="text-lg font-bold mb-2">Error Loading Playlist</h3>
+           <p className="text-sm font-medium">{error}</p>
+        </div>
         <button
           onClick={() => navigate("/playlist")}
-          className="mt-6 px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-400"
+          className="ds-btn-primary px-8 font-bold"
         >
-          Go Back to Playlists
+          Back to Playlists
         </button>
       </div>
     );
@@ -112,81 +118,102 @@ export default function VideoPlayer() {
   const totalDuration = getTotalPlaylistDuration();
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <div className="mb-6">
-        <h2 className="text-3xl font-bold text-cyan-300">{playlist.title}</h2>
-        {totalDuration && (
-          <p className="text-gray-400 mt-2">
-            {sanitizedVideos.length} videos • {totalDuration}
-          </p>
-        )}
-      </div>
+    <div className="min-h-screen theme-bg-base py-8 sm:py-12">
+      <div className="max-w-4xl mx-auto px-4">
+        <button
+          onClick={() => navigate("/playlist")}
+          className="flex items-center gap-2 theme-text-muted hover:text-cyan-500 transition-colors mb-6 font-semibold text-sm group"
+        >
+          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          <span>Back to Playlists</span>
+        </button>
 
-      {sanitizedVideos.length === 0 ? (
-        <p className="italic text-gray-400">
-          This playlist has no playable videos.
-        </p>
-      ) : (
-        <ul className="space-y-4">
-          {sanitizedVideos.map((video, index) => (
-            <li
-              key={video.videoId}
-              className="flex items-center space-x-4 p-3 rounded-lg hover:bg-gray-800 cursor-pointer shadow-sm transition border border-gray-700"
-              onClick={() => navigate(`/player/${id}?v=${video.videoId}`)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter")
-                  navigate(`/player/${id}?v=${video.videoId}`);
-              }}
-              role="button"
-              tabIndex={0}
-            >
-              {/* # */}
-              <div className="text-gray-400 font-medium w-8 text-center">
-                {index + 1}
-              </div>
+        <div className="mb-10">
+          <h2 className="text-3xl sm:text-4xl font-extrabold theme-text-primary">{playlist.title}</h2>
+          {totalDuration && (
+            <div className="flex items-center gap-3 mt-4 text-sm font-bold uppercase tracking-wider theme-text-muted">
+              <span className="flex items-center gap-1.5"><ListOrdered size={16} className="text-cyan-500" /> {sanitizedVideos.length} Videos</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/30" />
+              <span className="flex items-center gap-1.5"><Clock size={16} className="text-cyan-500" /> {totalDuration}</span>
+            </div>
+          )}
+        </div>
 
-              {/* Thumbnail */}
-              <div className="relative">
-                <img
-                  src={getVideoThumbnail(video.videoId)}
-                  alt={video.title || `Video ${index + 1}`}
-                  className="w-32 h-18 object-cover rounded-md shadow"
-                  onError={(e) => {
-                    if (e.currentTarget.src.includes("hqdefault")) {
-                      e.currentTarget.src = e.currentTarget.src.replace(
-                        "hqdefault",
-                        "mqdefault"
-                      );
-                    } else if (e.currentTarget.src.includes("mqdefault")) {
-                      e.currentTarget.src =
-                        "https://via.placeholder.com/120x68?text=No+Image";
-                    }
-                  }}
-                />
-                {video.duration && (
-                  <div className="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">
-                    {video.duration}
+        {sanitizedVideos.length === 0 ? (
+          <div className="p-12 text-center theme-bg-surface rounded-3xl theme-border border shadow-sm">
+             <p className="italic theme-text-muted font-medium">
+                This playlist has no playable videos.
+             </p>
+          </div>
+        ) : (
+          <ul className="space-y-4">
+            {sanitizedVideos.map((video, index) => (
+              <li
+                key={video.videoId}
+                className="group flex items-center space-x-4 p-4 rounded-2xl theme-bg-surface hover:theme-bg-surface-2 cursor-pointer shadow-sm transition-all border theme-border"
+                onClick={() => navigate(`/player/${id}?v=${video.videoId}`)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter")
+                    navigate(`/player/${id}?v=${video.videoId}`);
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                {/* # */}
+                <div className="theme-text-subtle font-extrabold w-8 text-center text-lg">
+                  {index + 1}
+                </div>
+
+                {/* Thumbnail */}
+                <div className="relative shrink-0 w-24 sm:w-36 aspect-video rounded-xl overflow-hidden shadow-sm theme-bg-surface-2 border theme-border border-opacity-30">
+                  <img
+                    src={getVideoThumbnail(video.videoId)}
+                    alt={video.title || `Video ${index + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      if (e.currentTarget.src.includes("hqdefault")) {
+                        e.currentTarget.src = e.currentTarget.src.replace(
+                          "hqdefault",
+                          "mqdefault"
+                        );
+                      } else if (e.currentTarget.src.includes("mqdefault")) {
+                        e.currentTarget.src =
+                          "https://via.placeholder.com/120x68?text=No+Image";
+                      }
+                    }}
+                  />
+                  {video.duration && (
+                    <div className="absolute bottom-1 right-1 bg-black/85 text-white text-[9px] font-bold px-1 py-0.5 rounded uppercase tracking-wider">
+                      {video.duration}
+                    </div>
+                  )}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                     <div className="w-8 h-8 bg-white text-cyan-600 rounded-full flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                        <Play size={14} className="ml-0.5 fill-current" />
+                     </div>
                   </div>
-                )}
-              </div>
+                </div>
 
-              {/* Title */}
-              <div className="flex-1">
-                <span className="text-lg font-medium text-white line-clamp-2">
-                  {video.title || `Video ${index + 1}`}
-                </span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+                {/* Title */}
+                <div className="flex-1 min-w-0">
+                  <span className="text-sm sm:text-base font-bold theme-text-primary group-hover:text-cyan-500 transition-colors line-clamp-2">
+                    {video.title || `Video ${index + 1}`}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
 
-      <button
-        onClick={() => navigate("/playlist")}
-        className="mt-8 px-6 py-3 bg-cyan-500 text-white rounded hover:bg-cyan-400"
-      >
-        Back to Playlists
-      </button>
+        <div className="mt-12 text-center">
+            <button
+            onClick={() => navigate("/playlist")}
+            className="ds-btn-secondary px-8 font-bold"
+            >
+            Back to Playlists
+            </button>
+        </div>
+      </div>
     </div>
   );
 }

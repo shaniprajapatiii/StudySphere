@@ -105,34 +105,41 @@ export default function Playlist() {
 
   if (authLoading) {
     return (
-      <p className="text-center text-cyan-400 animate-pulse">
-        Checking login...
-      </p>
+      <div className="flex justify-center items-center h-[50vh]">
+        <p className="text-cyan-500 font-semibold animate-pulse">
+          Checking login...
+        </p>
+      </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
-      <h2 className="ds-h2 mb-6 text-center text-cyan-300">
-        Your Playlists & Videos
-      </h2>
+    <div className="min-h-screen theme-bg-base">
+      <div className="max-w-7xl mx-auto p-4 sm:p-8">
+        <h2 className="ds-h2 mb-8 text-center theme-text-primary">
+          Your Playlists & Videos
+        </h2>
 
-      <AddPlaylistForm onAdd={handleAdd} />
+        <AddPlaylistForm onAdd={handleAdd} />
 
-      {loading && (
-        <p className="text-center text-cyan-300 font-semibold animate-pulse">Loading...</p>
-      )}
-      {error && (
-        <div className="bg-red-500/10 border border-red-500/30 text-red-300 px-4 py-3 rounded-lg text-center font-medium">
-          {error}
-        </div>
-      )}
+        {loading && (
+          <div className="flex justify-center my-8">
+            <p className="text-cyan-500 font-bold animate-pulse">Loading...</p>
+          </div>
+        )}
+        
+        {error && (
+          <div className="bg-rose-500/10 border border-rose-500/30 text-rose-500 px-6 py-4 rounded-2xl text-center font-medium my-6 shadow-sm">
+            {error}
+          </div>
+        )}
 
-      <PlaylistList
-        playlists={playlists}
-        onSelect={handleSelect}
-        onRemove={handleRemove}
-      />
+        <PlaylistList
+          playlists={playlists}
+          onSelect={handleSelect}
+          onRemove={handleRemove}
+        />
+      </div>
     </div>
   );
 }

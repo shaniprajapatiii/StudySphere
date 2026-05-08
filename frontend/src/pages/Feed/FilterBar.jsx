@@ -4,62 +4,49 @@ import { useState } from "react";
 export default function FilterBar({ searchQuery, setSearchQuery, isSearching = false }) {
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      // Focus is maintained, debounce timer will trigger the search
-    }
-  };
-
-  const handleClearSearch = () => {
-    setSearchQuery("");
-  };
+  const handleClearSearch = () => setSearchQuery("");
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-    if (e.key === "Escape") {
-      handleClearSearch();
-    }
+    if (e.key === "Escape") handleClearSearch();
   };
 
   return (
-    <div className="w-full sm:w-auto">
-      {/* Search Input with Clear Button */}
+    <div className="w-full sm:w-auto relative">
+      {/* Search Input */}
       <div className="relative flex items-center group">
         <input
           type="text"
           placeholder="Search videos, playlists..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          className={`ds-input-base w-full sm:w-80 pl-11 ${searchQuery ? 'pr-20' : 'pr-4'} transition-all duration-200`}
+          className={`ds-input-base w-full sm:w-80 pl-11 ${searchQuery ? "pr-20" : "pr-4"} transition-all duration-200`}
           aria-label="Search videos and playlists"
         />
-        
+
         {/* Search Icon */}
-        <Search 
-          size={18} 
-          className={`absolute left-3.5 top-1/2 transform -translate-y-1/2 pointer-events-none transition-colors duration-200 ${
-            isFocused ? 'text-cyan-500' : 'text-gray-400'
-          }`} 
+        <Search
+          size={18}
+          className="absolute left-3.5 top-1/2 transform -translate-y-1/2 pointer-events-none transition-colors duration-200"
+          style={{ color: isFocused ? "var(--accent)" : "var(--text-muted)" }}
         />
-        
+
         {/* Loading Indicator */}
         {isSearching && (
-          <Loader 
-            size={18} 
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 animate-spin text-cyan-500" 
+          <Loader
+            size={18}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 animate-spin"
+            style={{ color: "var(--accent)" }}
           />
         )}
-        
-        {/* Clear Button - Shows when there's search text */}
+
+        {/* Clear Button */}
         {searchQuery && !isSearching && (
           <button
             onClick={handleClearSearch}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-1.5 text-gray-400 hover:text-rose-300 transition-colors duration-200 hover:bg-zinc-900 rounded-md"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-1.5 transition-colors duration-200 rounded-md hover:bg-rose-500/10 theme-text-muted hover:text-rose-500"
             aria-label="Clear search"
             title="Clear search (Esc)"
           >
@@ -67,16 +54,48 @@ export default function FilterBar({ searchQuery, setSearchQuery, isSearching = f
           </button>
         )}
       </div>
-      
-      {/* Search Hints */}
+
+      {/* Search Hints dropdown */}
       {isFocused && !searchQuery && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-black rounded-lg shadow-lg border border-cyan-500/20 p-3 text-sm text-gray-300 z-50">
+        <div
+          className="absolute top-full left-0 right-0 mt-2 rounded-lg p-3 text-sm z-50 theme-border border"
+          style={{
+            backgroundColor: "var(--bg-elevated)",
+            boxShadow: "var(--shadow-heavy)",
+          }}
+        >
           <div className="space-y-1">
-            <p className="text-xs text-gray-500 font-semibold uppercase">Tips:</p>
-            <ul className="space-y-1 text-xs text-gray-400">
+            <p className="text-xs font-semibold uppercase theme-text-subtle">Tips:</p>
+            <ul className="space-y-1 text-xs theme-text-muted">
               <li>• Search by video title, channel name</li>
-              <li>• Press <kbd className="bg-zinc-900 px-1.5 py-0.5 rounded text-gray-200 font-mono">Enter</kbd> to search</li>
-              <li>• Press <kbd className="bg-zinc-900 px-1.5 py-0.5 rounded text-gray-200 font-mono">Esc</kbd> to clear</li>
+              <li>
+                • Press{" "}
+                <kbd
+                  className="px-1.5 py-0.5 rounded font-mono text-xs"
+                  style={{
+                    backgroundColor: "var(--bg-surface-2)",
+                    color: "var(--text-secondary)",
+                    border: "1px solid var(--border-base)",
+                  }}
+                >
+                  Enter
+                </kbd>{" "}
+                to search
+              </li>
+              <li>
+                • Press{" "}
+                <kbd
+                  className="px-1.5 py-0.5 rounded font-mono text-xs"
+                  style={{
+                    backgroundColor: "var(--bg-surface-2)",
+                    color: "var(--text-secondary)",
+                    border: "1px solid var(--border-base)",
+                  }}
+                >
+                  Esc
+                </kbd>{" "}
+                to clear
+              </li>
             </ul>
           </div>
         </div>

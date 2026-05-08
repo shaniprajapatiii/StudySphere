@@ -1,38 +1,36 @@
-// frontend/src/pages/VideoPlayer/components/SummaryBox.jsx
 import React from "react";
+import SkeletonLoader from "../../../components/SkeletonLoader";
+import { FileText } from "lucide-react";
 
-const SummaryBox = ({ summary, loading }) => {
-  const panelClass =
-    "p-5 border border-slate-700 rounded-2xl bg-black shadow-lg shadow-none min-h-[200px] relative";
-  const titleClass = "text-xl font-bold text-white";
-  const mutedClass = "text-gray-300";
-  const emptyClass = "text-gray-400";
+export default function SummaryBox({ summary, loading }) {
+  if (loading) {
+    return (
+      <div className="space-y-4">
+        <SkeletonLoader className="h-8 w-1/2 rounded-xl" />
+        <SkeletonLoader className="h-4 w-full rounded-lg" />
+        <SkeletonLoader className="h-4 w-full rounded-lg" />
+        <SkeletonLoader className="h-4 w-full rounded-lg" />
+        <SkeletonLoader className="h-4 w-3/4 rounded-lg" />
+      </div>
+    );
+  }
+
+  if (!summary) return null;
 
   return (
-    <div className={panelClass}>
-      <h3 className={`${titleClass} mb-4 flex items-center gap-2`}>
-        <span className="text-amber-500">✨</span> Summary
-      </h3>
+     <div className="summary-box animate-in fade-in duration-300 pb-6">
+      <div className="flex items-center gap-2 mb-4">
+        <div className="p-2 rounded-xl bg-teal-500/10 text-teal-500 border border-teal-500/20">
+          <FileText size={18} />
+        </div>
+        <h3 className="text-base font-bold theme-text-primary">Summary</h3>
+      </div>
 
-      {loading ? (
-        <div className="flex flex-col items-center justify-center py-12 text-gray-300">
-          <div className="animate-spin text-4xl mb-4">⏳</div>
-          <p className={`font-medium ${mutedClass}`}>Generating summary...</p>
+      <div className="theme-bg-surface-2 p-4 rounded-4xl theme-border border">
+        <div className="theme-text-secondary text-sm leading-relaxed whitespace-pre-wrap">
+         {summary}
         </div>
-      ) : summary ? (
-        <div className="prose prose-sm max-w-none text-gray-200 leading-relaxed">
-          <p className="whitespace-pre-wrap">{summary}</p>
-        </div>
-      ) : (
-        <div className={`flex flex-col items-center justify-center py-12 ${emptyClass}`}>
-          <span className="text-4xl mb-3 opacity-50">✨</span>
-          <p className="font-medium">
-            Click "Summarize" to generate a summary.
-          </p>
-        </div>
-      )}
+      </div>
     </div>
   );
-};
-
-export default SummaryBox;
+}

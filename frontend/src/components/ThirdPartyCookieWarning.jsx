@@ -1,84 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { X, AlertTriangle } from "lucide-react";
 
-const toastStyles = {
-  position: "fixed",
-  bottom: 24,
-  right: 24,
-  zIndex: 9999,
-  minWidth: 320,
-  maxWidth: 400,
-  background: "#23272f",
-  color: "#fff",
-  borderRadius: 12,
-  boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
-  padding: "20px 24px 20px 20px",
-  display: "flex",
-  alignItems: "flex-start",
-  gap: 16,
-  fontSize: 16,
-  border: "1px solid #3b414b",
-  animation: "slideIn 0.5s cubic-bezier(.4,2,.6,1)",
-};
-
-const closeBtnStyles = {
-  background: "none",
-  border: "none",
-  color: "#fff",
-  fontSize: 20,
-  cursor: "pointer",
-  marginLeft: 8,
-  marginTop: 2,
-  opacity: 0.7,
-  transition: "opacity 0.2s",
-};
-
-const iconStyles = {
-  flexShrink: 0,
-  fontSize: 28,
-  marginRight: 8,
-  color: "#fbbf24",
-  marginTop: 2,
-};
-
-const ThirdPartyCookieWarning = () => {
-  const [visible, setVisible] = useState(true);
-
+const ThirdPartyCookieWarning = ({ onUnderstand, onClose }) => {
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 12000);
-    return () => clearTimeout(timer);
-  }, []);
+    const onEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose?.();
+      }
+    };
 
-  if (!visible) return null;
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, [onClose]);
 
   return (
-    <div style={toastStyles} role="alert" aria-live="assertive">
-      <span style={iconStyles}>⚠️</span>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontWeight: 700, fontSize: 17, marginBottom: 2 }}>
-          Action Required: Enable Third-Party Cookies
+    <div
+      className="fixed inset-0 z-9999 flex items-center justify-center px-4 py-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cookie-warning-title"
+    >
+      <button
+        type="button"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        aria-label="Dismiss cookie notice"
+        onClick={onClose}
+      />
+
+      <div className="relative w-full max-w-100 theme-bg-surface theme-text-primary rounded-3xl shadow-2xl p-6 sm:p-7 border theme-border animate-in zoom-in-95 duration-300">
+        <div className="flex items-start gap-4">
+          <div className="shrink-0 w-11 h-11 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center border border-amber-500/20">
+            <AlertTriangle size={22} />
+          </div>
+
+          <div className="flex-1 pr-8">
+            <h4 id="cookie-warning-title" className="font-extrabold text-lg mb-2 tracking-tight">
+              Allow Third-Party Cookies
+            </h4>
+            <div className="text-sm theme-text-secondary leading-relaxed font-medium">
+              To log in with Google, please allow <strong className="theme-text-primary">third-party cookies</strong> in your browser settings.
+              <div className="mt-3 pt-3 border-t theme-border text-[11px] theme-text-muted italic">
+                After enabling them, click Understand to continue to login.
+              </div>
+            </div>
+          </div>
         </div>
-        <div style={{ fontSize: 15, color: "#fbbf24" }}>
-          To log in with Google, please allow <b>third-party cookies</b> in your browser settings.<br />
-          <span style={{ color: '#fff', fontWeight: 500 }}>
-            This is necessary for authentication to work on Study Sphere.<br />
-            <u>After enabling, refresh this page and try logging in again.</u>
-          </span>
+
+        <div className="mt-6 flex justify-end">
+          <button
+            type="button"
+            className="px-5 py-3 rounded-2xl bg-cyan-600 text-white font-extrabold hover:bg-cyan-500 transition-colors shadow-lg"
+            onClick={() => {
+              onUnderstand?.();
+            }}
+          >
+            Understand
+          </button>
         </div>
       </div>
-      <button
-        style={closeBtnStyles}
-        aria-label="Dismiss warning"
-        onClick={() => setVisible(false)}
-        title="Dismiss"
-      >
-        ×
-      </button>
-      <style>{`
-        @keyframes slideIn {
-          from { opacity: 0; transform: translateY(32px) scale(0.98); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
     </div>
   );
 };

@@ -2,16 +2,100 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
+/* ─── LIGHT MODE TOKENS (default :root) ─────────────────────────────────── */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
+
+  /* Backgrounds */
+  --bg-base:       #f0f4f8;
+  --bg-surface:    #ffffff;
+  --bg-surface-2:  #f1f5f9;
+  --bg-elevated:   #ffffff;
+  --bg-overlay:    rgba(255, 255, 255, 0.88);
+  --bg-input:      #ffffff;
+  --bg-black-card: rgba(255,255,255,0.7);
+
+  /* Text */
+  --text-primary:   #0f172a;
+  --text-secondary: #334155;
+  --text-muted:     #64748b;
+  --text-subtle:    #94a3b8;
+  --text-on-accent: #ffffff;
+
+  /* Borders */
+  --border-base:   rgba(14, 165, 233, 0.22);
+  --border-strong: rgba(14, 165, 233, 0.40);
+  --border-sep:    rgba(14, 165, 233, 0.15);
+
+  /* Accent (cyan-sky family) */
+  --accent:        #0ea5e9;
+  --accent-text:   #0369a1;
+  --accent-muted:  rgba(14,165,233,0.12);
+
+  /* Shadows */
+  --shadow-card:   0 4px 24px rgba(14,165,233,0.10);
+  --shadow-heavy:  0 8px 32px rgba(14,165,233,0.14);
+
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(14,165,233,0.55);
+  --scrollbar-track: #e2e8f0;
+
+  /* Gradient base background */
+  --gradient-base:
+    radial-gradient(circle at top left,  rgba(14,165,233,0.10), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(99,102,241,0.07), transparent 50%),
+    #f0f4f8;
 }
 
-html.dark,
-body {
-  background:
-    radial-gradient(circle at top left, rgba(0, 200, 255, 0.12), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(100, 150, 255, 0.08), transparent 50%),
+/* ─── DARK MODE TOKEN OVERRIDES ─────────────────────────────────────────── */
+html.dark {
+  color-scheme: dark;
+
+  --bg-base:       #000000;
+  --bg-surface:    rgba(0,0,0,0.40);
+  --bg-surface-2:  rgba(9,9,11,0.80);
+  --bg-elevated:   rgba(9,9,11,0.95);
+  --bg-overlay:    rgba(0,0,0,0.75);
+  --bg-input:      rgba(0,0,0,0.40);
+  --bg-black-card: rgba(0,0,0,0.50);
+
+  --text-primary:   #f0f4f8;
+  --text-secondary: #d1d5db;
+  --text-muted:     #9ca3af;
+  --text-subtle:    #4b5563;
+  --text-on-accent: #ffffff;
+
+  --border-base:   rgba(0,200,255,0.15);
+  --border-strong: rgba(0,200,255,0.25);
+  --border-sep:    rgba(55,65,81,0.60);
+
+  --accent:        #00c8ff;
+  --accent-text:   #67e8f9;
+  --accent-muted:  rgba(0,200,255,0.12);
+
+  --shadow-card:   0 4px 24px rgba(0,0,0,0.55);
+  --shadow-heavy:  0 8px 32px rgba(0,0,0,0.70);
+
+  --scrollbar-thumb: rgba(0,200,255,0.65);
+  --scrollbar-track: rgba(0,0,0,0.95);
+
+  --gradient-base:
+    radial-gradient(circle at top left,  rgba(0,200,255,0.12), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(100,150,255,0.08), transparent 50%),
     #000000;
+}
+
+/* ─── BASE LAYER ─────────────────────────────────────────────────────────── */
+html, body {
+  background: var(--gradient-base);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @layer base {
@@ -21,337 +105,331 @@ body {
     line-height: 1.5;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: "Sora", "Manrope", sans-serif;
     letter-spacing: -0.02em;
   }
 
   *::selection {
-    background: rgba(0, 200, 255, 0.3);
+    background: rgba(14, 165, 233, 0.28);
+    color: var(--text-primary);
+  }
+  html.dark *::selection {
+    background: rgba(0, 200, 255, 0.30);
     color: #ffffff;
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 200, 255, 0.7) rgba(0, 0, 0, 0.95);
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      color 0.2s ease,
+      box-shadow 0.3s ease;
   }
 
-  *::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-
+  *::-webkit-scrollbar { width: 10px; height: 10px; }
   *::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.95);
+    background: var(--scrollbar-track);
     border-radius: 9999px;
   }
-
   *::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(0, 200, 255, 0.7), rgba(0, 150, 255, 0.6));
+    background: var(--scrollbar-thumb);
     border-radius: 9999px;
-    border: 2px solid rgba(0, 0, 0, 0.98);
+    border: 2px solid var(--scrollbar-track);
+  }
+
+  input, textarea, select {
+    color: var(--text-primary);
+    background-color: var(--bg-input);
   }
 }
 
-html.dark body {
-  color: #f0f4f8;
-}
+/* ─── THEME UTILITY CLASSES ──────────────────────────────────────────────── */
+.theme-bg-base      { background: var(--gradient-base); }
+.theme-bg-surface   { background-color: var(--bg-surface); }
+.theme-bg-surface-2 { background-color: var(--bg-surface-2); }
+.theme-bg-elevated  { background-color: var(--bg-elevated); }
+.theme-bg-overlay   { background-color: var(--bg-overlay); }
+.theme-bg-input     { background-color: var(--bg-input); }
+.theme-text-primary   { color: var(--text-primary); }
+.theme-text-secondary { color: var(--text-secondary); }
+.theme-text-muted     { color: var(--text-muted); }
+.theme-text-subtle    { color: var(--text-subtle); }
+.theme-border         { border-color: var(--border-base); }
+.theme-border-strong  { border-color: var(--border-strong); }
+.theme-border-sep     { border-color: var(--border-sep); }
 
-html.dark input,
-html.dark textarea,
-html.dark select {
-  color: #f0f4f8;
-}
-
+/* ─── DESIGN SYSTEM COMPONENTS ──────────────────────────────────────────── */
 @layer components {
+
+  /* ── Typography ── */
   .ds-link {
-    @apply text-cyan-400 hover:text-cyan-300 hover:underline transition-colors duration-200 cursor-pointer;
+    @apply hover:underline transition-colors duration-200 cursor-pointer;
+    color: var(--accent);
   }
+  .ds-link:hover { color: var(--accent-text); }
 
   .ds-link-inverse {
-    @apply text-white hover:text-gray-100 hover:underline transition-colors duration-200 cursor-pointer;
+    @apply hover:underline transition-colors duration-200 cursor-pointer;
+    color: var(--text-primary);
   }
 
-  .ds-h1 {
-    @apply text-4xl font-bold text-white;
-  }
+  .ds-h1 { @apply text-4xl font-bold; color: var(--text-primary); }
+  .ds-h2 { @apply text-3xl font-bold; color: var(--text-primary); }
+  .ds-h3 { @apply text-2xl font-bold; color: var(--text-primary); }
+  .ds-h4 { @apply text-xl font-semibold; color: var(--text-primary); }
+  .ds-h5 { @apply text-lg font-semibold; color: var(--text-primary); }
+  .ds-h6 { @apply text-base font-semibold; color: var(--text-primary); }
 
-  .ds-h2 {
-    @apply text-3xl font-bold text-white;
-  }
+  .ds-body-lg { @apply text-lg; color: var(--text-secondary); }
+  .ds-body    { @apply text-base; color: var(--text-secondary); }
+  .ds-body-sm { @apply text-sm; color: var(--text-muted); }
+  .ds-body-xs { @apply text-xs; color: var(--text-subtle); }
+  .ds-muted   { @apply text-sm; color: var(--text-muted); }
 
-  .ds-h3 {
-    @apply text-2xl font-bold text-white;
-  }
+  /* ── Backgrounds ── */
+  .bg-gradient-base { background: var(--gradient-base); }
 
-  .ds-h4 {
-    @apply text-xl font-semibold text-white;
-  }
-
-  .ds-h5 {
-    @apply text-lg font-semibold text-white;
-  }
-
-  .ds-h6 {
-    @apply text-base font-semibold text-white;
-  }
-
-  .ds-body-lg {
-    @apply text-lg text-gray-200;
-  }
-
-  .ds-body {
-    @apply text-base text-gray-300;
-  }
-
-  .ds-body-sm {
-    @apply text-sm text-gray-400;
-  }
-
-  .ds-body-xs {
-    @apply text-xs text-gray-500;
-  }
-
-  .ds-muted {
-    @apply text-gray-500 text-sm;
-  }
-
-  .bg-gradient-base {
-    background:
-      radial-gradient(circle at top left, rgba(0, 200, 255, 0.12), transparent 40%),
-      radial-gradient(circle at bottom right, rgba(100, 150, 255, 0.08), transparent 50%),
-      #000000;
-  }
-
+  /* ── Buttons ── */
   .ds-btn-primary {
-    @apply px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg shadow-lg shadow-cyan-900/40 hover:shadow-cyan-900/60 hover:shadow-2xl active:from-cyan-600 active:to-blue-600 disabled:bg-gray-700 disabled:cursor-not-allowed transition-all duration-200 font-semibold;
+    @apply px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg shadow-lg
+           hover:shadow-2xl active:from-cyan-600 active:to-blue-600
+           disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold;
   }
 
   .ds-btn-secondary {
-    @apply px-6 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg shadow-lg shadow-purple-900/40 hover:shadow-purple-900/60 hover:shadow-2xl active:from-purple-600 active:to-pink-600 disabled:bg-gray-700 disabled:cursor-not-allowed transition-all duration-200 font-semibold;
+    @apply px-6 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg shadow-lg
+           hover:shadow-2xl active:from-purple-600 active:to-pink-600
+           disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold;
   }
 
   .ds-btn-outline {
-    @apply px-6 py-2.5 border-2 border-cyan-500 text-cyan-300 rounded-lg hover:bg-cyan-500/10 active:bg-cyan-500/20 disabled:border-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed transition-all duration-200 font-semibold;
+    @apply px-6 py-2.5 border-2 rounded-lg
+           disabled:cursor-not-allowed transition-all duration-200 font-semibold;
+    border-color: var(--accent);
+    color: var(--accent-text);
   }
+  .ds-btn-outline:hover { background-color: var(--accent-muted); }
 
   .ds-btn-ghost {
-    @apply px-6 py-2.5 text-cyan-300 rounded-lg hover:bg-cyan-500/10 active:bg-cyan-500/20 disabled:text-gray-500 disabled:cursor-not-allowed transition-all duration-200 font-semibold;
+    @apply px-6 py-2.5 rounded-lg
+           disabled:cursor-not-allowed transition-all duration-200 font-semibold;
+    color: var(--accent-text);
   }
+  .ds-btn-ghost:hover { background-color: var(--accent-muted); }
 
   .ds-btn-danger {
-    @apply px-6 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-500 active:bg-red-700 shadow-lg shadow-red-900/30 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors duration-200 font-semibold;
+    @apply px-6 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-500 active:bg-red-700
+           shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 font-semibold;
   }
 
   .ds-btn-success {
-    @apply px-6 py-2.5 bg-cyan-600 text-white rounded-lg hover:bg-cyan-500 active:bg-cyan-700 shadow-lg shadow-cyan-900/30 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors duration-200 font-semibold;
+    @apply px-6 py-2.5 bg-cyan-600 text-white rounded-lg hover:bg-cyan-500 active:bg-cyan-700
+           shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 font-semibold;
   }
 
-  .ds-btn-sm {
-    @apply px-3 py-1.5 text-sm;
-  }
-
-  .ds-btn-md {
-    @apply px-6 py-2.5;
-  }
-
-  .ds-btn-lg {
-    @apply px-8 py-3 text-lg;
-  }
+  .ds-btn-sm  { @apply px-3 py-1.5 text-sm; }
+  .ds-btn-md  { @apply px-6 py-2.5; }
+  .ds-btn-lg  { @apply px-8 py-3 text-lg; }
 
   .ds-btn-icon {
-    @apply p-2.5 rounded-lg text-gray-300 hover:bg-gray-800/80 active:bg-gray-700 disabled:bg-gray-800 disabled:cursor-not-allowed transition-colors duration-200;
+    @apply p-2.5 rounded-lg disabled:cursor-not-allowed transition-colors duration-200;
+    color: var(--text-secondary);
   }
+  .ds-btn-icon:hover { background-color: var(--bg-surface-2); }
 
   .ds-btn-icon-primary {
-    @apply p-2.5 rounded-full text-cyan-300 hover:bg-cyan-500/15 active:bg-cyan-500/25 disabled:text-gray-500 disabled:cursor-not-allowed transition-all duration-200;
+    @apply p-2.5 rounded-full disabled:cursor-not-allowed transition-all duration-200;
+    color: var(--accent-text);
   }
+  .ds-btn-icon-primary:hover { background-color: var(--accent-muted); }
 
+  /* ── Cards ── */
   .ds-card-base {
-    @apply bg-black/40 backdrop-blur-xl rounded-2xl border border-cyan-500/15 shadow-lg shadow-black/60 hover:shadow-2xl hover:shadow-cyan-600/30 transition-all duration-300;
+    @apply backdrop-blur-xl rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-base);
   }
 
   .ds-card-elevated {
-    @apply bg-zinc-950/80 backdrop-blur-xl rounded-2xl border border-cyan-500/20 shadow-2xl shadow-black/70 hover:shadow-[0_24px_48px_rgba(0,200,255,0.15)] transition-all duration-300;
+    @apply backdrop-blur-xl rounded-2xl shadow-2xl transition-all duration-300;
+    background-color: var(--bg-surface-2);
+    border: 1px solid var(--border-strong);
   }
 
   .ds-card-flat {
-    @apply bg-black/30 backdrop-blur-md rounded-2xl border border-cyan-500/15 hover:border-cyan-500/40 transition-all duration-300;
+    @apply backdrop-blur-md rounded-2xl transition-all duration-300;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-base);
   }
+  .ds-card-flat:hover { border-color: var(--border-strong); }
 
   .ds-card-interactive {
-    @apply bg-zinc-950/50 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/50 hover:shadow-2xl hover:shadow-cyan-600/30 hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-cyan-500/15;
+    @apply backdrop-blur-xl rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-base);
   }
 
   .ds-card-contained {
-    @apply bg-zinc-950/60 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/60 p-6 hover:shadow-xl hover:shadow-cyan-600/25 transition-all duration-300 border border-cyan-500/20;
+    @apply backdrop-blur-xl rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300;
+    background-color: var(--bg-surface-2);
+    border: 1px solid var(--border-strong);
   }
 
   .ds-card-bordered {
-    @apply bg-black/40 backdrop-blur-xl rounded-2xl border-2 border-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300;
+    @apply backdrop-blur-xl rounded-2xl transition-all duration-300;
+    background-color: var(--bg-surface);
+    border: 2px solid var(--border-base);
   }
+  .ds-card-bordered:hover { border-color: var(--border-strong); }
 
+  /* ── Inputs ── */
   .ds-input-base {
-    @apply w-full px-4 py-3 border border-cyan-500/25 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 bg-black/40 backdrop-blur-md text-white placeholder:text-gray-600;
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400
+           focus:border-transparent transition-all duration-200 backdrop-blur-md;
+    border: 1px solid var(--border-base);
+    background-color: var(--bg-input);
+    color: var(--text-primary);
   }
+  .ds-input-base::placeholder { color: var(--text-subtle); }
 
   .ds-input-error {
-    @apply w-full px-4 py-3 border-2 border-red-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 bg-black/40 backdrop-blur-md text-white placeholder:text-gray-600;
+    @apply w-full px-4 py-3 border-2 border-red-500 rounded-xl focus:outline-none
+           focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 backdrop-blur-md;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
   }
+  .ds-input-error::placeholder { color: var(--text-subtle); }
 
   .ds-input-success {
-    @apply w-full px-4 py-3 border-2 border-cyan-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200 bg-black/40 backdrop-blur-md text-white placeholder:text-gray-600;
+    @apply w-full px-4 py-3 border-2 border-cyan-500 rounded-xl focus:outline-none
+           focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200 backdrop-blur-md;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
   }
+  .ds-input-success::placeholder { color: var(--text-subtle); }
 
   .ds-input-disabled {
-    @apply w-full px-4 py-3 border border-cyan-500/15 rounded-xl bg-black/30 text-gray-600 cursor-not-allowed;
+    @apply w-full px-4 py-3 rounded-xl cursor-not-allowed;
+    border: 1px solid var(--border-base);
+    background-color: var(--bg-surface-2);
+    color: var(--text-subtle);
   }
 
   .ds-textarea {
-    @apply w-full px-4 py-3 border border-cyan-500/25 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 bg-black/40 backdrop-blur-md resize-none text-white placeholder:text-gray-600;
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400
+           focus:border-transparent transition-all duration-200 backdrop-blur-md resize-none;
+    border: 1px solid var(--border-base);
+    background-color: var(--bg-input);
+    color: var(--text-primary);
   }
+  .ds-textarea::placeholder { color: var(--text-subtle); }
 
   .ds-select {
-    @apply w-full px-4 py-3 border border-cyan-500/25 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 bg-black/40 backdrop-blur-md appearance-none text-white;
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400
+           focus:border-transparent transition-all duration-200 backdrop-blur-md appearance-none;
+    border: 1px solid var(--border-base);
+    background-color: var(--bg-input);
+    color: var(--text-primary);
   }
 
-  .ds-label-base {
-    @apply block font-semibold text-white mb-2;
-  }
-
-  .ds-label-small {
-    @apply block font-medium text-sm text-gray-300 mb-1;
-  }
-
+  /* ── Labels ── */
+  .ds-label-base    { @apply block font-semibold mb-2; color: var(--text-primary); }
+  .ds-label-small   { @apply block font-medium text-sm mb-1; color: var(--text-secondary); }
   .ds-label-required {
-    @apply block font-semibold text-white mb-2 after:content-['*'] after:ml-1 after:text-red-500;
+    @apply block font-semibold mb-2 after:content-['*'] after:ml-1 after:text-red-500;
+    color: var(--text-primary);
   }
 
-  .ds-grid-feed {
-    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4;
-  }
+  /* ── Grids ── */
+  .ds-grid-feed        { @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4; }
+  .ds-grid-list        { @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4; }
+  .ds-grid-two-col     { @apply grid grid-cols-1 md:grid-cols-2 gap-6; }
+  .ds-grid-three-col   { @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6; }
+  .ds-container        { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
 
-  .ds-grid-list {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
-  }
-
-  .ds-grid-two-col {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
-  }
-
-  .ds-grid-three-col {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
-  }
-
-  .ds-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-
+  /* ── Badges ── */
   .ds-badge-primary {
-    @apply px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs font-semibold border border-cyan-500/30;
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+    background-color: var(--accent-muted);
+    color: var(--accent-text);
+    border: 1px solid var(--border-base);
   }
-
   .ds-badge-secondary {
-    @apply px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-semibold border border-blue-500/30;
+    @apply px-3 py-1 bg-blue-500/20 text-blue-500 rounded-full text-xs font-semibold border border-blue-500/30;
   }
+  html.dark .ds-badge-secondary { @apply text-blue-300; }
 
   .ds-badge-success {
-    @apply px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs font-semibold border border-cyan-500/30;
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+    background-color: var(--accent-muted);
+    color: var(--accent-text);
+    border: 1px solid var(--border-base);
   }
-
   .ds-badge-warning {
-    @apply px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-semibold border border-yellow-500/30;
+    @apply px-3 py-1 bg-yellow-500/15 text-yellow-700 rounded-full text-xs font-semibold border border-yellow-500/30;
   }
+  html.dark .ds-badge-warning { @apply text-yellow-300; }
 
   .ds-badge-danger {
-    @apply px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs font-semibold border border-red-500/30;
+    @apply px-3 py-1 bg-red-500/15 text-red-600 rounded-full text-xs font-semibold border border-red-500/30;
   }
+  html.dark .ds-badge-danger { @apply text-red-300; }
 
   .ds-badge-gray {
-    @apply px-3 py-1 bg-gray-800/60 text-gray-300 rounded-full text-xs font-semibold border border-gray-700/50;
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+    background-color: var(--bg-surface-2);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-base);
   }
-
   .ds-badge-outlined {
-    @apply px-3 py-1 border border-gray-700/60 text-gray-300 rounded-full text-xs font-semibold;
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+    border: 1px solid var(--border-base);
+    color: var(--text-secondary);
   }
 
-  .ds-fade-in {
-    @apply transition-opacity duration-300;
-  }
-
-  .ds-slide-in {
-    @apply transition-transform duration-300;
-  }
-
-  .ds-scale-in {
-    @apply transition-transform duration-200;
-  }
-
-  .ds-hover-lift {
-    @apply hover:-translate-y-1 transition-transform duration-300;
-  }
-
-  .ds-hover-glow {
-    @apply hover:shadow-2xl hover:shadow-cyan-900/30 transition-shadow duration-200;
-  }
-
-  .ds-hover-darken {
-    @apply hover:opacity-80 transition-opacity duration-200;
-  }
+  /* ── Animations ── */
+  .ds-fade-in    { @apply transition-opacity duration-300; }
+  .ds-slide-in   { @apply transition-transform duration-300; }
+  .ds-scale-in   { @apply transition-transform duration-200; }
+  .ds-hover-lift { @apply hover:-translate-y-1 transition-transform duration-300; }
+  .ds-hover-glow { @apply hover:shadow-2xl transition-shadow duration-200; }
+  .ds-hover-darken { @apply hover:opacity-80 transition-opacity duration-200; }
 
   .ds-focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2;
   }
 
-  .ds-sr-only {
-    @apply sr-only;
-  }
-
+  /* ── Accessibility ── */
+  .ds-sr-only   { @apply sr-only; }
   .ds-skip-link {
     @apply absolute top-0 left-0 -translate-y-full px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-lg focus:translate-y-0;
   }
 
-  .ds-loading {
-    @apply opacity-50 cursor-wait;
-  }
+  /* ── States ── */
+  .ds-loading       { @apply opacity-50 cursor-wait; }
+  .ds-disabled      { @apply opacity-50 cursor-not-allowed; }
+  .ds-error         { @apply border-red-500 bg-red-500/10; }
+  .ds-success-state { border-color: var(--accent); background-color: var(--accent-muted); }
+  .ds-warning-state { @apply border-yellow-500 bg-yellow-500/10; }
 
-  .ds-disabled {
-    @apply opacity-50 cursor-not-allowed;
-  }
+  /* ── Responsive helpers ── */
+  .ds-container-padding { @apply px-4 sm:px-6 md:px-8 lg:px-12; }
+  .ds-text-responsive   { @apply text-sm sm:text-base md:text-lg; }
+  .ds-icon-responsive   { @apply w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7; }
 
-  .ds-error {
-    @apply border-red-500 bg-red-500/10;
+  /* ── Theme toggle button ── */
+  .theme-toggle-btn {
+    @apply p-2 rounded-xl transition-all duration-300 relative overflow-hidden;
+    background-color: var(--bg-surface-2);
+    border: 1px solid var(--border-base);
+    color: var(--text-secondary);
   }
-
-  .ds-success-state {
-    @apply border-cyan-500 bg-cyan-500/10;
+  .theme-toggle-btn:hover {
+    background-color: var(--accent-muted);
+    border-color: var(--border-strong);
+    color: var(--accent-text);
   }
-
-  .ds-warning-state {
-    @apply border-yellow-500 bg-yellow-500/10;
-  }
-
-  .ds-container-padding {
-    @apply px-4 sm:px-6 md:px-8 lg:px-12;
-  }
-
-  .ds-text-responsive {
-    @apply text-sm sm:text-base md:text-lg;
-  }
-
-  .ds-icon-responsive {
-    @apply w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7;
-  }
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  color: #f0f4f8;
 }

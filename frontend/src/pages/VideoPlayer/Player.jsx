@@ -6,7 +6,6 @@ import React, {
   useState,
   useCallback,
 } from "react";
-import { AnimatePresence, motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import VideoFrame from "./components/VideoFrame";
 import VideoControls from "./components/VideoControls";
@@ -16,6 +15,7 @@ import QuizBox from "./components/QuizBox";
 import Predisplay from "./components/Predisplay";
 import SkeletonLoader from "../../components/SkeletonLoader";
 import { useAuth } from "../../hooks/useAuth";
+import { ChevronLeft } from "lucide-react";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 const AUTH_ROUTE = "/profile";
@@ -353,126 +353,101 @@ const Player = () => {
   };
 
   return (
-    <div className="player-page flex flex-col lg:flex-row min-h-[calc(100vh-112px)] lg:h-[calc(100vh-112px)] bg-black overflow-hidden">
-      {/* Left: video area */}
-      <div className="w-full lg:flex-1 flex flex-col shrink-0 lg:shrink bg-black lg:bg-transparent justify-center lg:justify-start p-0 lg:p-6 overflow-visible">
-        <div className="w-full aspect-video bg-transparent lg:rounded-2xl shadow-lg overflow-hidden flex items-center justify-center relative z-50">
-          {loading ? (
-            <SkeletonLoader className="w-full h-full bg-zinc-900" />
-          ) : embedUrl ? (
-            <VideoFrame embedUrl={embedUrl} />
-          ) : (
-            <p className="text-gray-400">🎬 No video selected</p>
-          )}
-        </div>
-        {entry && (
-          <div className="p-4 lg:p-0 lg:mt-4 bg-zinc-950/60 lg:bg-transparent border-b lg:border-none border-cyan-500/15">
-            <h2 className="text-lg lg:text-2xl font-bold text-white leading-tight line-clamp-2">
-              {entry.title}
-            </h2>
+    <div className="min-h-[calc(100vh-64px)] theme-bg-base">
+      <div className="mx-auto max-w-7xl px-4 py-6 lg:py-8">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">
+          <div className="space-y-4">
+            <div className="aspect-video w-full overflow-hidden rounded-2xl bg-black border theme-border shadow-sm">
+              {loading ? (
+                <SkeletonLoader className="w-full h-full" />
+              ) : embedUrl ? (
+                <VideoFrame embedUrl={embedUrl} />
+              ) : (
+                <div className="flex h-full items-center justify-center text-center">
+                  <div>
+                    <div className="text-4xl mb-3">🎬</div>
+                    <p className="theme-text-muted font-medium">No video selected</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {entry && (
+              <div className="px-1">
+                <p className="text-xs uppercase tracking-[0.2em] theme-text-muted font-bold mb-2">
+                  Now playing
+                </p>
+                <h2 className="text-xl lg:text-2xl font-bold theme-text-primary leading-tight">
+                  {entry.title}
+                </h2>
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      {/* Right: tools */}
-      <div className="flex-1 w-full lg:flex-none lg:w-[400px] xl:w-[450px] bg-zinc-950/60 shadow-xl border-l border-cyan-500/15 flex flex-col z-20 overflow-hidden">
-        {/* Header / Controls */}
-        <div className="p-3 lg:p-6 border-b border-cyan-500/15 bg-zinc-950/85 backdrop-blur-md sticky top-0 z-30">
-          {err && (
-            <div className="mb-3 p-3 text-sm rounded-lg bg-rose-500/15 text-rose-200 border border-rose-600/40">
-              {err}
+          <div className="theme-bg-surface border theme-border rounded-2xl shadow-sm overflow-hidden flex flex-col">
+            <div className="p-4 border-b theme-border">
+              {err && (
+                <div className="mb-3 p-3 text-sm rounded-xl bg-rose-500/10 text-rose-500 border border-rose-500/20 font-medium flex items-center gap-2">
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px]">
+                    !
+                  </span>
+                  {err}
+                </div>
+              )}
+
+              {loading ? (
+                <SkeletonLoader className="h-12 w-full rounded-xl" />
+              ) : embedUrl ? (
+                <VideoControls
+                  viewMode={viewMode}
+                  setViewMode={setViewMode}
+                  onTranscribe={() => fetchTranscriptForActive()}
+                  onSummarize={handleSummarize}
+                  onQuizify={handleQuizify}
+                  transcriptLoading={transcriptLoading}
+                  summaryLoading={summaryLoading}
+                  quizLoading={quizLoading}
+                  activeVideoId={activeVideoId}
+                  hasTranscript={!!transcript}
+                />
+              ) : (
+                <p className="py-2 text-sm theme-text-muted text-center">No video loaded.</p>
+              )}
             </div>
-          )}
 
-          {loading ? (
-            <div className="flex gap-2">
-              <SkeletonLoader className="h-12 flex-1 rounded-xl" />
-              <SkeletonLoader className="h-12 flex-1 rounded-xl" />
-              <SkeletonLoader className="h-12 flex-1 rounded-xl" />
-            </div>
-          ) : embedUrl ? (
-            <VideoControls
-              viewMode={viewMode}
-              setViewMode={setViewMode}
-              onTranscribe={() => fetchTranscriptForActive()}
-              onSummarize={handleSummarize}
-              onQuizify={handleQuizify}
-              transcriptLoading={transcriptLoading}
-              summaryLoading={summaryLoading}
-              quizLoading={quizLoading}
-              activeVideoId={activeVideoId}
-              hasTranscript={!!transcript}
-            />
-          ) : (
-            <p className="text-gray-300 text-center py-4">No video loaded.</p>
-          )}
-        </div>
-
-        {/* Scrollable Content Area */}
-        <div className="flex-1 overflow-y-auto p-4 lg:p-6 custom-scrollbar bg-black/60">
-          {embedUrl && !loading && (
-            <AnimatePresence mode="wait">
-              {viewMode === "transcript" &&
-                (!transcript && !transcriptLoading ? (
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+              {embedUrl && !loading && viewMode === "transcript" && (
+                !transcript && !transcriptLoading ? (
                   <Predisplay />
                 ) : (
-                  <motion.div
-                    key="transcript"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="h-full"
-                  >
-                    <TranscriptBox
-                      loading={transcriptLoading}
-                      transcript={transcript}
-                    />
-                  </motion.div>
-                ))}
-
-              {viewMode === "summary" && (
-                <motion.div
-                  key="summary"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <SummaryBox summary={summary} loading={summaryLoading} />
-                </motion.div>
+                  <TranscriptBox loading={transcriptLoading} transcript={transcript} />
+                )
               )}
 
-              {viewMode === "quiz" && (
-                <motion.div
-                  key="quiz"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <QuizBox
-                    quiz={quiz}
-                    loading={quizLoading}
-                    onRetry={(diff) => handleQuizify(diff)}
-                    onQuizComplete={handleQuizComplete}
-                  />
-                </motion.div>
+              {embedUrl && !loading && viewMode === "summary" && (
+                <SummaryBox summary={summary} loading={summaryLoading} />
               )}
-            </AnimatePresence>
-          )}
-        </div>
 
-        {/* Footer / Back Button */}
-        <div className="p-3 lg:p-4 border-t border-cyan-500/15 bg-zinc-950">
-          <button
-            onClick={() => navigate(-1)}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-zinc-900 text-white font-medium rounded-xl shadow-sm border border-cyan-500/20 hover:bg-zinc-800 hover:text-cyan-200 transition-all duration-200"
-          >
-            <span>⬅</span>{" "}
-            <span className="hidden sm:inline">Back to Dashboard</span>
-            <span className="sm:hidden">Back</span>
-          </button>
+              {embedUrl && !loading && viewMode === "quiz" && (
+                <QuizBox
+                  quiz={quiz}
+                  loading={quizLoading}
+                  onRetry={(diff) => handleQuizify(diff)}
+                  onQuizComplete={handleQuizComplete}
+                />
+              )}
+            </div>
+
+            <div className="p-4 border-t theme-border">
+              <button
+                onClick={() => navigate(-1)}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 theme-bg-surface-2 theme-text-primary font-medium rounded-xl border theme-border hover:theme-bg-surface transition-colors"
+              >
+                <ChevronLeft size={18} />
+                Back
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,6 @@ import FilterBar from "./FilterBar";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
-// Module-level cache for persistence across navigation
 let feedCache = {
   items: [],
   hasMore: true,
@@ -22,30 +21,23 @@ export default function Feed() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState(feedCache.searchQuery || "");
-  const [debouncedSearch, setDebouncedSearch] = useState(
-    feedCache.searchQuery || ""
-  );
+  const [debouncedSearch, setDebouncedSearch] = useState(feedCache.searchQuery || "");
   const [hasMore, setHasMore] = useState(true);
 
   const navigate = useNavigate();
-  const seedRef = useRef(
-    feedCache.seed || String(Math.floor(Math.random() * 1e9))
-  );
+  const seedRef = useRef(feedCache.seed || String(Math.floor(Math.random() * 1e9)));
   const mountedRef = useRef(false);
 
-  // Debounce search input
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(searchQuery);
-    }, 500); // 500ms delay for responsive feel
-
+    }, 500);
     return () => clearTimeout(handler);
   }, [searchQuery]);
 
   const fetchVideos = useCallback(
     async (isLoadMore = false) => {
       if (loading) return;
-
       setLoading(true);
       if (!isLoadMore) setError("");
 
@@ -59,7 +51,6 @@ export default function Feed() {
         });
 
         const res = await fetch(`${BASE_URL}/api/feed?${params}`);
-
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Failed to fetch feed");
 
@@ -77,52 +68,32 @@ export default function Feed() {
     [debouncedSearch, items.length, loading]
   );
 
-  // Initial Load & Persistence Restore
   useEffect(() => {
     mountedRef.current = true;
-
-    // If we have cached items and the search hasn't changed (or is empty match), restore
-    if (
-      feedCache.items.length > 0 &&
-      feedCache.searchQuery === debouncedSearch
-    ) {
+    if (feedCache.items.length > 0 && feedCache.searchQuery === debouncedSearch) {
       setItems(feedCache.items);
       setHasMore(feedCache.hasMore);
       seedRef.current = feedCache.seed;
-
-      // Restore scroll position
-      setTimeout(() => {
-        window.scrollTo(0, feedCache.scrollPos);
-      }, 50);
+      setTimeout(() => { window.scrollTo(0, feedCache.scrollPos); }, 50);
     } else {
-      // No cache or search changed -> fetch fresh
       fetchVideos(false);
     }
-
-    return () => {
-      // Save scroll position on unmount
-      feedCache.scrollPos = window.scrollY;
-    };
+    return () => { feedCache.scrollPos = window.scrollY; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Run once on mount
+  }, []);
 
-  // React to Debounced Search Change
   useEffect(() => {
     if (!mountedRef.current) return;
-
-    // Only fetch if it's a NEW search (different from what's currently loaded/cached)
-    // We check against feedCache.searchQuery to avoid double-fetch on initial mount if they match
     if (debouncedSearch !== feedCache.searchQuery) {
       seedRef.current = String(Math.floor(Math.random() * 1e9));
       setItems([]);
       setHasMore(true);
       fetchVideos(false);
-      feedCache.searchQuery = debouncedSearch; // Update cache query
-      feedCache.scrollPos = 0; // Reset scroll for new search
+      feedCache.searchQuery = debouncedSearch;
+      feedCache.scrollPos = 0;
     }
   }, [debouncedSearch, fetchVideos]);
 
-  // Update cache whenever items change
   useEffect(() => {
     if (items.length > 0) {
       feedCache.items = items;
@@ -131,34 +102,22 @@ export default function Feed() {
     }
   }, [items, hasMore]);
 
-  const handleVideoClick = (video) => {
-    navigate(`/player/${video.videoId}`, { state: { video } });
-  };
-
-  const handlePlaylistClick = (playlist) => {
-    // Navigate to dedicated playlist view
-    navigate(`/playlist/${playlist.playlistId}`);
-  };
-
-  const loadMore = () => {
-    if (hasMore && !loading) fetchVideos(true);
-  };
+  const handleVideoClick = (video) => navigate(`/player/${video.videoId}`, { state: { video } });
+  const handlePlaylistClick = (playlist) => navigate(`/playlist/${playlist.playlistId}`);
+  const loadMore = () => { if (hasMore && !loading) fetchVideos(true); };
 
   if (loading && items.length === 0) return <LoadingSpinner />;
-  if (error && items.length === 0)
-    return <ErrorMessage error={error} onRetry={() => fetchVideos(false)} />;
+  if (error && items.length === 0) return <ErrorMessage error={error} onRetry={() => fetchVideos(false)} />;
 
   return (
-    <div className="min-h-screen bg-gradient-base">
-      {/* Header Section with Title and Search */}
-      <div className="shadow-sm border-b border-cyan-500/10">
+    <div className="min-h-screen theme-bg-base">
+      {/* Header Section */}
+      <div className="theme-border border-b" style={{ boxShadow: "0 1px 0 var(--border-base)" }}>
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center mb-6">
             <h1 className="ds-h2">Discover Content</h1>
-            <p className="text-gray-400 mt-2">Search and explore videos and playlists</p>
+            <p className="theme-text-muted mt-2">Search and explore videos and playlists</p>
           </div>
-          
-          {/* Search Bar - Centered */}
           <div className="flex justify-center">
             <FilterBar
               searchQuery={searchQuery}
@@ -174,10 +133,10 @@ export default function Feed() {
         {items.length === 0 ? (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">📺</div>
-            <h2 className="text-2xl font-semibold text-white mb-2">
+            <h2 className="text-2xl font-semibold theme-text-primary mb-2">
               No Content Found
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="theme-text-muted mb-6">
               {debouncedSearch
                 ? "Try adjusting your search query"
                 : "Start by adding some playlists to see content here"}
@@ -209,7 +168,6 @@ export default function Feed() {
               )}
             </div>
 
-            {/* Load More Button */}
             {hasMore && (
               <div className="text-center mt-12">
                 <button

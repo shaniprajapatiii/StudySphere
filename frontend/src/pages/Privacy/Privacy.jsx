@@ -1,120 +1,122 @@
+import React from "react";
+import { Sparkles, Shield, Lock, Eye, RefreshCw, Smartphone, FileText } from "lucide-react";
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen bg-transparent py-12 px-4">
-      <div className="max-w-4xl mx-auto bg-zinc-950/60 rounded-lg shadow-sm p-8 border border-cyan-500/20">
-        <h1 className="ds-h1 mb-6">Privacy Policy</h1>
-        <p className="text-gray-400 mb-8">
-          <strong>Effective Date:</strong> December 4, 2025
-        </p>
+    <div className="min-h-screen theme-bg-base py-24 sm:py-32 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto theme-bg-surface rounded-[48px] shadow-2xl p-10 sm:p-16 theme-border border relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 blur-[100px] rounded-full -mr-32 -mt-32" />
+        
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/10 px-4 py-1.5 rounded-full text-emerald-600 dark:text-emerald-400 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-8 border border-emerald-500/20 shadow-sm">
+            <Shield className="w-3 h-3" />
+            <span>Data Protection First</span>
+          </div>
+          
+          <h1 className="text-4xl sm:text-6xl font-extrabold theme-text-primary mb-4 tracking-tight">Privacy Policy</h1>
+          <p className="text-sm font-bold theme-text-muted uppercase tracking-widest mb-16 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            Effective: December 4, 2025
+          </p>
 
-        <div className="space-y-6 text-gray-300">
-          <section>
-            <h2 className="ds-h3 mb-3">1. Introduction</h2>
-            <p>
-              Welcome to StudySphere ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform.
-            </p>
-          </section>
+          <div className="space-y-16">
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <FileText size={20} />
+                 </div>
+                 <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">1. Introduction</h2>
+              </div>
+              <p className="theme-text-secondary text-lg leading-relaxed font-medium">
+                Welcome to StudySphere ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform.
+              </p>
+            </section>
 
-          <section>
-            <h2 className="ds-h3 mb-3">2. Information We Collect</h2>
-            <h3 className="ds-h4 mb-2 mt-4">2.1 Personal Information</h3>
-            <p className="mb-3">When you create an account, we collect:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4">
-              <li>Name and email address (via Google OAuth)</li>
-              <li>Profile picture (if provided by Google)</li>
-              <li>Account preferences and settings</li>
-            </ul>
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                 <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Eye size={20} />
+                 </div>
+                 <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">2. Information We Collect</h2>
+              </div>
+              
+              <div className="space-y-8">
+                 <div className="theme-bg-base p-8 rounded-3xl border theme-border shadow-sm">
+                    <h3 className="text-sm font-extrabold uppercase tracking-widest theme-text-primary mb-4 flex items-center gap-2">
+                       <User size={14} className="text-cyan-500" /> 2.1 Personal Information
+                    </h3>
+                    <p className="theme-text-secondary font-medium mb-6">When you create an account, we collect:</p>
+                    <ul className="grid sm:grid-cols-2 gap-4">
+                      {["Name and email address", "Profile picture via Google", "Account preferences", "Login timestamps"].map((item, i) => (
+                         <li key={i} className="flex items-center gap-3 text-sm font-bold theme-text-primary">
+                            <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" /> {item}
+                         </li>
+                      ))}
+                    </ul>
+                 </div>
 
-            <h3 className="ds-h4 mb-2 mt-4">2.2 Usage Data</h3>
-            <p className="mb-3">We automatically collect information about your interactions with our platform:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4">
-              <li>Videos watched and learning progress</li>
-              <li>Playlists created and saved</li>
-              <li>Quiz attempts and scores</li>
-              <li>Study streaks and activity logs</li>
-              <li>Device information and IP address</li>
-            </ul>
-          </section>
+                 <div className="theme-bg-base p-8 rounded-3xl border theme-border shadow-sm">
+                    <h3 className="text-sm font-extrabold uppercase tracking-widest theme-text-primary mb-4 flex items-center gap-2">
+                       <Smartphone size={14} className="text-blue-500" /> 2.2 Usage Data
+                    </h3>
+                    <p className="theme-text-secondary font-medium mb-6">We automatically collect information about your platform interactions:</p>
+                    <ul className="grid sm:grid-cols-2 gap-4">
+                      {["Videos and learning progress", "Playlists created", "Quiz attempts and scores", "Study streaks", "Device info and IP address"].map((item, i) => (
+                         <li key={i} className="flex items-center gap-3 text-sm font-bold theme-text-primary">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> {item}
+                         </li>
+                      ))}
+                    </ul>
+                 </div>
+              </div>
+            </section>
 
-          <section>
-            <h2 className="ds-h3 mb-3">3. How We Use Your Information</h2>
-            <p className="mb-3">We use the collected information to:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4">
-              <li>Provide and maintain our educational services</li>
-              <li>Track your learning progress and generate insights</li>
-              <li>Generate AI-powered summaries and quizzes</li>
-              <li>Improve and personalize your learning experience</li>
-              <li>Send important notifications about your account</li>
-              <li>Analyze platform usage and improve our services</li>
-            </ul>
-          </section>
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <RefreshCw size={20} />
+                 </div>
+                 <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">3. Data Usage & AI</h2>
+              </div>
+              <p className="theme-text-secondary text-lg leading-relaxed font-medium mb-8">
+                We use your data to power the core StudySphere experience, including AI-driven insights that help you learn faster.
+              </p>
+              <div className="grid gap-4">
+                 {["Provide educational services", "Generate AI summaries and quizzes", "Track mastery progress", "Improve AI response quality"].map((item, i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 theme-bg-base rounded-2xl theme-border border shadow-sm">
+                       <CheckCircle2 size={18} className="text-emerald-500" />
+                       <span className="text-sm font-bold theme-text-primary">{item}</span>
+                    </div>
+                 ))}
+              </div>
+            </section>
 
-          <section>
-            <h2 className="ds-h3 mb-3">4. Data Storage and Security</h2>
-            <p>
-              Your data is stored securely in MongoDB databases with industry-standard encryption. We implement appropriate security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.
-            </p>
-          </section>
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Lock size={20} />
+                 </div>
+                 <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">4. Security Infrastructure</h2>
+              </div>
+              <p className="theme-text-secondary text-lg leading-relaxed font-medium bg-amber-500/5 p-8 rounded-3xl border border-amber-500/10 shadow-sm">
+                Your data is stored securely in MongoDB databases with industry-standard encryption. We implement appropriate security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.
+              </p>
+            </section>
 
-          <section>
-            <h2 className="ds-h3 mb-3">5. Third-Party Services</h2>
-            <p className="mb-3">We use the following third-party services:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4">
-              <li><strong>Google OAuth:</strong> For secure authentication</li>
-              <li><strong>YouTube API:</strong> To fetch video content and transcripts</li>
-              <li><strong>Google Gemini AI:</strong> To generate summaries and quizzes</li>
-            </ul>
-            <p className="mt-3">
-              These services have their own privacy policies, and we encourage you to review them.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="ds-h3 mb-3">6. Your Rights</h2>
-            <p className="mb-3">You have the right to:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4">
-              <li>Access and review your personal information</li>
-              <li>Update or correct your information</li>
-              <li>Delete your account and associated data</li>
-              <li>Export your learning data</li>
-              <li>Opt-out of non-essential communications</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="ds-h3 mb-3">7. Cookies and Tracking</h2>
-            <p>
-              We use cookies and similar tracking technologies to maintain your session, remember your preferences, and analyze platform usage. You can control cookie settings through your browser preferences.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="ds-h3 mb-3">8. Children's Privacy</h2>
-            <p>
-              Our platform is not intended for users under the age of 13. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="ds-h3 mb-3">9. Changes to This Policy</h2>
-            <p>
-              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Effective Date" at the top.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="ds-h3 mb-3">10. Contact Us</h2>
-            <p className="mb-3">
-              If you have any questions about this Privacy Policy or your personal information, please contact us:
-            </p>
-            <ul className="space-y-1 ml-4">
-              <li><strong>Email:</strong> shaniprajapati630@gmail.com</li>
-              <li><strong>Contact Form:</strong> <a href="/contact" className="text-cyan-300 hover:text-cyan-200 underline">Contact Page</a></li>
-            </ul>
-          </section>
+            <section className="pt-16 border-t theme-border text-center">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] theme-text-muted mb-6">Questions about your data?</p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                 <a href="mailto:shaniprajapati630@gmail.com" className="ds-btn-primary px-8">Email Support</a>
+                 <a href="/contact" className="ds-btn-secondary px-8">Contact Form</a>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+// Minimal icons for this page only
+function User({ size, className }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> }
+function CheckCircle2({ size, className }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg> }

@@ -4,9 +4,8 @@ import { useState } from "react";
 export default function VideoCard({ video, onClick }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Thumbnails preference
   const serverThumb = video.thumbnailUrl || "";
-  const defaultThumb = `https://img.youtube.com/vi/${video.videoId}/default.jpg`; // very small & fast
+  const defaultThumb = `https://img.youtube.com/vi/${video.videoId}/default.jpg`;
   const mq = `https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`;
   const hq = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
   const placeholder = "https://via.placeholder.com/320x180?text=No+Image";
@@ -31,9 +30,7 @@ export default function VideoCard({ video, onClick }) {
 
   const truncateTitle = (title, maxLength = 60) => {
     if (!title) return "";
-    return title.length <= maxLength
-      ? title
-      : title.substring(0, maxLength) + "...";
+    return title.length <= maxLength ? title : title.substring(0, maxLength) + "...";
   };
 
   const getInitials = (name) => {
@@ -51,11 +48,10 @@ export default function VideoCard({ video, onClick }) {
       onMouseLeave={() => setIsHovered(false)}
       role="button"
       tabIndex={0}
-      aria-label={`Play: ${video.title || 'Video'}`}
+      aria-label={`Play: ${video.title || "Video"}`}
     >
-      {/* Thumbnail wrapper */}
-      <div className="relative aspect-video overflow-hidden bg-black">
-        {/* super lightweight preview */}
+      {/* Thumbnail */}
+      <div className="relative aspect-video overflow-hidden" style={{ backgroundColor: "var(--bg-surface-2)" }}>
         <img
           src={defaultThumb}
           alt={video.title || "Video thumbnail"}
@@ -64,7 +60,6 @@ export default function VideoCard({ video, onClick }) {
           decoding="async"
           fetchpriority="low"
         />
-        {/* higher-quality thumbnail */}
         <img
           src={serverThumb || hq}
           alt={video.title || "Video thumbnail"}
@@ -77,7 +72,11 @@ export default function VideoCard({ video, onClick }) {
 
         {/* Duration overlay */}
         {formatDuration(video.duration) && (
-          <div className="absolute bottom-2 right-2 bg-black/90 text-white text-xs font-semibold px-2 py-1 rounded" aria-label={`Duration: ${formatDuration(video.duration)}`}>
+          <div
+            className="absolute bottom-2 right-2 text-white text-xs font-semibold px-2 py-1 rounded"
+            style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
+            aria-label={`Duration: ${formatDuration(video.duration)}`}
+          >
             {formatDuration(video.duration)}
           </div>
         )}
@@ -85,7 +84,7 @@ export default function VideoCard({ video, onClick }) {
         {/* Hover overlay */}
         <div
           className={`absolute inset-0 transition-opacity duration-200 ${
-            isHovered ? "bg-black/10" : "bg-black/0"
+            isHovered ? "bg-black/15" : "bg-black/0"
           }`}
         />
         {/* Play icon */}
@@ -94,7 +93,7 @@ export default function VideoCard({ video, onClick }) {
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="bg-rose-500 text-white rounded-full p-3">
+          <div className="bg-rose-500 text-white rounded-full p-3 shadow-lg">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
               <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
             </svg>
@@ -104,18 +103,16 @@ export default function VideoCard({ video, onClick }) {
 
       {/* Content */}
       <div className="p-4">
-        {/* Title */}
         <h3
-          className="font-semibold text-white text-sm line-clamp-2 mb-2 group-hover:text-cyan-300 ds-fade-in"
+          className="font-semibold text-sm line-clamp-2 mb-2 ds-fade-in transition-colors duration-200"
+          style={{ color: isHovered ? "var(--accent)" : "var(--text-primary)" }}
           title={video.title}
         >
           {truncateTitle(video.title)}
         </h3>
 
-        {/* Metadata: uploader */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            {/* Avatar or initials */}
             {video.uploaderAvatar ? (
               <img
                 src={video.uploaderAvatar}
@@ -126,12 +123,18 @@ export default function VideoCard({ video, onClick }) {
                 onError={(e) => (e.currentTarget.style.display = "none")}
               />
             ) : (
-              <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-semibold text-gray-200">
+              <div
+                className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold"
+                style={{
+                  backgroundColor: "var(--bg-surface-2)",
+                  color: "var(--text-secondary)",
+                  border: "1px solid var(--border-base)",
+                }}
+              >
                 {getInitials(video.uploaderName)}
               </div>
             )}
-
-            <p className="text-xs text-gray-400 leading-tight truncate">
+            <p className="text-xs leading-tight truncate theme-text-muted">
               {video.uploaderName || "Unknown uploader"}
             </p>
           </div>

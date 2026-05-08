@@ -2,7 +2,7 @@ import React from "react";
 
 const SkeletonLoader = ({ className }) => {
   return (
-    <div className={`animate-pulse bg-gray-200 rounded-lg ${className}`}></div>
+    <div className={`animate-pulse theme-bg-surface-2 rounded-lg ${className}`}></div>
   );
 };
 

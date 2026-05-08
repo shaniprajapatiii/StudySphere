@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BarChart,
   Bar,
@@ -9,40 +9,37 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const ActivityChart = ({ data }) => {
-  // Transform data for chart if needed, or assume data is passed in correct format
-  // Expected data: [{ date: '2023-10-27', watchTime: 120, appOpenTime: 300 }]
-
-  const isDark =
-    typeof document !== "undefined" &&
-    document.documentElement.classList.contains("dark");
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
 
   const chartColors = isDark
     ? {
-        grid: "#334155",
-        axis: "#cbd5e1",
-        cursor: "rgba(51, 65, 85, 0.45)",
-        tooltipBg: "rgba(15, 23, 42, 0.96)",
-        tooltipBorder: "#475569",
-        tooltipText: "#e2e8f0",
-        barPrimary: "#34d399",
-        barSecondary: "#60a5fa",
+        grid: "rgba(255, 255, 255, 0.1)",
+        axis: "#94a3b8",
+        cursor: "rgba(255, 255, 255, 0.05)",
+        tooltipBg: "#0f172a",
+        tooltipBorder: "#1e293b",
+        tooltipText: "#f8fafc",
+        barPrimary: "#22d3ee",
+        barSecondary: "#3b82f6",
       }
     : {
-        grid: "#334155",
-        axis: "#cbd5e1",
-        cursor: "rgba(51, 65, 85, 0.45)",
-        tooltipBg: "rgba(15, 23, 42, 0.96)",
-        tooltipBorder: "#475569",
-        tooltipText: "#e2e8f0",
-        barPrimary: "#34d399",
-        barSecondary: "#60a5fa",
+        grid: "rgba(0, 0, 0, 0.05)",
+        axis: "#64748b",
+        cursor: "rgba(0, 0, 0, 0.02)",
+        tooltipBg: "#ffffff",
+        tooltipBorder: "#e2e8f0",
+        tooltipText: "#1e293b",
+        barPrimary: "#0891b2",
+        barSecondary: "#2563eb",
       };
 
   return (
-    <div className="dashboard-chart bg-zinc-950/60 p-6 rounded-2xl shadow-sm border border-cyan-500/15 h-[400px] flex flex-col">
-      <h3 className="text-lg font-bold text-white mb-6">Daily Activity</h3>
+    <div className="dashboard-chart theme-bg-surface p-6 rounded-2xl theme-border border shadow-sm h-[400px] flex flex-col">
+      <h3 className="text-lg font-bold theme-text-primary mb-6">Daily Activity</h3>
       <div className="flex-1 min-h-0">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -78,13 +75,14 @@ const ActivityChart = ({ data }) => {
                 borderRadius: "12px",
                 border: `1px solid ${chartColors.tooltipBorder}`,
                 backgroundColor: chartColors.tooltipBg,
-                boxShadow: "0 8px 24px rgba(0, 0, 0, 0.22)",
+                boxShadow: "var(--shadow-heavy)",
                 color: chartColors.tooltipText,
               }}
-              labelStyle={{ color: chartColors.tooltipText }}
+              itemStyle={{ color: chartColors.tooltipText }}
+              labelStyle={{ color: chartColors.tooltipText, fontWeight: "bold", marginBottom: "4px" }}
               formatter={(value, name) => [
                 `${Math.floor(value / 60)}m ${value % 60}s`,
-                name,
+                name === "watchTime" ? "Watch Time" : "App Usage",
               ]}
             />
             <Legend
@@ -95,14 +93,14 @@ const ActivityChart = ({ data }) => {
             />
             <Bar
               dataKey="watchTime"
-              name="Watch Time (sec)"
+              name="Watch Time"
               fill={chartColors.barPrimary}
               radius={[4, 4, 0, 0]}
               barSize={30}
             />
             <Bar
               dataKey="appOpenTime"
-              name="App Open Time (sec)"
+              name="App Usage"
               fill={chartColors.barSecondary}
               radius={[4, 4, 0, 0]}
               barSize={30}

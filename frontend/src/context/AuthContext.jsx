@@ -12,7 +12,8 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [loginAttempted, setLoginAttempted] = useState(false);
+  const [showCookieNotice, setShowCookieNotice] = useState(false);
+  const [pendingAuthRedirect, setPendingAuthRedirect] = useState("");
 
   // Use relative path for proxying
   const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
@@ -36,15 +37,36 @@ export function AuthProvider({ children }) {
       .finally(() => setLoading(false));
   }, [BASE_URL]);
 
-  // 🔹 Trigger Google Login
-  const startGoogleSignIn = () => {
-    setLoginAttempted(true);
+  const rememberCurrentLocation = () => {
     try {
-      sessionStorage.setItem("afterAuthRedirect", window.location.pathname);
+      setPendingAuthRedirect(`${window.location.pathname}${window.location.search}`);
+    } catch {
+      setPendingAuthRedirect("/");
+    }
+  };
+
+  // 🔹 Trigger Google Login confirmation popup
+  const startGoogleSignIn = () => {
+    rememberCurrentLocation();
+    setShowCookieNotice(true);
+  };
+
+  // 🔹 Continue to Google Login after the user confirms cookies
+  const proceedGoogleSignIn = () => {
+    setShowCookieNotice(false);
+    try {
+      sessionStorage.setItem(
+        "afterAuthRedirect",
+        pendingAuthRedirect || window.location.pathname
+      );
     } catch {
       null;
     }
     window.open(`${BASE_URL}/auth/google`, "_self");
+  };
+
+  const dismissCookieNotice = () => {
+    setShowCookieNotice(false);
   };
 
   // 🔹 Logout
@@ -60,8 +82,10 @@ export function AuthProvider({ children }) {
         isAuthenticated: !!user,
         loading,
         startGoogleSignIn,
+        proceedGoogleSignIn,
+        dismissCookieNotice,
         signOut,
-        loginAttempted,
+        showCookieNotice,
       }}
     >
       {children}
