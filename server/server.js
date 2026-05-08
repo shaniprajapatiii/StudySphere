@@ -225,6 +225,15 @@ app.use((err, req, res, next) => {
     });
   }
 
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  if (err?.message?.includes("Unable to find the session to touch")) {
+    console.warn("Session store touch warning:", err.message);
+    return;
+  }
+
   console.error("Unhandled server error:", err);
   return res.status(500).json({
     success: false,
