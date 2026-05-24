@@ -37,28 +37,28 @@ const FEATURE_CARDS = [
     title: "Distraction Free",
     desc: "Watch videos in a clean, focused environment designed purely for learning, with no sidebar distractions.",
     icon: Play,
-    tint: "bg-cyan-500/10 text-cyan-400",
+    tint: "bg-amber-500/10 text-amber-400",
     cta: "Learn more",
     badge: "Focus",
-    accent: "from-cyan-500/20 via-blue-400/10 to-transparent",
+    accent: "from-amber-500/20 via-amber-400/10 to-transparent",
   },
   {
     title: "Smart Transcripts",
     desc: "Get accurate, time-synced transcripts. Search through the video content like a document.",
     icon: FileText,
-    tint: "bg-cyan-500/10 text-cyan-400",
+    tint: "bg-amber-500/10 text-amber-400",
     cta: "Learn more",
     badge: "Clarity",
-    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
+    accent: "from-amber-500/20 via-amber-400/10 to-transparent",
   },
   {
     title: "AI Quizzes",
     desc: "Test your knowledge immediately with AI-generated quizzes based on the video's key concepts.",
     icon: BrainCircuit,
-    tint: "bg-cyan-500/10 text-cyan-400",
+    tint: "bg-amber-500/10 text-amber-400",
     cta: "Learn more",
     badge: "Assessment",
-    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
+    accent: "from-amber-500/20 via-amber-400/10 to-transparent",
   },
 ];
 
@@ -83,7 +83,7 @@ const UnifiedCard = ({ card, delay = 0 }) => {
       <p className="flex-1 theme-text-secondary text-sm leading-relaxed">{card.desc}</p>
 
       <div className="mt-4">
-        <span className="inline-flex items-center gap-1 text-sm font-medium text-cyan-500">
+        <span className="inline-flex items-center gap-1 text-sm font-medium text-amber-500">
           {card.cta}
         </span>
       </div>
@@ -117,40 +117,40 @@ const JOURNEY_CARDS = [
     title: "Progress Dashboard",
     desc: "See watch time, quiz accuracy, and completed sessions at a glance so you always know your progress.",
     icon: BarChart3,
-    tint: "bg-cyan-500/10 text-cyan-400",
+    tint: "bg-amber-500/10 text-amber-400",
     cta: "Open dashboard",
     badge: "Analytics",
-    accent: "from-cyan-500/20 via-blue-400/10 to-transparent",
+    accent: "from-amber-500/20 via-amber-400/10 to-transparent",
   },
   {
     title: "Custom Playlists",
     desc: "Group videos by topic, exam, or skill level and build a structured path for faster learning.",
     icon: BookOpen,
-    tint: "bg-cyan-500/10 text-cyan-400",
+    tint: "bg-amber-500/10 text-amber-400",
     to: "/playlist",
     cta: "Manage playlists",
     badge: "Organization",
-    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
+    accent: "from-amber-500/20 via-amber-400/10 to-transparent",
   },
   {
     title: "Study Streaks",
     desc: "Stay consistent with daily streaks and milestones that keep your study momentum strong.",
     icon: Flame,
-    tint: "bg-cyan-500/10 text-cyan-400",
+    tint: "bg-amber-500/10 text-amber-400",
     to: "/learning",
     cta: "Keep streak alive",
     badge: "Consistency",
-    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
+    accent: "from-amber-500/20 via-amber-400/10 to-transparent",
   },
   {
     title: "Smart Review",
     desc: "Jump back in with smart resume points and AI-picked videos tailored to your current goals.",
     icon: Target,
-    tint: "bg-cyan-500/10 text-cyan-400",
+    tint: "bg-amber-500/10 text-amber-400",
     to: "/feed",
     cta: "Start smart review",
     badge: "AI Guidance",
-    accent: "from-cyan-500/20 via-sky-400/10 to-transparent",
+    accent: "from-amber-500/20 via-amber-400/10 to-transparent",
   },
 ];
 
@@ -261,7 +261,7 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen theme-bg-base theme-text-primary selection:bg-cyan-500/30 overflow-x-hidden font-sans">
+    <div className="min-h-screen theme-bg-base theme-text-primary selection:bg-amber-500/30 overflow-x-hidden font-sans">
       <Helmet>
         <title>StudySphere - Your Sphere of Study | AI-Powered Learning</title>
         <meta
@@ -280,26 +280,26 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full theme-bg-surface theme-border border shadow-sm mb-6 sm:mb-7">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
               </span>
-              <span className="text-sm font-medium text-cyan-500">
+              <span className="text-sm font-medium text-amber-500">
                 AI-Powered Learning Assistant
               </span>
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-7 leading-tight theme-text-primary">
               Your Sphere of <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-blue-400 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 via-amber-400 to-pink-400">
                 Study & Growth
               </span>
             </h1>
 
             <p className="text-lg md:text-xl theme-text-secondary mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
               Transform passive video watching into active learning. StudySphere uses AI to generate
-              <span className="text-cyan-500 font-semibold"> transcripts</span>,
-              <span className="text-cyan-500 font-semibold"> summaries</span>, and
-              <span className="text-cyan-500 font-semibold"> interactive quizzes</span> from any
+              <span className="text-amber-500 font-semibold"> transcripts</span>,
+              <span className="text-amber-500 font-semibold"> summaries</span>, and
+              <span className="text-amber-500 font-semibold"> interactive quizzes</span> from any
               YouTube video.
             </p>
           </motion.div>
@@ -313,7 +313,7 @@ export default function Home() {
             <div className="relative overflow-hidden rounded-3xl theme-border border theme-bg-surface shadow-2xl ring-1 ring-white/5 p-4 sm:p-5 md:p-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4 sm:mb-5 px-1">
                 <div className="flex items-start gap-3 text-left">
-                  <span className="inline-flex w-8 h-8 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-500 border border-cyan-500/20 shrink-0 mt-0.5">
+                  <span className="inline-flex w-8 h-8 items-center justify-center rounded-xl bg-amber-500/15 text-amber-500 border border-amber-500/20 shrink-0 mt-0.5">
                     <Link2 className="w-4 h-4" />
                   </span>
                   <div>
@@ -367,7 +367,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={handlePaste}
-                    className="px-3 py-2.5 sm:py-3 rounded-xl theme-border border theme-text-secondary hover:text-cyan-500 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-colors"
+                    className="px-3 py-2.5 sm:py-3 rounded-xl theme-border border theme-text-secondary hover:text-amber-500 hover:border-amber-500/50 hover:bg-amber-500/10 transition-colors"
                     title="Paste from clipboard"
                   >
                     <Clipboard className="w-4 h-4" />
@@ -396,13 +396,13 @@ export default function Home() {
               <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-1">
                 <button
                   onClick={() => setUrl("https://www.youtube.com/watch?v=M3_pLsDdeuU&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn")}
-                  className="text-sm theme-text-muted hover:text-cyan-500 transition-colors self-start"
+                  className="text-sm theme-text-muted hover:text-amber-500 transition-colors self-start"
                 >
                   Try sample video
                 </button>
 
                 <div className="flex items-center gap-2 text-xs theme-text-muted self-start sm:self-auto">
-                  <CircleCheck className="w-3.5 h-3.5 text-cyan-500" />
+                  <CircleCheck className="w-3.5 h-3.5 text-amber-500" />
                   Secure processing • No ads • Learning focused
                 </div>
               </div>
@@ -422,7 +422,7 @@ export default function Home() {
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-cyan-500 text-sm font-medium"
+                    className="text-amber-500 text-sm font-medium"
                   >
                     {info}
                   </motion.p>
@@ -436,7 +436,7 @@ export default function Home() {
           style={{ y: y1 }}
           className="absolute top-1/4 left-10 lg:left-20 hidden lg:block opacity-20 pointer-events-none"
         >
-          <FileText className="w-32 h-32 text-cyan-500 rotate-12" />
+           <FileText className="w-32 h-32 text-amber-500 rotate-12" />
         </motion.div>
         <motion.div
           style={{ y: y2 }}
@@ -456,8 +456,8 @@ export default function Home() {
             className="text-center"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full theme-bg-surface theme-border border mb-6">
-              <CircleCheck className="w-4 h-4 text-teal-500" />
-              <span className="text-sm font-semibold text-teal-600">Personalized Progress</span>
+                <CircleCheck className="w-4 h-4 text-amber-500" />
+                <span className="text-sm font-semibold text-amber-600">Personalized Progress</span>
             </div>
             <h3 className="text-3xl md:text-5xl font-bold mb-5 sm:mb-6 theme-text-primary">
               Track Your Learning Journey
@@ -480,8 +480,8 @@ export default function Home() {
             className="text-center"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full theme-bg-surface theme-border border mb-6">
-              <Sparkles className="w-4 h-4 text-cyan-500" />
-              <span className="text-sm font-semibold text-cyan-600">Powered by AI Features</span>
+              <Sparkles className="w-4 h-4 text-amber-500" />
+              <span className="text-sm font-semibold text-amber-600">Powered by AI Features</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-5 sm:mb-6 theme-text-primary">
               Everything you need to <br />

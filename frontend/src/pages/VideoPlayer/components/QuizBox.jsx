@@ -78,7 +78,7 @@ export default function QuizBox({ quiz, loading, onRetry, onQuizComplete }) {
            </button>
            <button
              onClick={() => onRetry("medium")}
-             className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-cyan-600 text-white font-bold hover:bg-cyan-500 transition-all shadow-lg"
+             className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-amber-700 text-white font-bold hover:bg-amber-600 transition-all shadow-lg"
            >
              <BrainCircuit size={18} />
            New Quiz
@@ -132,8 +132,8 @@ export default function QuizBox({ quiz, loading, onRetry, onQuizComplete }) {
               onClick={() => handleAnswerSelect(option)}
               className={`w-full text-left p-4 rounded-2xl border font-bold transition-all flex items-center justify-between group ${
                 answers[currentQuestionIndex] === option
-                  ? "bg-cyan-500 border-cyan-500 text-white shadow-lg shadow-cyan-500/20"
-                  : "theme-bg-base theme-border theme-text-secondary hover:theme-border hover:border-cyan-500/50"
+                  ? "bg-amber-600 border-amber-600 text-white shadow-lg shadow-amber-600/20"
+                  : "theme-bg-base theme-border theme-text-secondary hover:theme-border hover:border-amber-500/50"
               }`}
             >
               <span>{option}</span>

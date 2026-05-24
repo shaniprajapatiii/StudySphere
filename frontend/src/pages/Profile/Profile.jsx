@@ -133,7 +133,7 @@ export default function Profile() {
     return (
       <div className="flex items-center justify-center min-h-[60vh] px-4 theme-bg-base">
           <div className="theme-bg-surface-2 px-8 py-6 rounded-3xl theme-border border shadow-2xl flex items-center gap-4">
-          <div className="animate-spin rounded-full h-6 w-6 border-2 border-cyan-500/30 border-t-cyan-500"></div>
+          <div className="animate-spin rounded-full h-6 w-6 border-2 border-amber-500/30 border-t-amber-500"></div>
           <span className="text-sm font-bold theme-text-primary uppercase tracking-widest">Loading profile...</span>
         </div>
       </div>
@@ -144,10 +144,10 @@ export default function Profile() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[80vh] p-4 sm:p-8 theme-bg-base">
         <div className="w-full max-w-lg rounded-[40px] theme-border border theme-bg-surface shadow-2xl overflow-hidden">
-          <div className="h-32 bg-linear-to-r from-cyan-500 via-blue-500 to-cyan-500 relative">
+          <div className="h-32 bg-linear-to-r from-amber-500 via-amber-400 to-amber-500 relative">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_40%)]" />
               <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-20 h-20 rounded-3xl theme-bg-surface flex items-center justify-center shadow-xl ring-4 theme-ring-base">
-              <User className="w-10 h-10 text-cyan-500" />
+              <User className="w-10 h-10 text-amber-500" />
             </div>
           </div>
 
@@ -159,8 +159,8 @@ export default function Profile() {
                Access your personal learning dashboard, track your streaks, and manage your collection.
             </p>
             <button
-               onClick={startGoogleSignIn}
-               className="w-full py-4 px-6 bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 group"
+              onClick={startGoogleSignIn}
+              className="w-full py-4 px-6 bg-amber-600 hover:bg-amber-500 text-white font-extrabold rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 group"
             >
                <img
                   src="https://www.google.com/favicon.ico"
@@ -180,14 +180,14 @@ export default function Profile() {
       <div className="max-w-5xl mx-auto">
         <div className="relative overflow-hidden rounded-[48px] theme-border border theme-bg-surface shadow-2xl">
           {/* Cover Area */}
-          <div className="absolute inset-x-0 top-0 h-56 bg-linear-to-r from-cyan-500 via-blue-500 to-cyan-500" />
+          <div className="absolute inset-x-0 top-0 h-56 bg-linear-to-r from-amber-500 via-amber-400 to-amber-500" />
           <div className="absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_40%)]" />
 
           <div className="relative px-6 sm:px-10 pt-10 pb-6">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
               <div className="flex flex-col sm:flex-row sm:items-end gap-6">
                   <div className="relative group shrink-0 mt-20 lg:mt-24">
-                  <div className="absolute -inset-4 rounded-full bg-cyan-500/10 blur-2xl" />
+                  <div className="absolute -inset-4 rounded-full bg-amber-500/10 blur-2xl" />
                   <img
                     src={user.picture}
                     alt="profile"
@@ -206,16 +206,16 @@ export default function Profile() {
                     {user.name}
                     {!isEditing && (
                         <button
-                        onClick={() => setIsEditing(true)}
-                        className="inline-flex h-12 w-12 items-center justify-center rounded-2xl theme-bg-surface-2 theme-border border theme-text-secondary hover:text-cyan-500 hover:theme-bg-surface transition-all shadow-sm"
-                        title="Edit Profile"
-                      >
+                            onClick={() => setIsEditing(true)}
+                            className="inline-flex h-12 w-12 items-center justify-center rounded-2xl theme-bg-surface-2 theme-border border theme-text-secondary hover:text-amber-500 hover:theme-bg-surface transition-all shadow-sm"
+                            title="Edit Profile"
+                          >
                         <Edit2 size={18} />
                       </button>
                     )}
                   </h1>
-                  <p className="mt-3 flex items-center gap-2 theme-text-muted text-sm sm:text-base font-bold">
-                    <Mail size={16} className="text-cyan-500" />
+                    <p className="mt-3 flex items-center gap-2 theme-text-muted text-sm sm:text-base font-bold">
+                    <Mail size={16} className="text-amber-500" />
                     {user.email}
                   </p>
                 </div>
@@ -264,14 +264,14 @@ export default function Profile() {
             <div className="mb-12">
                <div className="flex items-center justify-between mb-6 px-1">
                   <h3 className="text-2xl font-extrabold theme-text-primary">Your Learning Progress</h3>
-                  <button onClick={() => navigate('/dashboard')} className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-600 hover:text-cyan-500 transition-colors">
+                  <button onClick={() => navigate('/dashboard')} className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 hover:text-amber-500 transition-colors">
                      Full Dashboard <LayoutDashboard size={14} />
                   </button>
                </div>
                
                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   <div className="rounded-3xl theme-bg-base border theme-border p-6 shadow-sm hover:shadow-md transition-shadow group">
-                     <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                     <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <History size={24} />
                      </div>
                      <p className="text-[10px] uppercase tracking-[0.2em] theme-text-subtle font-extrabold mb-1">Watch Time</p>
@@ -287,7 +287,7 @@ export default function Profile() {
                   </div>
 
                   <div className="rounded-3xl theme-bg-base border theme-border p-6 shadow-sm hover:shadow-md transition-shadow group">
-                     <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                     <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <LayoutDashboard size={24} />
                      </div>
                      <p className="text-[10px] uppercase tracking-[0.2em] theme-text-subtle font-extrabold mb-1">Topics Cleared</p>
@@ -378,7 +378,7 @@ export default function Profile() {
                   <button
                     type="submit"
                     disabled={isSaving}
-                    className="px-8 py-4 rounded-2xl bg-cyan-600 text-white font-extrabold hover:bg-cyan-500 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed shadow-xl shadow-cyan-900/10"
+                    className="px-8 py-4 rounded-2xl bg-amber-600 text-white font-extrabold hover:bg-amber-500 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed shadow-xl shadow-amber-900/10"
                   >
                     {isSaving ? (
                         <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
@@ -391,23 +391,23 @@ export default function Profile() {
               </form>
             ) : (
                 <div className="grid gap-6 md:grid-cols-2">
-                <div className="rounded-[32px] border theme-border theme-bg-base p-8 shadow-sm group hover:theme-border-cyan-500/30 transition-all">
+                <div className="rounded-[32px] border theme-border theme-bg-base p-8 shadow-sm group hover:theme-border-amber-500/30 transition-all">
                   <h3 className="font-extrabold theme-text-muted text-[10px] uppercase tracking-[0.2em] mb-3">
                     Your Persona
                   </h3>
                   <div className="flex items-center gap-4">
-                     <div className="w-10 h-10 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center"><Award size={20} /></div>
+                     <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center"><Award size={20} /></div>
                      <p className="text-xl font-extrabold theme-text-primary">
                         {user.accountType || "Learner"}
                      </p>
                   </div>
                 </div>
-                <div className="rounded-[32px] border theme-border theme-bg-base p-8 shadow-sm group hover:theme-border-blue-500/30 transition-all">
+                <div className="rounded-[32px] border theme-border theme-bg-base p-8 shadow-sm group hover:theme-border-amber-500/30 transition-all">
                   <h3 className="font-extrabold theme-text-muted text-[10px] uppercase tracking-[0.2em] mb-3">
                     Community Tenure
                   </h3>
                   <div className="flex items-center gap-4">
-                     <div className="w-10 h-10 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center"><History size={20} /></div>
+                     <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center"><History size={20} /></div>
                      <p className="text-xl font-extrabold theme-text-primary">
                         {new Date(user.createdAt || user.lastLogin).toLocaleDateString(undefined, {
                         year: "numeric",

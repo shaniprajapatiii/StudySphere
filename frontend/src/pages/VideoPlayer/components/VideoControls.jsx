@@ -25,17 +25,17 @@ export default function VideoControls({
           disabled={transcriptLoading}
           className={`relative group flex flex-col items-center justify-center gap-1.5 px-2 py-3 rounded-xl border transition-colors ${
             viewMode === "transcript"
-              ? "bg-cyan-500/10 border-cyan-500 text-cyan-600 dark:text-cyan-400"
+              ? "bg-amber-500/10 border-amber-500 text-amber-600 dark:text-amber-400"
               : "theme-bg-surface-2 theme-border theme-text-muted hover:theme-text-secondary"
           }`}
         >
           {transcriptLoading ? (
-            <Loader2 size={20} className="animate-spin text-cyan-500" />
+            <Loader2 size={20} className="animate-spin text-amber-600" />
           ) : (
-            <FileText size={20} className={viewMode === "transcript" ? "text-cyan-500" : ""} />
+            <FileText size={20} className={viewMode === "transcript" ? "text-amber-600" : ""} />
           )}
           <span className="text-[10px] font-semibold uppercase tracking-widest">Transcript</span>
-          {viewMode === "transcript" && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-500" />}
+          {viewMode === "transcript" && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-amber-500" />}
         </button>
 
         {/* Summary Button */}
@@ -78,8 +78,8 @@ export default function VideoControls({
       </div>
 
       {!hasTranscript && !transcriptLoading && (
-          <div className="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-500" style={{ flexShrink: 0 }}>
+          <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600" style={{ flexShrink: 0 }}>
                <Sparkles size={14} />
             </div>
             <p className="text-[11px] theme-text-secondary leading-relaxed">

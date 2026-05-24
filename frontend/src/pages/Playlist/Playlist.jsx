@@ -106,7 +106,7 @@ export default function Playlist() {
   if (authLoading) {
     return (
       <div className="flex justify-center items-center h-[50vh]">
-        <p className="text-cyan-500 font-semibold animate-pulse">
+        <p className="text-amber-600 font-semibold animate-pulse">
           Checking login...
         </p>
       </div>
@@ -124,7 +124,7 @@ export default function Playlist() {
 
         {loading && (
           <div className="flex justify-center my-8">
-            <p className="text-cyan-500 font-bold animate-pulse">Loading...</p>
+            <p className="text-amber-600 font-bold animate-pulse">Loading...</p>
           </div>
         )}
         

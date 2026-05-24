@@ -67,7 +67,7 @@ export default function PlaylistCard({ playlist, onClick }) {
       <div className="p-4">
         {/* Title */}
         <h3
-          className="font-semibold text-sm line-clamp-2 mb-2 group-hover:text-cyan-500 ds-fade-in transition-colors duration-200 theme-text-primary"
+          className="font-semibold text-sm line-clamp-2 mb-2 group-hover:text-amber-700 ds-fade-in transition-colors duration-200 theme-text-primary"
           title={playlist.title}
         >
           {playlist.title}

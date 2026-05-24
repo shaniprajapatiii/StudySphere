@@ -9,7 +9,7 @@ export default function LoadingSpinner() {
           {skeletons.map((_, i) => (
             <div
               key={i}
-              className="bg-zinc-950 rounded-xl overflow-hidden shadow-sm border border-cyan-500/15"
+              className="bg-zinc-950 rounded-xl overflow-hidden shadow-sm border border-amber-500/15"
             >
               <div className="bg-black aspect-video w-full" />
               <div className="p-4">

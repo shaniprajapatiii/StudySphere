@@ -76,7 +76,7 @@ export default function PlaylistView() {
         <div className="max-w-5xl mx-auto px-4 py-6 sm:py-8">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 theme-text-muted hover:text-cyan-500 transition-colors mb-4 font-semibold text-sm group"
+            className="flex items-center gap-2 theme-text-muted hover:text-amber-500 transition-colors mb-4 font-semibold text-sm group"
           >
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Collection</span>
@@ -106,20 +106,20 @@ export default function PlaylistView() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-10 h-10 bg-white text-cyan-600 rounded-full flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-10 h-10 bg-white text-amber-600 rounded-full flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                     <Play size={18} className="ml-0.5 fill-current" />
                   </div>
                 </div>
               </div>
 
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm sm:text-lg font-bold theme-text-primary group-hover:text-cyan-500 transition-colors line-clamp-2 mb-2">
+                <h3 className="text-sm sm:text-lg font-bold theme-text-primary group-hover:text-amber-500 transition-colors line-clamp-2 mb-2">
                   {index + 1}. {video.title}
                 </h3>
                 <div className="flex items-center gap-4 text-xs sm:text-sm theme-text-muted font-medium">
                   <span className="flex items-center gap-1.5">
-                    <Clock size={14} className="text-cyan-500" />
+                    <Clock size={14} className="text-amber-500" />
                     Video Lesson
                   </span>
                 </div>

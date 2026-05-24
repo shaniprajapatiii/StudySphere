@@ -7,15 +7,15 @@ const About = () => {
     <div className="min-h-screen theme-bg-base theme-text-primary overflow-hidden">
       {/* Hero Section */}
       <div className="theme-bg-base py-24 sm:py-32 px-6 border-b theme-border relative">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,var(--ds-cyan-500),transparent_40%)] opacity-5 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,var(--accent),transparent_40%)] opacity-5 pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-cyan-500/10 px-5 py-2 rounded-full text-cyan-600 dark:text-cyan-400 text-xs font-extrabold uppercase tracking-widest mb-8 border border-cyan-500/20 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-amber-500/10 px-5 py-2 rounded-full text-amber-600 dark:text-amber-400 text-xs font-extrabold uppercase tracking-widest mb-8 border border-amber-500/20 shadow-sm">
             <Sparkles className="w-4 h-4" />
             <span>The Future of Online Learning</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-[1.1]">
             We're Building the Future of <br />
-            <span className="text-cyan-600 dark:text-cyan-400">Intelligent Education</span>
+            <span className="text-amber-600 dark:text-amber-400">Intelligent Education</span>
           </h1>
           <p className="text-lg md:text-2xl theme-text-secondary max-w-2xl mx-auto leading-relaxed font-medium">
             StudySphere is your AI-powered companion that turns passive watching
@@ -45,8 +45,8 @@ const About = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-in slide-in-from-right duration-1000">
             <div className="theme-bg-surface p-8 rounded-[32px] border theme-border shadow-sm hover:shadow-xl transition-all group">
-              <div className="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Brain className="w-8 h-8 text-cyan-600 dark:text-cyan-400" />
+              <div className="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Brain className="w-8 h-8 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="text-xl font-extrabold theme-text-primary mb-3">AI Powered</h3>
               <p className="text-sm font-medium theme-text-secondary leading-relaxed">
@@ -72,8 +72,8 @@ const About = () => {
               </p>
             </div>
             <div className="theme-bg-surface p-8 rounded-[32px] border theme-border shadow-sm hover:shadow-xl transition-all group mt-0 sm:mt-10">
-              <div className="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Users className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <div className="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Users className="w-8 h-8 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="text-xl font-extrabold theme-text-primary mb-3">Community</h3>
               <p className="text-sm font-medium theme-text-secondary leading-relaxed">
@@ -93,19 +93,19 @@ const About = () => {
             </h2>
             <p className="theme-text-secondary text-lg sm:text-xl font-medium leading-relaxed">
               We are solving the biggest problem in online education:{" "}
-              <span className="font-extrabold text-cyan-600 dark:text-cyan-400 uppercase tracking-widest text-sm bg-cyan-500/5 px-3 py-1 rounded-full border border-cyan-500/10 ml-1">Engagement</span>
+              <span className="font-extrabold text-amber-600 dark:text-amber-400 uppercase tracking-widest text-sm bg-amber-500/5 px-3 py-1 rounded-full border border-amber-500/10 ml-1">Engagement</span>
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-10">
               {[
               {
-                icon: <BookOpen className="w-7 h-7 text-cyan-600 dark:text-cyan-400" />,
+                icon: <BookOpen className="w-7 h-7 text-amber-600 dark:text-amber-400" />,
                 title: "Curated Content",
                 desc: "We don't just aggregate videos; we curate learning paths that guide you from beginner to expert with structured modules.",
               },
               {
-                icon: <Brain className="w-7 h-7 text-blue-600 dark:text-blue-400" />,
+                icon: <Brain className="w-7 h-7 text-amber-600 dark:text-amber-400" />,
                 title: "Cognitive Enhancement",
                 desc: "Our tools are designed to work with your brain, using spaced repetition and active recall techniques for long-term retention.",
               },
@@ -117,8 +117,8 @@ const About = () => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="group p-10 rounded-[40px] theme-bg-base border theme-border hover:theme-border-cyan-500/30 hover:shadow-2xl transition-all duration-500">
-                <div className="w-14 h-14 bg-cyan-500/5 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-cyan-500/10">
+                className="group p-10 rounded-[40px] theme-bg-base border theme-border hover:theme-border hover:shadow-2xl transition-all duration-500">
+                <div className="w-14 h-14 bg-amber-500/5 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-amber-500/10">
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-extrabold theme-text-primary mb-4 tracking-tight">
@@ -134,8 +134,8 @@ const About = () => {
       {/* CTA Section */}
       <div className="py-24 sm:py-32 px-6 theme-bg-base text-center">
         <div className="max-w-4xl mx-auto relative overflow-hidden rounded-[56px] theme-bg-surface theme-border border p-12 sm:p-20 shadow-2xl">
-           <div className="absolute -top-24 -right-24 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full" />
-           <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full" />
+           <div className="absolute -top-24 -right-24 w-64 h-64 bg-amber-500/10 blur-[100px] rounded-full" />
+           <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-amber-500/10 blur-[100px] rounded-full" />
            
            <div className="relative z-10">
               <h2 className="text-3xl sm:text-5xl font-extrabold theme-text-primary mb-8 tracking-tight">
@@ -148,7 +148,7 @@ const About = () => {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link
                   to="/feed"
-                  className="ds-btn-primary px-10 py-4 font-extrabold shadow-xl shadow-cyan-900/10 text-lg"
+                  className="ds-btn-primary px-10 py-4 font-extrabold shadow-xl shadow-amber-900/10 text-lg"
                 >
                   Start Learning Now
                 </Link>

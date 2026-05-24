@@ -14,13 +14,28 @@ export default function Privacy() {
           </div>
           
           <h1 className="text-4xl sm:text-6xl font-extrabold theme-text-primary mb-4 tracking-tight">Privacy Policy</h1>
-          <p className="text-sm font-bold theme-text-muted uppercase tracking-widest mb-16 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            Effective: December 4, 2025
-          </p>
+               <p className="text-sm font-bold theme-text-muted uppercase tracking-widest mb-6 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  Effective: December 4, 2025
+               </p>
+
+               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+                  <nav aria-label="Privacy contents" className="flex flex-wrap gap-2">
+                     <a href="#introduction" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">Introduction</a>
+                     <a href="#information" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">Information</a>
+                     <a href="#usage" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">Data & AI</a>
+                     <a href="#security" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">Security</a>
+                     <a href="#contact" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">Contact</a>
+                  </nav>
+
+                  <div className="flex items-center gap-3">
+                     <button onClick={() => window.print()} className="ds-btn-secondary px-4 py-2">Print</button>
+                     <a href="/" className="ds-btn-primary px-4 py-2">Back Home</a>
+                  </div>
+               </div>
 
           <div className="space-y-16">
-            <section className="group">
+            <section id="introduction" className="group">
               <div className="flex items-center gap-4 mb-6">
                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <FileText size={20} />
@@ -32,9 +47,9 @@ export default function Privacy() {
               </p>
             </section>
 
-            <section className="group">
+            <section id="information" className="group">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                         <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Eye size={20} />
                  </div>
                  <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">2. Information We Collect</h2>
@@ -43,13 +58,13 @@ export default function Privacy() {
               <div className="space-y-8">
                  <div className="theme-bg-base p-8 rounded-3xl border theme-border shadow-sm">
                     <h3 className="text-sm font-extrabold uppercase tracking-widest theme-text-primary mb-4 flex items-center gap-2">
-                       <User size={14} className="text-cyan-500" /> 2.1 Personal Information
+                       <User size={14} className="text-amber-500" /> 2.1 Personal Information
                     </h3>
                     <p className="theme-text-secondary font-medium mb-6">When you create an account, we collect:</p>
                     <ul className="grid sm:grid-cols-2 gap-4">
                       {["Name and email address", "Profile picture via Google", "Account preferences", "Login timestamps"].map((item, i) => (
                          <li key={i} className="flex items-center gap-3 text-sm font-bold theme-text-primary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" /> {item}
+                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {item}
                          </li>
                       ))}
                     </ul>
@@ -57,13 +72,13 @@ export default function Privacy() {
 
                  <div className="theme-bg-base p-8 rounded-3xl border theme-border shadow-sm">
                     <h3 className="text-sm font-extrabold uppercase tracking-widest theme-text-primary mb-4 flex items-center gap-2">
-                       <Smartphone size={14} className="text-blue-500" /> 2.2 Usage Data
+                       <Smartphone size={14} className="text-amber-500" /> 2.2 Usage Data
                     </h3>
                     <p className="theme-text-secondary font-medium mb-6">We automatically collect information about your platform interactions:</p>
                     <ul className="grid sm:grid-cols-2 gap-4">
                       {["Videos and learning progress", "Playlists created", "Quiz attempts and scores", "Study streaks", "Device info and IP address"].map((item, i) => (
                          <li key={i} className="flex items-center gap-3 text-sm font-bold theme-text-primary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> {item}
+                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {item}
                          </li>
                       ))}
                     </ul>
@@ -71,7 +86,7 @@ export default function Privacy() {
               </div>
             </section>
 
-            <section className="group">
+            <section id="usage" className="group">
               <div className="flex items-center gap-4 mb-6">
                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <RefreshCw size={20} />
@@ -91,7 +106,7 @@ export default function Privacy() {
               </div>
             </section>
 
-            <section className="group">
+            <section id="security" className="group">
               <div className="flex items-center gap-4 mb-6">
                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Lock size={20} />
@@ -103,7 +118,7 @@ export default function Privacy() {
               </p>
             </section>
 
-            <section className="pt-16 border-t theme-border text-center">
+            <section id="contact" className="pt-16 border-t theme-border text-center">
               <p className="text-xs font-bold uppercase tracking-[0.2em] theme-text-muted mb-6">Questions about your data?</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                  <a href="mailto:shaniprajapati630@gmail.com" className="ds-btn-primary px-8">Email Support</a>

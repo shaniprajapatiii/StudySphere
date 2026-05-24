@@ -88,7 +88,7 @@ export default function VideoItem({ video }) {
         )}
       </div>
       <h3
-        className="text-sm font-bold theme-text-primary line-clamp-2 group-hover:text-cyan-500 transition-colors mt-2"
+        className="text-sm font-bold theme-text-primary line-clamp-2 group-hover:text-amber-500 transition-colors mt-2"
         title={title}
       >
         {title}

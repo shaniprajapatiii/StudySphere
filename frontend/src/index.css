@@ -27,24 +27,24 @@
   --border-strong: rgba(14, 165, 233, 0.40);
   --border-sep:    rgba(14, 165, 233, 0.15);
 
-  /* Accent (cyan-sky family) */
-  --accent:        #0ea5e9;
-  --accent-text:   #0369a1;
-  --accent-muted:  rgba(14,165,233,0.12);
+  /* Accent (brown family) */
+  --accent:        #8B5E3C;
+  --accent-text:   #5B3A29;
+  --accent-muted:  rgba(139,94,60,0.12);
 
   /* Shadows */
-  --shadow-card:   0 4px 24px rgba(14,165,233,0.10);
-  --shadow-heavy:  0 8px 32px rgba(14,165,233,0.14);
+  --shadow-card:   0 4px 24px rgba(139,94,60,0.10);
+  --shadow-heavy:  0 8px 32px rgba(139,94,60,0.14);
 
   /* Scrollbar */
-  --scrollbar-thumb: rgba(14,165,233,0.55);
+  --scrollbar-thumb: rgba(139,94,60,0.55);
   --scrollbar-track: #e2e8f0;
 
   /* Gradient base background */
   --gradient-base:
-    radial-gradient(circle at top left,  rgba(14,165,233,0.10), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(99,102,241,0.07), transparent 50%),
-    #f0f4f8;
+    radial-gradient(circle at top left,  rgba(139,94,60,0.10), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(99,71,50,0.07), transparent 50%),
+    #f7efe6;
 }
 
 /* ─── DARK MODE TOKEN OVERRIDES ─────────────────────────────────────────── */
@@ -65,23 +65,23 @@ html.dark {
   --text-subtle:    #4b5563;
   --text-on-accent: #ffffff;
 
-  --border-base:   rgba(0,200,255,0.15);
-  --border-strong: rgba(0,200,255,0.25);
+  --border-base:   rgba(214,165,126,0.15);
+  --border-strong: rgba(214,165,126,0.25);
   --border-sep:    rgba(55,65,81,0.60);
 
-  --accent:        #00c8ff;
-  --accent-text:   #67e8f9;
-  --accent-muted:  rgba(0,200,255,0.12);
+  --accent:        #d6a57e;
+  --accent-text:   #f3e7dd;
+  --accent-muted:  rgba(214,165,126,0.12);
 
   --shadow-card:   0 4px 24px rgba(0,0,0,0.55);
   --shadow-heavy:  0 8px 32px rgba(0,0,0,0.70);
 
-  --scrollbar-thumb: rgba(0,200,255,0.65);
+  --scrollbar-thumb: rgba(214,165,126,0.65);
   --scrollbar-track: rgba(0,0,0,0.95);
 
   --gradient-base:
-    radial-gradient(circle at top left,  rgba(0,200,255,0.12), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(100,150,255,0.08), transparent 50%),
+    radial-gradient(circle at top left,  rgba(214,165,126,0.12), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(150,110,80,0.08), transparent 50%),
     #000000;
 }
 
@@ -111,11 +111,11 @@ body {
   }
 
   *::selection {
-    background: rgba(14, 165, 233, 0.28);
+    background: rgba(139,94,60,0.28);
     color: var(--text-primary);
   }
   html.dark *::selection {
-    background: rgba(0, 200, 255, 0.30);
+    background: rgba(214,165,126,0.30);
     color: #ffffff;
   }
 
@@ -194,8 +194,8 @@ body {
 
   /* ── Buttons ── */
   .ds-btn-primary {
-    @apply px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg shadow-lg
-           hover:shadow-2xl active:from-cyan-600 active:to-blue-600
+      @apply px-6 py-2.5 bg-gradient-to-r from-amber-700 to-amber-500 text-white rounded-lg shadow-lg
+        hover:shadow-2xl active:from-amber-800 active:to-amber-700
            disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold;
   }
 
@@ -226,7 +226,7 @@ body {
   }
 
   .ds-btn-success {
-    @apply px-6 py-2.5 bg-cyan-600 text-white rounded-lg hover:bg-cyan-500 active:bg-cyan-700
+    @apply px-6 py-2.5 bg-amber-700 text-white rounded-lg hover:bg-amber-600 active:bg-amber-800
            shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 font-semibold;
   }
 
@@ -287,7 +287,7 @@ body {
 
   /* ── Inputs ── */
   .ds-input-base {
-    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400
            focus:border-transparent transition-all duration-200 backdrop-blur-md;
     border: 1px solid var(--border-base);
     background-color: var(--bg-input);
@@ -304,8 +304,8 @@ body {
   .ds-input-error::placeholder { color: var(--text-subtle); }
 
   .ds-input-success {
-    @apply w-full px-4 py-3 border-2 border-cyan-500 rounded-xl focus:outline-none
-           focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200 backdrop-blur-md;
+      @apply w-full px-4 py-3 border-2 border-amber-600 rounded-xl focus:outline-none
+        focus:ring-2 focus:ring-amber-600 focus:border-transparent transition-all duration-200 backdrop-blur-md;
     background-color: var(--bg-input);
     color: var(--text-primary);
   }
@@ -319,7 +319,7 @@ body {
   }
 
   .ds-textarea {
-    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400
            focus:border-transparent transition-all duration-200 backdrop-blur-md resize-none;
     border: 1px solid var(--border-base);
     background-color: var(--bg-input);
@@ -328,7 +328,7 @@ body {
   .ds-textarea::placeholder { color: var(--text-subtle); }
 
   .ds-select {
-    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400
            focus:border-transparent transition-all duration-200 backdrop-blur-md appearance-none;
     border: 1px solid var(--border-base);
     background-color: var(--bg-input);
@@ -358,9 +358,9 @@ body {
     border: 1px solid var(--border-base);
   }
   .ds-badge-secondary {
-    @apply px-3 py-1 bg-blue-500/20 text-blue-500 rounded-full text-xs font-semibold border border-blue-500/30;
+    @apply px-3 py-1 bg-amber-500/20 text-amber-600 rounded-full text-xs font-semibold border border-amber-500/30;
   }
-  html.dark .ds-badge-secondary { @apply text-blue-300; }
+  html.dark .ds-badge-secondary { @apply text-amber-300; }
 
   .ds-badge-success {
     @apply px-3 py-1 rounded-full text-xs font-semibold;
@@ -399,13 +399,13 @@ body {
   .ds-hover-darken { @apply hover:opacity-80 transition-opacity duration-200; }
 
   .ds-focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2;
   }
 
   /* ── Accessibility ── */
   .ds-sr-only   { @apply sr-only; }
   .ds-skip-link {
-    @apply absolute top-0 left-0 -translate-y-full px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-lg focus:translate-y-0;
+    @apply absolute top-0 left-0 -translate-y-full px-4 py-2 bg-gradient-to-r from-amber-700 to-amber-600 text-white rounded-lg focus:translate-y-0;
   }
 
   /* ── States ── */

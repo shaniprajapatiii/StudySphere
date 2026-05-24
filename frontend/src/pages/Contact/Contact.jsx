@@ -45,10 +45,10 @@ const Contact = () => {
       </Helmet>
 
       <div className="max-w-6xl mx-auto relative">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 blur-[120px] rounded-full -mr-48 -mt-48 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 blur-[120px] rounded-full -mr-48 -mt-48 pointer-events-none" />
         
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 bg-cyan-500/10 px-4 py-1.5 rounded-full text-cyan-600 dark:text-cyan-400 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-6 border border-cyan-500/20">
+          <div className="inline-flex items-center gap-2 bg-amber-500/10 px-4 py-1.5 rounded-full text-amber-600 dark:text-amber-400 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-6 border border-amber-500/20">
             <Sparkles className="w-3 h-3" />
             <span>Connect with our team</span>
           </div>
@@ -69,8 +69,8 @@ const Contact = () => {
 
             <div className="space-y-8 mb-16 flex-1">
               <div className="flex items-start group">
-                <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center flex-shrink-0 mr-6 border border-cyan-500/20 group-hover:scale-110 transition-transform">
-                  <MapPin className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+                <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center flex-shrink-0 mr-6 border border-amber-500/20 group-hover:scale-110 transition-transform">
+                  <MapPin className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                 </div>
                 <div>
                    <h3 className="text-xs font-extrabold uppercase tracking-widest theme-text-muted mb-1">Our Studio</h3>
@@ -86,7 +86,7 @@ const Contact = () => {
                    <h3 className="text-xs font-extrabold uppercase tracking-widest theme-text-muted mb-1">Direct Line</h3>
                    <a
                     href="tel:+916307527950"
-                    className="text-lg font-bold theme-text-primary hover:text-cyan-500 transition-colors"
+                    className="text-lg font-bold theme-text-primary hover:text-amber-700 transition-colors"
                   >
                     +91 6307527950
                   </a>
@@ -94,14 +94,14 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start group">
-                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center flex-shrink-0 mr-6 border border-blue-500/20 group-hover:scale-110 transition-transform">
-                  <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center flex-shrink-0 mr-6 border border-amber-500/20 group-hover:scale-110 transition-transform">
+                  <Mail className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                 </div>
                 <div>
                    <h3 className="text-xs font-extrabold uppercase tracking-widest theme-text-muted mb-1">Support Email</h3>
                    <a
                     href="mailto:shaniprajapati630@gmail.com"
-                    className="text-lg font-bold theme-text-primary hover:text-cyan-500 transition-colors truncate block"
+                    className="text-lg font-bold theme-text-primary hover:text-amber-700 transition-colors truncate block"
                   >
                     shaniprajapati630@gmail.com
                   </a>
@@ -116,7 +116,7 @@ const Contact = () => {
                   href="https://github.com/shaniprajapatiii"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-2xl theme-bg-surface-2 flex items-center justify-center theme-text-secondary hover:bg-cyan-600 hover:text-white transition-all duration-500 border theme-border"
+                  className="w-12 h-12 rounded-2xl theme-bg-surface-2 flex items-center justify-center theme-text-secondary hover:bg-amber-700 hover:text-white transition-all duration-500 border theme-border"
                   title="GitHub"
                 >
                   <Github size={20} />
@@ -134,7 +134,7 @@ const Contact = () => {
                   href="https://www.linkedin.com/in/shaniprajapatiii"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-2xl theme-bg-surface-2 flex items-center justify-center theme-text-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 border theme-border"
+                  className="w-12 h-12 rounded-2xl theme-bg-surface-2 flex items-center justify-center theme-text-secondary hover:bg-amber-700 hover:text-white transition-all duration-500 border theme-border"
                   title="LinkedIn"
                 >
                   <Linkedin size={20} />
@@ -155,7 +155,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="lg:col-span-7 theme-bg-surface rounded-[48px] shadow-2xl p-10 sm:p-14 theme-border border relative">
             <div className="absolute top-10 right-10 opacity-5">
-               <Send size={120} className="text-cyan-500" />
+               <Send size={120} className="text-amber-600" />
             </div>
             
             <h2 className="text-2xl sm:text-3xl font-extrabold theme-text-primary mb-3 tracking-tight relative z-10">
@@ -222,7 +222,7 @@ const Contact = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-cyan-600 text-white font-extrabold py-5 px-8 rounded-[24px] hover:bg-cyan-500 hover:shadow-2xl hover:shadow-cyan-900/20 transition-all duration-500 flex items-center justify-center gap-3 shadow-xl shadow-cyan-900/10 group"
+                className="w-full bg-amber-700 text-white font-extrabold py-5 px-8 rounded-[24px] hover:bg-amber-600 hover:shadow-2xl hover:shadow-amber-900/20 transition-all duration-500 flex items-center justify-center gap-3 shadow-xl shadow-amber-900/10 group"
               >
                 <span>Transmit Message</span>
                 <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

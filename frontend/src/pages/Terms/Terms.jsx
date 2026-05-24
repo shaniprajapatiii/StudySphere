@@ -5,24 +5,39 @@ export default function Terms() {
   return (
     <div className="min-h-screen theme-bg-base py-24 sm:py-32 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto theme-bg-surface rounded-[48px] shadow-2xl p-10 sm:p-16 theme-border border relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 blur-[100px] rounded-full -mr-32 -mt-32" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 blur-[100px] rounded-full -mr-32 -mt-32" />
         
         <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 bg-blue-500/10 px-4 py-1.5 rounded-full text-blue-600 dark:text-blue-400 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-8 border border-blue-500/20 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-amber-500/10 px-4 py-1.5 rounded-full text-amber-600 dark:text-amber-400 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-8 border border-amber-500/20 shadow-sm">
             <Scale className="w-3 h-3" />
             <span>Standard Agreements</span>
           </div>
           
           <h1 className="text-4xl sm:text-6xl font-extrabold theme-text-primary mb-4 tracking-tight">Terms of Service</h1>
-          <p className="text-sm font-bold theme-text-muted uppercase tracking-widest mb-16 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+          <p className="text-sm font-bold theme-text-muted uppercase tracking-widest mb-6 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
             Last Modified: December 4, 2025
           </p>
 
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+            <nav aria-label="Terms contents" className="flex flex-wrap gap-2">
+              <a href="#acceptance" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">Acceptance</a>
+              <a href="#service" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">Service</a>
+              <a href="#conduct" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">Conduct</a>
+              <a href="#intellectual-property" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">IP</a>
+              <a href="#ai-notice" className="px-3 py-1 rounded-full theme-bg-surface-2 theme-text-secondary border theme-border text-sm">AI Notice</a>
+            </nav>
+
+            <div className="flex items-center gap-3">
+              <button onClick={() => window.print()} className="ds-btn-secondary px-4 py-2">Print</button>
+              <a href="/" className="ds-btn-primary px-4 py-2">Back Home</a>
+            </div>
+          </div>
+
           <div className="space-y-16">
-            <section className="group">
+            <section id="acceptance" className="group">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <FileText size={20} />
                  </div>
                  <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">1. Acceptance of Terms</h2>
@@ -32,9 +47,9 @@ export default function Terms() {
               </p>
             </section>
 
-            <section className="group">
+            <section id="service" className="group">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Globe size={20} />
                  </div>
                  <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">2. Service Description</h2>
@@ -45,14 +60,14 @@ export default function Terms() {
               <div className="grid sm:grid-cols-2 gap-4">
                  {["YouTube content organization", "AI Summaries & Transcripts", "Interactive assessments", "Progress & Streak tracking"].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 p-4 theme-bg-base rounded-2xl theme-border border shadow-sm">
-                       <CheckCircle2 size={16} className="text-cyan-500" />
+                       <CheckCircle2 size={16} className="text-amber-500" />
                        <span className="text-sm font-bold theme-text-primary">{item}</span>
                     </div>
                  ))}
               </div>
             </section>
 
-            <section className="group">
+            <section id="conduct" className="group">
               <div className="flex items-center gap-4 mb-6">
                  <div className="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <AlertCircle size={20} />
@@ -75,7 +90,7 @@ export default function Terms() {
               </div>
             </section>
 
-            <section className="group">
+            <section id="intellectual-property" className="group">
               <div className="flex items-center gap-4 mb-6">
                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <ShieldCheck size={20} />
@@ -92,7 +107,7 @@ export default function Terms() {
               </div>
             </section>
 
-            <section className="group">
+            <section id="ai-notice" className="group">
               <div className="flex items-center gap-4 mb-6">
                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <HelpCircle size={20} />

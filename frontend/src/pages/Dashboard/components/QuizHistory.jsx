@@ -40,7 +40,7 @@ const QuizHistory = ({ history }) => {
                   {quiz.videoId ? (
                     <Link
                       to={`/player/${quiz.videoId}`}
-                      className="text-cyan-600 hover:text-cyan-500 hover:underline transition-colors"
+                      className="text-amber-600 hover:text-amber-500 hover:underline transition-colors"
                     >
                       {quiz.videoTitle || "Unknown Video"}
                     </Link>

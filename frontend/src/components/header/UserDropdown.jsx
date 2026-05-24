@@ -33,7 +33,7 @@ export default function UserDropdown({
         <img
           src={user?.picture || default_dp}
           alt="Profile"
-          className="w-9 h-9 rounded-full border-2 border-transparent group-hover:border-cyan-400 transition-all object-cover shadow-sm"
+          className="w-9 h-9 rounded-full border-2 border-transparent group-hover:border-amber-400 transition-all object-cover shadow-sm"
         />
       </button>
 
@@ -52,9 +52,9 @@ export default function UserDropdown({
                 onSignIn();
                 setIsOpen(false);
               }}
-              className="w-full text-left px-4 py-2.5 theme-text-secondary flex items-center gap-3 transition-colors text-sm font-medium hover:bg-cyan-500/10"
+              className="w-full text-left px-4 py-2.5 theme-text-secondary flex items-center gap-3 transition-colors text-sm font-medium hover:bg-amber-500/10"
             >
-              <LogIn size={16} className="text-cyan-500" />
+              <LogIn size={16} className="text-amber-700" />
               Sign in / Sign up
             </button>
           ) : (
@@ -69,7 +69,7 @@ export default function UserDropdown({
               <Link
                 to="/profile"
                 onClick={() => setIsOpen(false)}
-                className="w-full text-left px-4 py-2.5 theme-text-secondary flex items-center gap-3 transition-colors text-sm hover:bg-cyan-500/10"
+                className="w-full text-left px-4 py-2.5 theme-text-secondary flex items-center gap-3 transition-colors text-sm hover:bg-amber-500/10"
               >
                 <User size={16} className="theme-text-muted" />
                 Profile

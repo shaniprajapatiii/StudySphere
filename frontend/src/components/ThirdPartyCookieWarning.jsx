@@ -49,7 +49,7 @@ const ThirdPartyCookieWarning = ({ onUnderstand, onClose }) => {
         <div className="mt-6 flex justify-end">
           <button
             type="button"
-            className="px-5 py-3 rounded-2xl bg-cyan-600 text-white font-extrabold hover:bg-cyan-500 transition-colors shadow-lg"
+            className="px-5 py-3 rounded-2xl bg-amber-700 text-white font-extrabold hover:bg-amber-600 transition-colors shadow-lg"
             onClick={() => {
               onUnderstand?.();
             }}

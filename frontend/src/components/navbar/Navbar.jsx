@@ -14,8 +14,8 @@ const navItems = [
 const navLinkClass = ({ isActive }) =>
   `flex items-center gap-2 px-3.5 py-2 rounded-2xl transition-all duration-200 relative group backdrop-blur-md border ${
     isActive
-      ? "text-cyan-500 font-semibold theme-bg-surface-2 border-cyan-500/30"
-      : "theme-text-muted border-transparent hover:text-cyan-500 hover:theme-bg-surface-2 hover:border-cyan-500/20"
+      ? "text-amber-700 font-semibold theme-bg-surface-2 border-amber-500/30"
+      : "theme-text-muted border-transparent hover:text-amber-700 hover:theme-bg-surface-2 hover:border-amber-500/20"
   }`;
 
 function isItemActive(pathname, to) {
@@ -60,11 +60,11 @@ export default function Navbar() {
                           <span className="hidden sm:inline">{item.label}</span>
                           <span
                             className={`absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-0.5 rounded-full transition-all duration-200 ${
-                              isActive ? "w-10 bg-cyan-400" : "w-0 bg-transparent"
+                              isActive ? "w-10 bg-amber-400" : "w-0 bg-transparent"
                             }`}
                           />
                           {itemIsActive && (
-                            <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-cyan-500/30" />
+                            <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-amber-500/30" />
                           )}
                         </>
                       )}
@@ -78,9 +78,9 @@ export default function Navbar() {
             <div className="flex items-center gap-2 shrink-0">
               <Link
                 to="/feed"
-                className="hidden md:inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl theme-border border theme-text-secondary theme-bg-surface hover:border-cyan-500/40 hover:text-cyan-500 transition-colors"
+                className="hidden md:inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl theme-border border theme-text-secondary theme-bg-surface hover:border-amber-500/40 hover:text-amber-700 transition-colors"
               >
-                <Sparkles size={14} className="text-cyan-400" />
+                <Sparkles size={14} className="text-amber-400" />
                 Focus Mode
               </Link>
 
