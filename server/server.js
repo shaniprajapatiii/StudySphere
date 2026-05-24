@@ -21,6 +21,7 @@ import feedRoutes from "./src/routes/feed.js";
 import videosRouter from "./src/routes/playerControl/transcript.js";
 import aiRoutes from "./src/routes/aiRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
+import siteStatsRoutes from "./src/routes/siteStats.js";
 
 const app = express();
 const isProduction = process.env.NODE_ENV === "production";
@@ -216,6 +217,7 @@ app.use("/api/feed", feedRoutes);
 app.use("/api/videos", videosRouter);
 app.use("/api/ai", aiRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/stats", siteStatsRoutes);
 
 app.use((err, req, res, next) => {
   if (err?.message === "CORS origin denied") {

@@ -6,6 +6,7 @@ import ThirdPartyCookieWarning from "./components/ThirdPartyCookieWarning";
 import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import VisitorCounter from "./components/VisitorCounter";
 import Profile from "./pages/Profile/Profile";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -97,6 +98,7 @@ export default function App() {
         </Routes>
       </div>
       <Footer />
+      <VisitorCounter />
     </div>
   );
 }
