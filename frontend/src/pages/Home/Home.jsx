@@ -66,48 +66,39 @@ const UnifiedCard = ({ card, delay = 0 }) => {
   const Icon = card.icon;
 
   const content = (
-    <>
-      <div
-        className={`absolute inset-0 bg-linear-to-br ${card.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-      />
-      <div className="relative z-10 flex h-full flex-col">
-        <div className="mb-4 flex items-center justify-between gap-3">
-          <div
-            className={`w-12 h-12 rounded-xl flex items-center justify-center theme-border border ${card.tint}`}
-          >
-            <Icon className="w-6 h-6" />
-          </div>
-          {card.badge && (
-            <span className="rounded-full px-2.5 py-1 text-[11px] font-semibold theme-text-secondary theme-bg-surface-2 theme-border border">
-              {card.badge}
-            </span>
-          )}
+    <div className="relative z-10 flex h-full flex-col">
+      <div className="mb-3 flex items-start justify-between gap-3">
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${card.tint} theme-border border shrink-0`}>
+          <Icon className="w-5 h-5" />
         </div>
 
-        <h4 className="text-lg font-bold theme-text-primary mb-2">{card.title}</h4>
-        <p className="flex-1 theme-text-secondary">{card.desc}</p>
-
-        <div className="mt-5 flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-500 group-hover:text-cyan-400">
-            {card.cta}
+        {card.badge && (
+          <span className="rounded-full px-2 py-0.5 text-xs font-medium theme-text-secondary theme-bg-surface-2 theme-border border">
+            {card.badge}
           </span>
-          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-500/15 text-cyan-500 group-hover:bg-cyan-500/25 transition-colors duration-200">
-            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </span>
-        </div>
+        )}
       </div>
-    </>
+
+      <h4 className="text-base font-semibold theme-text-primary mb-2">{card.title}</h4>
+      <p className="flex-1 theme-text-secondary text-sm leading-relaxed">{card.desc}</p>
+
+      <div className="mt-4">
+        <span className="inline-flex items-center gap-1 text-sm font-medium text-cyan-500">
+          {card.cta}
+        </span>
+      </div>
+    </div>
   );
 
   const baseClass =
-    "group relative block overflow-hidden rounded-2xl p-5 sm:p-6 shadow-sm theme-border border theme-bg-surface hover:shadow-xl hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60";
+    "group relative block overflow-hidden rounded-xl p-4 sm:p-5 shadow-sm theme-border border theme-bg-surface hover:shadow-md hover:-translate-y-0.5 transition-transform duration-200";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.45, delay }}
+      transition={{ duration: 0.42, delay }}
       className="h-full"
     >
       {card.to ? (
@@ -508,15 +499,15 @@ export default function Home() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.8 }}
-            className="mt-10 sm:mt-12 lg:mt-14 text-center rounded-4xl theme-border border theme-bg-surface p-6 sm:p-8 shadow-xl"
+            transition={{ delay: 0.6 }}
+            className="mt-10 sm:mt-12 lg:mt-14 text-center"
           >
             <Link
               to="/feed"
-              className="inline-flex items-center gap-2 px-8 py-4 ds-btn-primary rounded-xl font-bold hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 ds-btn-primary rounded-full font-bold shadow-lg hover:scale-105"
             >
               <span>Explore Feed</span>
               <ArrowRight className="w-5 h-5" />
