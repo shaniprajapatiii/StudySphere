@@ -91,7 +91,7 @@ export default function VideoPlayer() {
   if (loading)
     return (
       <div className="flex flex-col items-center justify-center h-[50vh] theme-bg-base">
-        <p className="text-amber-500 font-bold text-lg animate-pulse">
+        <p className="text-green-500 font-bold text-lg animate-pulse">
           Loading playlist...
         </p>
       </div>
@@ -122,7 +122,7 @@ export default function VideoPlayer() {
       <div className="max-w-4xl mx-auto px-4">
         <button
           onClick={() => navigate("/playlist")}
-          className="flex items-center gap-2 theme-text-muted hover:text-amber-500 transition-colors mb-6 font-semibold text-sm group"
+          className="flex items-center gap-2 theme-text-muted hover:text-green-500 transition-colors mb-6 font-semibold text-sm group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           <span>Back to Playlists</span>
@@ -131,10 +131,10 @@ export default function VideoPlayer() {
         <div className="mb-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold theme-text-primary">{playlist.title}</h2>
           {totalDuration && (
-            <div className="flex items-center gap-3 mt-4 text-sm font-bold uppercase tracking-wider theme-text-muted">
-              <span className="flex items-center gap-1.5"><ListOrdered size={16} className="text-amber-500" /> {sanitizedVideos.length} Videos</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500/30" />
-              <span className="flex items-center gap-1.5"><Clock size={16} className="text-amber-500" /> {totalDuration}</span>
+              <div className="flex items-center gap-3 mt-4 text-sm font-bold uppercase tracking-wider theme-text-muted">
+              <span className="flex items-center gap-1.5"><ListOrdered size={16} className="text-green-500" /> {sanitizedVideos.length} Videos</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-green-600/30" />
+              <span className="flex items-center gap-1.5"><Clock size={16} className="text-green-500" /> {totalDuration}</span>
             </div>
           )}
         </div>
@@ -188,7 +188,7 @@ export default function VideoPlayer() {
                     </div>
                   )}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
-                     <div className="w-8 h-8 bg-white text-amber-600 rounded-full flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                     <div className="w-8 h-8 bg-white text-green-600 rounded-full flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                         <Play size={14} className="ml-0.5 fill-current" />
                      </div>
                   </div>
@@ -196,7 +196,7 @@ export default function VideoPlayer() {
 
                 {/* Title */}
                 <div className="flex-1 min-w-0">
-                  <span className="text-sm sm:text-base font-bold theme-text-primary group-hover:text-amber-500 transition-colors line-clamp-2">
+                  <span className="text-sm sm:text-base font-bold theme-text-primary group-hover:text-green-500 transition-colors line-clamp-2">
                     {video.title || `Video ${index + 1}`}
                   </span>
                 </div>

@@ -194,8 +194,8 @@ body {
 
   /* ── Buttons ── */
   .ds-btn-primary {
-      @apply px-6 py-2.5 bg-gradient-to-r from-amber-700 to-amber-500 text-white rounded-lg shadow-lg
-        hover:shadow-2xl active:from-amber-800 active:to-amber-700
+      @apply px-6 py-2.5 bg-gradient-to-r from-green-700 to-green-500 text-white rounded-lg shadow-lg
+        hover:shadow-2xl active:from-green-800 active:to-green-700
            disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold;
   }
 
@@ -226,7 +226,7 @@ body {
   }
 
   .ds-btn-success {
-    @apply px-6 py-2.5 bg-amber-700 text-white rounded-lg hover:bg-amber-600 active:bg-amber-800
+    @apply px-6 py-2.5 bg-green-700 text-white rounded-lg hover:bg-green-600 active:bg-green-800
            shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 font-semibold;
   }
 
@@ -287,7 +287,7 @@ body {
 
   /* ── Inputs ── */
   .ds-input-base {
-    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400
            focus:border-transparent transition-all duration-200 backdrop-blur-md;
     border: 1px solid var(--border-base);
     background-color: var(--bg-input);
@@ -304,8 +304,8 @@ body {
   .ds-input-error::placeholder { color: var(--text-subtle); }
 
   .ds-input-success {
-      @apply w-full px-4 py-3 border-2 border-amber-600 rounded-xl focus:outline-none
-        focus:ring-2 focus:ring-amber-600 focus:border-transparent transition-all duration-200 backdrop-blur-md;
+      @apply w-full px-4 py-3 border-2 border-green-600 rounded-xl focus:outline-none
+        focus:ring-2 focus:ring-green-600 focus:border-transparent transition-all duration-200 backdrop-blur-md;
     background-color: var(--bg-input);
     color: var(--text-primary);
   }
@@ -319,7 +319,7 @@ body {
   }
 
   .ds-textarea {
-    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400
            focus:border-transparent transition-all duration-200 backdrop-blur-md resize-none;
     border: 1px solid var(--border-base);
     background-color: var(--bg-input);
@@ -328,7 +328,7 @@ body {
   .ds-textarea::placeholder { color: var(--text-subtle); }
 
   .ds-select {
-    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400
+    @apply w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400
            focus:border-transparent transition-all duration-200 backdrop-blur-md appearance-none;
     border: 1px solid var(--border-base);
     background-color: var(--bg-input);
@@ -358,9 +358,9 @@ body {
     border: 1px solid var(--border-base);
   }
   .ds-badge-secondary {
-    @apply px-3 py-1 bg-amber-500/20 text-amber-600 rounded-full text-xs font-semibold border border-amber-500/30;
+    @apply px-3 py-1 bg-green-600/20 text-green-600 rounded-full text-xs font-semibold border border-green-600/30;
   }
-  html.dark .ds-badge-secondary { @apply text-amber-300; }
+  html.dark .ds-badge-secondary { @apply text-green-300; }
 
   .ds-badge-success {
     @apply px-3 py-1 rounded-full text-xs font-semibold;
@@ -399,13 +399,13 @@ body {
   .ds-hover-darken { @apply hover:opacity-80 transition-opacity duration-200; }
 
   .ds-focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2;
   }
 
   /* ── Accessibility ── */
   .ds-sr-only   { @apply sr-only; }
   .ds-skip-link {
-    @apply absolute top-0 left-0 -translate-y-full px-4 py-2 bg-gradient-to-r from-amber-700 to-amber-600 text-white rounded-lg focus:translate-y-0;
+    @apply absolute top-0 left-0 -translate-y-full px-4 py-2 bg-gradient-to-r from-green-700 to-green-600 text-white rounded-lg focus:translate-y-0;
   }
 
   /* ── States ── */

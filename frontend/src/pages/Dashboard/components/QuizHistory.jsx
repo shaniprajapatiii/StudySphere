@@ -40,7 +40,7 @@ const QuizHistory = ({ history }) => {
                   {quiz.videoId ? (
                     <Link
                       to={`/player/${quiz.videoId}`}
-                      className="text-amber-600 hover:text-amber-500 hover:underline transition-colors"
+                        className="text-green-600 hover:text-green-500 hover:underline transition-colors"
                     >
                       {quiz.videoTitle || "Unknown Video"}
                     </Link>
@@ -53,8 +53,8 @@ const QuizHistory = ({ history }) => {
                     className={`px-2 py-1 rounded-full text-[10px] uppercase font-bold tracking-wider ${
                       quiz.difficulty === "hard"
                         ? "bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400"
-                        : quiz.difficulty === "medium"
-                        ? "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400"
+                          : quiz.difficulty === "medium"
+                          ? "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400"
                         : "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400"
                     }`}
                   >

@@ -33,28 +33,28 @@ const StatsCards = ({ stats }) => {
         title="Total Watch Time"
         value={formatTotalTime(stats.totalWatchTime)}
         icon={Clock}
-        color="bg-amber-500/20 text-amber-500"
+        color="bg-green-600/20 text-green-600"
         subtext="Lifetime watch time"
       />
       <StatCard
         title="Quizzes Solved"
         value={stats.totalQuizzesSolved}
         icon={CheckCircle}
-        color="bg-amber-500/20 text-amber-500"
+        color="bg-green-600/20 text-green-600"
         subtext="Total quizzes completed"
       />
       <StatCard
         title="Topics Cleared"
         value={stats.topicsCleared?.length || 0}
         icon={BookOpen}
-        color="bg-amber-500/20 text-amber-500"
+        color="bg-green-600/20 text-green-600"
         subtext="Unique topics mastered"
       />
       <StatCard
         title="Current Streak"
         value={`${calculateStreak()} Days`}
         icon={Flame}
-        color="bg-amber-500/20 text-amber-500"
+        color="bg-green-600/20 text-green-600"
         subtext="Keep it up!"
       />
     </div>

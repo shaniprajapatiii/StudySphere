@@ -134,11 +134,11 @@ export default function Header() {
           <div className="flex items-center shrink-0 z-10">
             <a href="/" className="flex items-center">
               <div className="group relative flex items-center gap-3">
-                <div className="relative grid place-items-center w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-600 to-amber-500 shadow-[0_10px_24px_rgba(139,94,60,0.18)] ring-1 ring-amber-400/20">
+                <div className="relative grid place-items-center w-10 h-10 rounded-2xl bg-gradient-to-br from-green-400 via-green-600 to-green-500 shadow-[0_10px_24px_rgba(16,185,129,0.12)] ring-1 ring-green-400/20">
                   <div className="absolute -inset-[1px] rounded-2xl border border-white/20" />
                   <div className="absolute inset-[2px] rounded-[13px] bg-gradient-to-b from-white/20 to-transparent opacity-70" />
                   <GraduationCap className="w-5.5 h-5.5 text-white drop-shadow-[0_2px_6px_rgba(2,6,23,0.6)]" />
-                  <span className="absolute -right-1 -top-1 w-3 h-3 rounded-full bg-amber-300 ring-2 ring-white/80 shadow-[0_0_12px_rgba(251,191,36,0.55)]" />
+                  <span className="absolute -right-1 -top-1 w-3 h-3 rounded-full bg-green-300 ring-2 ring-white/80 shadow-[0_0_12px_rgba(16,185,129,0.28)]" />
                 </div>
                 <div className="hidden lg:flex flex-col leading-none">
                   <span className="text-[0.62rem] uppercase tracking-[0.26em] theme-text-subtle font-semibold">
@@ -146,14 +146,14 @@ export default function Header() {
                   </span>
                   <span className="text-[1.02rem] font-extrabold tracking-[-0.02em] theme-text-primary mt-0.5">
                     Study
-                    <span className="ml-0.5 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-400 to-amber-300">
+                    <span className="ml-0.5 text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-green-400 to-green-300">
                       Sphere
                     </span>
                   </span>
                 </div>
                 <span className="sm:hidden font-extrabold text-base tracking-tight theme-text-primary">
                   Study
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-400 to-amber-300">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-green-400 to-green-300">
                     Sphere
                   </span>
                 </span>
@@ -167,9 +167,9 @@ export default function Header() {
               className="flex items-center gap-3 pointer-events-auto rounded-full px-4 py-2 theme-border border"
               style={{ backgroundColor: "var(--bg-overlay)", boxShadow: "var(--shadow-card)" }}
             >
-              <span className="font-extrabold text-lg tracking-tight theme-text-primary">
+                <span className="font-extrabold text-lg tracking-tight theme-text-primary">
                 Study
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-400 to-amber-300">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-green-400 to-green-300">
                   Sphere
                 </span>
               </span>

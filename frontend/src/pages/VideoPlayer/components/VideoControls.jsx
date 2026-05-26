@@ -25,17 +25,17 @@ export default function VideoControls({
           disabled={transcriptLoading}
           className={`relative group flex flex-col items-center justify-center gap-1.5 px-2 py-3 rounded-xl border transition-colors ${
             viewMode === "transcript"
-              ? "bg-amber-500/10 border-amber-500 text-amber-600 dark:text-amber-400"
+              ? "bg-green-600/10 border-green-600 text-green-600 dark:text-green-400"
               : "theme-bg-surface-2 theme-border theme-text-muted hover:theme-text-secondary"
           }`}
         >
           {transcriptLoading ? (
-            <Loader2 size={20} className="animate-spin text-amber-600" />
+            <Loader2 size={20} className="animate-spin text-green-600" />
           ) : (
-            <FileText size={20} className={viewMode === "transcript" ? "text-amber-600" : ""} />
+            <FileText size={20} className={viewMode === "transcript" ? "text-green-600" : ""} />
           )}
           <span className="text-[10px] font-semibold uppercase tracking-widest">Transcript</span>
-          {viewMode === "transcript" && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-amber-500" />}
+          {viewMode === "transcript" && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-green-500" />}
         </button>
 
         {/* Summary Button */}
@@ -63,23 +63,23 @@ export default function VideoControls({
           disabled={quizLoading || !hasTranscript}
           className={`relative group flex flex-col items-center justify-center gap-1.5 px-2 py-3 rounded-xl border transition-colors ${
             viewMode === "quiz"
-              ? "bg-amber-500/10 border-amber-500 text-amber-600 dark:text-amber-400"
+              ? "bg-green-600/10 border-green-600 text-green-600 dark:text-green-400"
               : "theme-bg-surface-2 theme-border theme-text-muted hover:theme-text-secondary disabled:opacity-40 disabled:cursor-not-allowed"
           }`}
         >
           {quizLoading ? (
-            <Loader2 size={20} className="animate-spin text-amber-500" />
+            <Loader2 size={20} className="animate-spin text-green-600" />
           ) : (
-            <BrainCircuit size={20} className={viewMode === "quiz" ? "text-amber-500" : ""} />
+            <BrainCircuit size={20} className={viewMode === "quiz" ? "text-green-600" : ""} />
           )}
            <span className="text-[10px] font-semibold uppercase tracking-widest">Quiz</span>
-          {viewMode === "quiz" && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-amber-500" />}
+          {viewMode === "quiz" && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-green-500" />}
         </button>
       </div>
 
       {!hasTranscript && !transcriptLoading && (
-          <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600" style={{ flexShrink: 0 }}>
+          <div className="p-4 rounded-xl bg-green-600/5 border border-green-600/10 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-green-600/10 flex items-center justify-center text-green-600" style={{ flexShrink: 0 }}>
                <Sparkles size={14} />
             </div>
             <p className="text-[11px] theme-text-secondary leading-relaxed">

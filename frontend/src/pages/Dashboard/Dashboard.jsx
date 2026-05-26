@@ -95,7 +95,7 @@ const Dashboard = () => {
           {/* Right Column: Quiz History (or maybe something else later) */}
           <div className="lg:col-span-1">
             {/* Placeholder for future widgets like "Recommended for you" */}
-            <div className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-2xl p-6 text-white h-full flex flex-col justify-center items-center text-center shadow-lg" style={{ boxShadow: "var(--shadow-card)" }}>
+            <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-6 text-white h-full flex flex-col justify-center items-center text-center shadow-lg" style={{ boxShadow: "var(--shadow-card)" }}>
               <h3 className="text-2xl font-bold mb-2">Keep Learning!</h3>
               <p className="opacity-90 mb-6">
                 You're on a {data?.streak || 0}-day streak. Watch one more video
@@ -103,7 +103,7 @@ const Dashboard = () => {
               </p>
               <button
                 onClick={() => (window.location.href = "/feed")}
-                className="bg-white text-amber-700 px-6 py-2 rounded-full font-bold hover:bg-gray-100 transition-colors"
+                className="bg-white text-green-700 px-6 py-2 rounded-full font-bold hover:bg-gray-100 transition-colors"
               >
                 Browse Feed
               </button>

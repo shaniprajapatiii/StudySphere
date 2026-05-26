@@ -29,7 +29,7 @@ const ThirdPartyCookieWarning = ({ onUnderstand, onClose }) => {
 
       <div className="relative w-full max-w-100 theme-bg-surface theme-text-primary rounded-3xl shadow-2xl p-6 sm:p-7 border theme-border animate-in zoom-in-95 duration-300">
         <div className="flex items-start gap-4">
-          <div className="shrink-0 w-11 h-11 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center border border-amber-500/20">
+          <div className="shrink-0 w-11 h-11 rounded-2xl bg-green-600/10 text-green-600 flex items-center justify-center border border-green-600/20">
             <AlertTriangle size={22} />
           </div>
 
@@ -49,7 +49,7 @@ const ThirdPartyCookieWarning = ({ onUnderstand, onClose }) => {
         <div className="mt-6 flex justify-end">
           <button
             type="button"
-            className="px-5 py-3 rounded-2xl bg-amber-700 text-white font-extrabold hover:bg-amber-600 transition-colors shadow-lg"
+            className="px-5 py-3 rounded-2xl bg-green-700 text-white font-extrabold hover:bg-green-600 transition-colors shadow-lg"
             onClick={() => {
               onUnderstand?.();
             }}

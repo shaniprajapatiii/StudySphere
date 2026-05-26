@@ -11,7 +11,7 @@ const Footer = () => {
     >
       <div className="max-w-7xl mx-auto flex flex-wrap md:flex-nowrap items-center justify-center md:justify-between gap-x-4 gap-y-3 text-xs md:text-sm theme-text-muted">
         <div className="flex items-center gap-2 theme-text-subtle">
-          <span className="h-2 w-2 rounded-full bg-amber-400/80" />
+          <span className="h-2 w-2 rounded-full bg-green-400/80" />
           <Link to="/about" className="ds-link font-medium">
             About Us
           </Link>

@@ -29,7 +29,7 @@ export default function TranscriptBox({ loading, transcript }) {
   return (
      <div className="transcript-box animate-in fade-in duration-300 h-full pb-6">
       <div className="flex items-center gap-2 mb-4">
-        <div className="p-2 rounded-xl bg-amber-500/10 text-amber-600 border border-amber-500/20">
+        <div className="p-2 rounded-xl bg-green-600/10 text-green-600 border border-green-600/20">
           <Languages size={18} />
         </div>
         <h3 className="text-base font-bold theme-text-primary">Transcript</h3>
@@ -38,7 +38,7 @@ export default function TranscriptBox({ loading, transcript }) {
       <div className="space-y-4">
         {paragraphs.map((p, i) => (
           <div key={i} className="group relative">
-             <div className="absolute -left-4 top-0 bottom-0 w-1 bg-amber-500/0 group-hover:bg-amber-500/20 transition-all rounded-full" />
+             <div className="absolute -left-4 top-0 bottom-0 w-1 bg-green-600/0 group-hover:bg-green-600/20 transition-all rounded-full" />
            <p className="theme-text-secondary text-sm leading-relaxed">
                {p.trim()}
              </p>

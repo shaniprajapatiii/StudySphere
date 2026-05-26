@@ -5,17 +5,17 @@ export default function Terms() {
   return (
     <div className="min-h-screen theme-bg-base py-24 sm:py-32 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto theme-bg-surface rounded-[48px] shadow-2xl p-10 sm:p-16 theme-border border relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 blur-[100px] rounded-full -mr-32 -mt-32" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-green-600/5 blur-[100px] rounded-full -mr-32 -mt-32" />
         
         <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 bg-amber-500/10 px-4 py-1.5 rounded-full text-amber-600 dark:text-amber-400 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-8 border border-amber-500/20 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-green-600/10 px-4 py-1.5 rounded-full text-green-600 dark:text-green-400 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-8 border border-green-600/20 shadow-sm">
             <Scale className="w-3 h-3" />
             <span>Standard Agreements</span>
           </div>
           
           <h1 className="text-4xl sm:text-6xl font-extrabold theme-text-primary mb-4 tracking-tight">Terms of Service</h1>
           <p className="text-sm font-bold theme-text-muted uppercase tracking-widest mb-6 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
             Last Modified: December 4, 2025
           </p>
 
@@ -37,9 +37,9 @@ export default function Terms() {
           <div className="space-y-16">
             <section id="acceptance" className="group">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-green-600/10 text-green-600 dark:text-green-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <FileText size={20} />
-                 </div>
+                  </div>
                  <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">1. Acceptance of Terms</h2>
               </div>
               <p className="theme-text-secondary text-lg leading-relaxed font-medium">
@@ -49,9 +49,9 @@ export default function Terms() {
 
             <section id="service" className="group">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-green-600/10 text-green-600 dark:text-green-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Globe size={20} />
-                 </div>
+                  </div>
                  <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">2. Service Description</h2>
               </div>
               <p className="theme-text-secondary text-lg leading-relaxed font-medium mb-8">
@@ -60,7 +60,7 @@ export default function Terms() {
               <div className="grid sm:grid-cols-2 gap-4">
                  {["YouTube content organization", "AI Summaries & Transcripts", "Interactive assessments", "Progress & Streak tracking"].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 p-4 theme-bg-base rounded-2xl theme-border border shadow-sm">
-                       <CheckCircle2 size={16} className="text-amber-500" />
+                       <CheckCircle2 size={16} className="text-green-500" />
                        <span className="text-sm font-bold theme-text-primary">{item}</span>
                     </div>
                  ))}
@@ -109,12 +109,12 @@ export default function Terms() {
 
             <section id="ai-notice" className="group">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-green-600/10 text-green-600 dark:text-green-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <HelpCircle size={20} />
-                 </div>
+                  </div>
                  <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">5. AI Accuracy Notice</h2>
               </div>
-              <p className="theme-text-secondary text-lg leading-relaxed font-medium bg-amber-500/5 p-8 rounded-3xl border border-amber-500/10 shadow-sm">
+              <p className="theme-text-secondary text-lg leading-relaxed font-medium bg-green-600/5 p-8 rounded-3xl border border-green-600/10 shadow-sm">
                 Our Platform uses Google Gemini AI to generate insights. While we strive for perfection, AI-generated content may contain inaccuracies. Users should verify critical information independently.
               </p>
             </section>

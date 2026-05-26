@@ -78,7 +78,7 @@ export default function QuizBox({ quiz, loading, onRetry, onQuizComplete }) {
            </button>
            <button
              onClick={() => onRetry("medium")}
-             className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-amber-700 text-white font-bold hover:bg-amber-600 transition-all shadow-lg"
+            className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-green-700 text-white font-bold hover:bg-green-600 transition-all shadow-lg"
            >
              <BrainCircuit size={18} />
            New Quiz
@@ -110,7 +110,7 @@ export default function QuizBox({ quiz, loading, onRetry, onQuizComplete }) {
      <div className="quiz-box animate-in fade-in duration-300 pb-6">
       <div className="flex items-center justify-between mb-4">
          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/20">
+            <div className="p-2.5 rounded-2xl bg-green-600/10 text-green-600 border border-green-600/20">
                <BrainCircuit size={20} />
             </div>
           <h3 className="text-base font-bold theme-text-primary">Quiz</h3>
@@ -132,8 +132,8 @@ export default function QuizBox({ quiz, loading, onRetry, onQuizComplete }) {
               onClick={() => handleAnswerSelect(option)}
               className={`w-full text-left p-4 rounded-2xl border font-bold transition-all flex items-center justify-between group ${
                 answers[currentQuestionIndex] === option
-                  ? "bg-amber-600 border-amber-600 text-white shadow-lg shadow-amber-600/20"
-                  : "theme-bg-base theme-border theme-text-secondary hover:theme-border hover:border-amber-500/50"
+                  ? "bg-green-600 border-green-600 text-white shadow-lg shadow-green-600/20"
+                  : "theme-bg-base theme-border theme-text-secondary hover:theme-border hover:border-green-500/50"
               }`}
             >
               <span>{option}</span>

@@ -49,7 +49,7 @@ export default function Privacy() {
 
             <section id="information" className="group">
               <div className="flex items-center gap-4 mb-6">
-                         <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                         <div className="w-10 h-10 rounded-xl bg-green-600/10 text-green-600 dark:text-green-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Eye size={20} />
                  </div>
                  <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">2. Information We Collect</h2>
@@ -57,28 +57,28 @@ export default function Privacy() {
               
               <div className="space-y-8">
                  <div className="theme-bg-base p-8 rounded-3xl border theme-border shadow-sm">
-                    <h3 className="text-sm font-extrabold uppercase tracking-widest theme-text-primary mb-4 flex items-center gap-2">
-                       <User size={14} className="text-amber-500" /> 2.1 Personal Information
+                       <h3 className="text-sm font-extrabold uppercase tracking-widest theme-text-primary mb-4 flex items-center gap-2">
+                       <User size={14} className="text-green-500" /> 2.1 Personal Information
                     </h3>
                     <p className="theme-text-secondary font-medium mb-6">When you create an account, we collect:</p>
                     <ul className="grid sm:grid-cols-2 gap-4">
                       {["Name and email address", "Profile picture via Google", "Account preferences", "Login timestamps"].map((item, i) => (
                          <li key={i} className="flex items-center gap-3 text-sm font-bold theme-text-primary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {item}
+                            <div className="w-1.5 h-1.5 rounded-full bg-green-500" /> {item}
                          </li>
                       ))}
                     </ul>
                  </div>
 
                  <div className="theme-bg-base p-8 rounded-3xl border theme-border shadow-sm">
-                    <h3 className="text-sm font-extrabold uppercase tracking-widest theme-text-primary mb-4 flex items-center gap-2">
-                       <Smartphone size={14} className="text-amber-500" /> 2.2 Usage Data
+                       <h3 className="text-sm font-extrabold uppercase tracking-widest theme-text-primary mb-4 flex items-center gap-2">
+                       <Smartphone size={14} className="text-green-500" /> 2.2 Usage Data
                     </h3>
                     <p className="theme-text-secondary font-medium mb-6">We automatically collect information about your platform interactions:</p>
                     <ul className="grid sm:grid-cols-2 gap-4">
                       {["Videos and learning progress", "Playlists created", "Quiz attempts and scores", "Study streaks", "Device info and IP address"].map((item, i) => (
                          <li key={i} className="flex items-center gap-3 text-sm font-bold theme-text-primary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {item}
+                            <div className="w-1.5 h-1.5 rounded-full bg-green-500" /> {item}
                          </li>
                       ))}
                     </ul>
@@ -108,12 +108,12 @@ export default function Privacy() {
 
             <section id="security" className="group">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                 <div className="w-10 h-10 rounded-xl bg-green-600/10 text-green-600 dark:text-green-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Lock size={20} />
                  </div>
                  <h2 className="text-2xl font-extrabold theme-text-primary tracking-tight">4. Security Infrastructure</h2>
               </div>
-              <p className="theme-text-secondary text-lg leading-relaxed font-medium bg-amber-500/5 p-8 rounded-3xl border border-amber-500/10 shadow-sm">
+                     <p className="theme-text-secondary text-lg leading-relaxed font-medium bg-green-600/5 p-8 rounded-3xl border border-green-600/10 shadow-sm">
                 Your data is stored securely in MongoDB databases with industry-standard encryption. We implement appropriate security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.
               </p>
             </section>
